@@ -4,6 +4,6 @@
 
 [node name="Table" type="Node" parent="."]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Table"]
+[node name="UI" type="CanvasLayer" parent="Table"]
 
-[node name="Node" type="Node" parent="Table"]
+[node name="CardHolder" type="Node" parent="Table"]
