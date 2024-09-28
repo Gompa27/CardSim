@@ -1,4 +1,4 @@
 extends Node
 
-var cardSelected = false
+var cardSelected
 var mouseOnPlacement = false

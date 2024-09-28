@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cof8g185d3swr"]
+
+[ext_resource type="Script" path="res://Scripts/CardPlacement.gd" id="1_hmqay"]
+
+[node name="CardPlacement" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 36.0
+offset_bottom = 16.0
+script = ExtResource("1_hmqay")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
