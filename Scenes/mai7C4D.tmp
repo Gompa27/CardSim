@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://0nnrr220wiov"]
+
+[ext_resource type="Script" path="res://Scripts/Game.gd" id="1_2p6wv"]
+[ext_resource type="Script" path="res://Scripts/CardContainer.gd" id="1_e3wdx"]
+[ext_resource type="PackedScene" uid="uid://extpsqcv3e2g" path="res://Scenes/Card.tscn" id="2_h8a25"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_2p6wv")
+
+[node name="Table" type="Node" parent="."]
+
+[node name="UI" type="CanvasLayer" parent="Table"]
+
+[node name="CardContainer" type="HBoxContainer" parent="Table/UI"]
+offset_left = 1.0
+offset_right = 41.0
+offset_bottom = 40.0
+script = ExtResource("1_e3wdx")
+
+[node name="Card" parent="Table/UI/CardContainer" instance=ExtResource("2_h8a25")]
+layout_mode = 2
+
+[node name="Card2" parent="Table/UI/CardContainer" instance=ExtResource("2_h8a25")]
+layout_mode = 2
+
+[node name="CardHolder" type="Node" parent="Table"]
+
+[connection signal="mouse_entered" from="Table/UI/CardContainer" to="Table/UI/CardContainer" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Table/UI/CardContainer" to="Table/UI/CardContainer" method="_on_mouse_exited"]
