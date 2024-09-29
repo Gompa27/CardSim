@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cida6attahoce" path="res://Assets/Table.jpg" id="4_qocbl"]
 [ext_resource type="PackedScene" uid="uid://cof8g185d3swr" path="res://Scenes/CardPlacement.tscn" id="5_e4fg7"]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node"]
 script = ExtResource("1_2p6wv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -16,36 +16,36 @@ texture = ExtResource("4_qocbl")
 region_enabled = true
 region_rect = Rect2(0, 0, 1150, 650)
 
-[node name="Table" type="Node" parent="."]
+[node name="UI" type="CanvasLayer" parent="."]
 
-[node name="UI" type="CanvasLayer" parent="Table"]
-
-[node name="CardContainer" type="HBoxContainer" parent="Table/UI"]
+[node name="CardContainer" type="HBoxContainer" parent="UI"]
 offset_left = 309.0
 offset_top = 430.0
 offset_right = 830.0
-offset_bottom = 573.0
+offset_bottom = 621.0
+theme_override_constants/separation = -25
+alignment = 1
 script = ExtResource("1_e3wdx")
 
-[node name="Card" parent="Table/UI/CardContainer" instance=ExtResource("3_se05s")]
+[node name="Card" parent="UI/CardContainer" instance=ExtResource("3_se05s")]
 layout_mode = 2
 
-[node name="Card2" parent="Table/UI/CardContainer" instance=ExtResource("3_se05s")]
+[node name="Card2" parent="UI/CardContainer" instance=ExtResource("3_se05s")]
 layout_mode = 2
 
-[node name="Card3" parent="Table/UI/CardContainer" instance=ExtResource("3_se05s")]
+[node name="Card3" parent="UI/CardContainer" instance=ExtResource("3_se05s")]
 layout_mode = 2
 
-[node name="Card4" parent="Table/UI/CardContainer" instance=ExtResource("3_se05s")]
+[node name="Card4" parent="UI/CardContainer" instance=ExtResource("3_se05s")]
 layout_mode = 2
 
-[node name="CardPlacement" parent="Table/UI" instance=ExtResource("5_e4fg7")]
-offset_left = 286.0
-offset_top = 131.0
-offset_right = 674.0
-offset_bottom = 317.0
+[node name="CardPlacement" parent="UI" instance=ExtResource("5_e4fg7")]
+offset_left = 350.0
+offset_top = 169.0
+offset_right = 738.0
+offset_bottom = 355.0
 
-[node name="CardHolder" type="Node" parent="Table"]
+[node name="CardHolder" type="Node" parent="."]
 
-[connection signal="mouse_entered" from="Table/UI/CardContainer" to="Table/UI/CardContainer" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="Table/UI/CardContainer" to="Table/UI/CardContainer" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="UI/CardContainer" to="UI/CardContainer" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UI/CardContainer" to="UI/CardContainer" method="_on_mouse_exited"]
