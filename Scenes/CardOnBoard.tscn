@@ -71,3 +71,6 @@ texture = ExtResource("2_rwc7t")
 libraries = {
 "": SubResource("AnimationLibrary_ieh8m")
 }
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

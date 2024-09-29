@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cof8g185d3swr"]
+[gd_scene load_steps=2 format=3 uid="uid://cof8g185d3swr"]
 
 [ext_resource type="Script" path="res://Scripts/CardPlacement.gd" id="1_hmqay"]
-[ext_resource type="Script" path="res://Scripts/CardContainer.gd" id="2_qqb65"]
 
 [node name="CardPlacement" type="Control"]
 layout_mode = 3
@@ -11,15 +10,9 @@ offset_bottom = 16.0
 script = ExtResource("1_hmqay")
 
 [node name="CardContainer" type="HBoxContainer" parent="."]
-offset_left = 309.0
-offset_top = 430.0
-offset_right = 830.0
-offset_bottom = 621.0
-theme_override_constants/separation = -25
-alignment = 1
-script = ExtResource("2_qqb65")
+layout_mode = 0
+offset_right = 48.0
+offset_bottom = 17.0
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
-[connection signal="mouse_entered" from="CardContainer" to="CardContainer" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="CardContainer" to="CardContainer" method="_on_mouse_exited"]
