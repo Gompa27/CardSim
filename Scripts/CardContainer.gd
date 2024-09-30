@@ -3,6 +3,8 @@ extends HBoxContainer
 var startPosition
 var maxCardsAllowed = 6
 
+@onready var card = preload("res://Scenes/Card.tscn")
+
 func _ready():
 	self.size.x = maxCardsAllowed*105
 	self.pivot_offset.x = maxCardsAllowed*52.5
@@ -13,6 +15,7 @@ func _ready():
 	startPosition = self.position
 	
 func _on_mouse_entered() -> void:
+	Game.mouseOnHand = true
 	var target_position = startPosition + Vector2(0, -100)
 	var tween = get_tree().create_tween()
 	var tween2 = get_tree().create_tween()
@@ -21,8 +24,14 @@ func _on_mouse_entered() -> void:
 
 
 func _on_mouse_exited() -> void:
+	Game.mouseOnHand = false
 	if !Game.cardSelected:
 		var tween = get_tree().create_tween()
 		var tween2 = get_tree().create_tween()
 		tween.tween_property(self, "position", startPosition, 0.2)
 		tween2.tween_property(self, "scale", Vector2(1,1), 0.2)
+
+
+func placeCard():
+	var cardTemp = card.instantiate()
+	add_child(cardTemp)
