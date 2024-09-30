@@ -15,7 +15,7 @@ func _on_mouse_exited() -> void:
 	$Anim.play("Deselect")
 	cardHighLighted = false
 
-
+#Adding a comment
 func _on_gui_input(event: InputEvent) -> void:
 	if (event is InputEventMouseButton) and (event.button_index == 1):
 			if event.button_mask == 1:
