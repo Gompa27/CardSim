@@ -61,12 +61,6 @@ func _on_connection_failed():
 @rpc("any_peer")
 func rpc_update_players(players: Dictionary):
 	Game.players = players
-	
-@rpc("authority")
-func rpc_add_player(peer_id: int, username: String):
-	print("CLIENTE - ADD PLAYER", multiplayer.get_unique_id())
-	var player = Player.new(peer_id, username)
-	Game.add_player(player)
 
 @rpc("any_peer")
 func rpc_login(username: String):
