@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://0nnrr220wiov"]
+[gd_scene load_steps=7 format=3 uid="uid://0nnrr220wiov"]
 
 [ext_resource type="Script" path="res://Scripts/Game.gd" id="1_2p6wv"]
 [ext_resource type="Script" path="res://Scripts/CardContainer.gd" id="1_e3wdx"]
 [ext_resource type="PackedScene" uid="uid://extpsqcv3e2g" path="res://Scenes/Card.tscn" id="3_se05s"]
 [ext_resource type="Texture2D" uid="uid://cida6attahoce" path="res://Assets/Table.jpg" id="4_qocbl"]
 [ext_resource type="PackedScene" uid="uid://cof8g185d3swr" path="res://Scenes/CardPlacement.tscn" id="5_e4fg7"]
+[ext_resource type="Script" path="res://Scenes/players_list_container.gd" id="6_yvmnw"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_2p6wv")
@@ -46,6 +47,25 @@ offset_right = 738.0
 offset_bottom = 355.0
 
 [node name="CardHolder" type="Node" parent="."]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 2
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Players:"
+
+[node name="PlayersListContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 2
+offset_top = 28.0
+offset_right = 148.0
+offset_bottom = 204.0
+script = ExtResource("6_yvmnw")
 
 [connection signal="mouse_entered" from="UI/CardContainer" to="UI/CardContainer" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="UI/CardContainer" to="UI/CardContainer" method="_on_mouse_exited"]

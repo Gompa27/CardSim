@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://c3r5cjw3wgh3s"]
+[gd_scene load_steps=2 format=3 uid="uid://c3r5cjw3wgh3s"]
+
+[ext_resource type="Script" path="res://Scenes/login.gd" id="1_y3gmf"]
 
 [node name="Login" type="Control"]
 layout_mode = 3
@@ -8,8 +10,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(4, 4)
+script = ExtResource("1_y3gmf")
 
 [node name="PortText" type="TextEdit" parent="."]
+unique_name_in_owner = true
 clip_contents = false
 custom_minimum_size = Vector2(70, 35)
 layout_mode = 2
@@ -22,6 +26,7 @@ placeholder_text = "Port"
 scroll_fit_content_height = true
 
 [node name="IpAddressText" type="TextEdit" parent="."]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 35)
 layout_mode = 2
 offset_left = 90.0
@@ -33,6 +38,7 @@ placeholder_text = "Ip Address"
 scroll_fit_content_height = true
 
 [node name="UsernameText" type="TextEdit" parent="."]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(180, 35)
 layout_mode = 0
 offset_left = 10.0
@@ -60,3 +66,6 @@ offset_top = 90.0
 offset_right = 190.0
 offset_bottom = 121.0
 text = "Join"
+
+[connection signal="pressed" from="HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="JoinButton" to="." method="_on_join_button_pressed"]
