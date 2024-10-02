@@ -13,11 +13,11 @@ script = ExtResource("1_2p6wv")
 
 [node name="Fondo" type="Sprite2D" parent="."]
 texture_repeat = 2
-position = Vector2(758, 398.5)
 scale = Vector2(1.31826, 1.22615)
 texture = ExtResource("4_qocbl")
+centered = false
 region_enabled = true
-region_rect = Rect2(0, 0, 1150, 650)
+region_rect = Rect2(0, 0, 1500, 800)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -70,6 +70,7 @@ offset_bottom = 204.0
 script = ExtResource("6_yvmnw")
 
 [node name="Deck" parent="Control" instance=ExtResource("7_hn7hb")]
+layout_mode = 1
 offset_left = 710.0
 offset_top = 256.0
 offset_right = 710.0
