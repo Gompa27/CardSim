@@ -44,6 +44,12 @@ func update_players(players: Dictionary):
 	self.players =  players
 	emit_signal("_on_update_players", players)
 
+func update_decks(door: Array[int], treasure: Array[int], discard_door: Array[int], discard_treasure: Array[int]):
+	deck_doors = door
+	deck_treasures = treasure
+	discard_pile_doors = discard_door
+	discard_pile_treasures = discard_treasure
+	emit_signal("_on_update_decks")
 
 
 func draw_door():
@@ -65,6 +71,30 @@ func draw_treasure():
 	emit_signal("_on_update_decks")
 	return card
 
+func shuffle_deck(type: DECK_TYPE):
+	if type == DECK_TYPE.DRAW_DOOR:
+		deck_doors.shuffle()
+	elif type == DECK_TYPE.DRAW_TREASURE:
+		deck_treasures.shuffle()
+	elif type == DECK_TYPE.DISCARD_DOOR:
+		deck_doors.append_array(discard_pile_doors)
+		discard_pile_doors.clear()
+		deck_doors.shuffle()
+	elif type == DECK_TYPE.DISCARD_TREASURE:
+		deck_treasures.append_array(discard_pile_treasures)
+		discard_pile_treasures.clear()
+		deck_treasures.shuffle()
+	emit_signal("_on_update_decks")
+	
+func get_deck(type: DECK_TYPE):
+	if type == DECK_TYPE.DRAW_DOOR:
+		return deck_doors
+	elif type == DECK_TYPE.DRAW_TREASURE:
+		return deck_treasures
+	elif type == DECK_TYPE.DISCARD_DOOR:
+		return discard_pile_doors
+	elif type == DECK_TYPE.DISCARD_TREASURE:
+		return discard_pile_treasures
 
 
 ######################### UTILS ###################################
