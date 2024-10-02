@@ -19,3 +19,8 @@ config/icon="res://icon.svg"
 
 Game="*res://Scripts/Game.gd"
 NetworkManager="*res://Network/NetworkManager.gd"
+
+[display]
+
+window/size/viewport_width=1500
+window/size/viewport_height=800
