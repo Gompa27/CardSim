@@ -24,7 +24,24 @@ func update_decks():
 	
 	%door.text = str(amountDeckDoor)
 	%treasure.text = str(amountDeckTreasures)
+	
+	var amountDiscardDoor = Game.discard_pile_doors.size()
+	if amountDiscardDoor > 0:
+		for i in range(0, Game.DOORS_CARDS-1):
+			var control = %DiscardPileDoors.get_child(i)
+			var show =(i < amountDiscardDoor) 
+			control.visible = show
+			if show == true:
+				control.get_child(0).frame = Game.discard_pile_doors[i]
 
+	var amountDiscardTreasures = Game.discard_pile_treasures.size()
+	if amountDiscardTreasures > 0:
+		for i in range(0, Game.TREASURE_CARDS-1):
+			var control = %DiscardPileTreasures.get_child(i)
+			var show =(i < amountDiscardTreasures) 
+			control.visible = show
+			if show == true:
+				control.get_child(0).frame = Game.discard_pile_treasures[i]
 
 
 

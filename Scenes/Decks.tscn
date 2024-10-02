@@ -1,27 +1,36 @@
-[gd_scene load_steps=6 format=3 uid="uid://sbavbjalqk4i"]
+[gd_scene load_steps=8 format=3 uid="uid://sbavbjalqk4i"]
 
 [ext_resource type="Script" path="res://Scripts/decks.gd" id="1_avd0p"]
 [ext_resource type="Texture2D" uid="uid://lgy0xfym0cnx" path="res://Assets/DoorBack.jpg" id="1_ich4r"]
 [ext_resource type="Texture2D" uid="uid://bm1g4bm7mmv01" path="res://Assets/fondo_deck.png" id="1_jnvcl"]
 [ext_resource type="Texture2D" uid="uid://dco0xwl61evcd" path="res://Assets/TreasureBack.jpg" id="3_1nxte"]
+[ext_resource type="SpriteFrames" uid="uid://bftorln374wsx" path="res://Resources/doors.tres" id="5_qbpoe"]
 [ext_resource type="Script" path="res://Scenes/BORRAR.gd" id="5_ucbnm"]
+[ext_resource type="SpriteFrames" uid="uid://c42r3wqt2seea" path="res://Resources/treasures.tres" id="6_f3j1c"]
 
 [node name="Decks" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -880.0
+offset_bottom = -600.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_avd0p")
 
 [node name="Fondo" type="Sprite2D" parent="."]
 scale = Vector2(0.26, 0.26)
 texture = ExtResource("1_jnvcl")
+centered = false
 
 [node name="DeckDoors" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = -126.0
-offset_top = -77.0
-offset_right = -26.0
-offset_bottom = 156.0
+offset_left = 182.0
+offset_top = 23.0
+offset_right = 282.0
+offset_bottom = 256.0
 theme_override_constants/separation = 1
 
 [node name="ExampleDoor" type="Control" parent="DeckDoors"]
@@ -34,14 +43,15 @@ centered = false
 
 [node name="DeckTreasures" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
-offset_left = 32.0
-offset_top = -77.0
-offset_right = 132.0
-offset_bottom = 156.0
+offset_left = 341.0
+offset_top = 23.0
+offset_right = 441.0
+offset_bottom = 256.0
 theme_override_constants/separation = 1
 
 [node name="ExampleTreasure" type="Control" parent="DeckTreasures"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
 [node name="Sprite" type="Sprite2D" parent="DeckTreasures/ExampleTreasure"]
@@ -50,10 +60,10 @@ centered = false
 
 [node name="DiscardPileDoors" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
-offset_left = -286.0
-offset_top = -77.0
-offset_right = -186.0
-offset_bottom = 156.0
+offset_left = 23.0
+offset_top = 23.0
+offset_right = 123.0
+offset_bottom = 256.0
 theme_override_constants/separation = 1
 
 [node name="ExampleDiscardDoor" type="Control" parent="DiscardPileDoors"]
@@ -61,16 +71,17 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="Sprite" type="Sprite2D" parent="DiscardPileDoors/ExampleDiscardDoor"]
-texture = ExtResource("1_ich4r")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="DiscardPileDoors/ExampleDiscardDoor"]
+scale = Vector2(0.25, 0.25)
+sprite_frames = ExtResource("5_qbpoe")
 centered = false
 
 [node name="DiscardPileTreasures" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
-offset_left = 192.0
-offset_top = -77.0
-offset_right = 292.0
-offset_bottom = 156.0
+offset_left = 502.0
+offset_top = 23.0
+offset_right = 602.0
+offset_bottom = 256.0
 theme_override_constants/separation = 1
 
 [node name="ExampleDiscardTreasure" type="Control" parent="DiscardPileTreasures"]
@@ -78,8 +89,9 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="Sprite" type="Sprite2D" parent="DiscardPileTreasures/ExampleDiscardTreasure"]
-texture = ExtResource("3_1nxte")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="DiscardPileTreasures/ExampleDiscardTreasure"]
+scale = Vector2(0.25, 0.25)
+sprite_frames = ExtResource("6_f3j1c")
 centered = false
 
 [node name="Control" type="Control" parent="."]
@@ -92,8 +104,10 @@ script = ExtResource("5_ucbnm")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 323.0
+offset_top = 110.0
+offset_right = 363.0
+offset_bottom = 150.0
 
 [node name="DrawDoor" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
@@ -114,17 +128,17 @@ text = "DESCARTAR TESORO"
 [node name="door" type="Label" parent="Control"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = -439.0
-offset_top = -35.0
-offset_right = -399.0
-offset_bottom = -12.0
+offset_left = -123.0
+offset_top = 65.0
+offset_right = -83.0
+offset_bottom = 88.0
 
 [node name="treasure" type="Label" parent="Control"]
 unique_name_in_owner = true
-offset_left = -275.0
-offset_top = -37.0
-offset_right = -235.0
-offset_bottom = -14.0
+offset_left = 32.0
+offset_top = 62.0
+offset_right = 72.0
+offset_bottom = 85.0
 
 [connection signal="pressed" from="Control/VBoxContainer/DrawDoor" to="Control" method="_on_draw_door_pressed"]
 [connection signal="pressed" from="Control/VBoxContainer/DiscardDoor" to="Control" method="_on_discard_door_pressed"]
