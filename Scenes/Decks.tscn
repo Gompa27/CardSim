@@ -43,6 +43,7 @@ centered = false
 
 [node name="DeckTreasures" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 341.0
 offset_top = 23.0
 offset_right = 441.0
@@ -60,6 +61,7 @@ centered = false
 
 [node name="DiscardPileDoors" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 23.0
 offset_top = 23.0
 offset_right = 123.0
@@ -78,6 +80,7 @@ centered = false
 
 [node name="DiscardPileTreasures" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 502.0
 offset_top = 23.0
 offset_right = 602.0
@@ -135,6 +138,7 @@ offset_bottom = 88.0
 
 [node name="treasure" type="Label" parent="Control"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 32.0
 offset_top = 62.0
 offset_right = 72.0

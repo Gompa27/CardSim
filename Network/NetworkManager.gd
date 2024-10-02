@@ -70,9 +70,14 @@ func rpc_login(username: String):
 	}
 	Game.add_player(player)
 	rpc_update_players.rpc(Game.players)
-	
+
+@rpc("any_peer")
+func rpc_discard_card(card: int, type: Game.DECK_TYPE):
+	Game.discard_card(card, type)
 
 func login(username: String):
 	rpc_login.rpc(username)
-
 	
+func discard_card(card: int, type: Game.DECK_TYPE):
+	rpc_discard_card(card, type)
+	rpc_discard_card.rpc(card, type)

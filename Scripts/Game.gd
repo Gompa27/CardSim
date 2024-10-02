@@ -6,6 +6,14 @@ signal _on_update_decks()
 const DOORS_CARDS = 95
 const TREASURE_CARDS = 73
 
+enum DECK_TYPE {
+	DRAW_DOOR,
+	DRAW_TREASURE,
+	DISCARD_DOOR,
+	DISCARD_TREASURE
+}
+
+
 var cardSelected
 var mouseOnPlacement = false
 var mouseOnHand = false
@@ -44,20 +52,18 @@ func draw_door():
 	emit_signal("_on_update_decks")
 	return card
 	
+func discard_card(card: int, type: DECK_TYPE):
+	if type == DECK_TYPE.DISCARD_DOOR:
+		discard_pile_doors.append(card)
+	elif type == DECK_TYPE.DISCARD_TREASURE:
+		discard_pile_treasures.append(card)
 	
-func discard_door(card: int):
-	discard_pile_doors.append(card)
 	emit_signal("_on_update_decks")
 
 func draw_treasure():
 	var card = deck_treasures.pop_back()
 	emit_signal("_on_update_decks")
 	return card
-
-func discard_treasure(card: int):
-	discard_pile_treasures.append(card)
-	emit_signal("_on_update_decks")
-
 
 
 
