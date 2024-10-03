@@ -1,5 +1,6 @@
 extends Node
-
+signal _roll_dice(number : int)
+	
 const MAX_PEERS = 5
 var connection_client = ENetMultiplayerPeer.new()
 
@@ -85,9 +86,21 @@ func rpc_shuffle_deck(type: Game.DECK_TYPE):
 	print("SERVER MEZCLA MASO")
 	rpc_update_decks.rpc(Game.deck_doors, Game.deck_treasures, Game.discard_pile_doors, Game.discard_pile_treasures)
 
+@rpc("any_peer")
+func rpc_set_dice(number: int):
+	emit_signal('_roll_dice', number)
+
+@rpc("any_peer")
+func rpc_roll_dice():
+	var random_numer = randi_range(0,5)
+	rpc_set_dice(random_numer)
+	rpc_set_dice.rpc(random_numer)
+
+
 func login(username: String):
 	rpc_login.rpc(username)
 	
+
 func discard_card(card: int, type: Game.DECK_TYPE):
 	rpc_discard_card(card, type)
 	rpc_discard_card.rpc(card, type)
@@ -97,3 +110,9 @@ func shuffle_deck(type: Game.DECK_TYPE):
 		rpc_shuffle_deck(type)
 	else:
 		rpc_shuffle_deck.rpc_id(1, type)
+
+func roll_dice():
+	if multiplayer.is_server():
+		rpc_roll_dice()
+	else:
+		rpc_roll_dice.rpc_id(1)
