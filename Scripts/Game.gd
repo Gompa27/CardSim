@@ -3,16 +3,6 @@ extends Node
 signal _on_update_players(players: Dictionary)
 signal _on_update_decks()
 
-const DOORS_CARDS = 95
-const TREASURE_CARDS = 73
-
-enum DECK_TYPE {
-	DRAW_DOOR,
-	DRAW_TREASURE,
-	DISCARD_DOOR,
-	DISCARD_TREASURE
-}
-
 
 var cardSelected
 var mouseOnPlacement = false
@@ -27,8 +17,8 @@ var discard_pile_treasures: Array[int]= []
 var players: Dictionary = {}
 
 func _ready():
-	fill_deck(deck_doors, DOORS_CARDS)
-	fill_deck(deck_treasures, TREASURE_CARDS)
+	fill_deck(deck_doors, Util.AMOUNT_DOORS_CARDS)
+	fill_deck(deck_treasures, Util.AMOUNT_TREASURE_CARDS)
 	
 	deck_doors.shuffle()
 	deck_treasures.shuffle()
@@ -58,10 +48,10 @@ func draw_door():
 	emit_signal("_on_update_decks")
 	return card
 	
-func discard_card(card: int, type: DECK_TYPE):
-	if type == DECK_TYPE.DISCARD_DOOR:
+func discard_card(card: int, type: Util.DECK_TYPE):
+	if type == Util.DECK_TYPE.DISCARD_DOOR:
 		discard_pile_doors.append(card)
-	elif type == DECK_TYPE.DISCARD_TREASURE:
+	elif type == Util.DECK_TYPE.DISCARD_TREASURE:
 		discard_pile_treasures.append(card)
 	
 	emit_signal("_on_update_decks")
@@ -71,29 +61,29 @@ func draw_treasure():
 	emit_signal("_on_update_decks")
 	return card
 
-func shuffle_deck(type: DECK_TYPE):
-	if type == DECK_TYPE.DRAW_DOOR:
+func shuffle_deck(type: Util.DECK_TYPE):
+	if type == Util.DECK_TYPE.DRAW_DOOR:
 		deck_doors.shuffle()
-	elif type == DECK_TYPE.DRAW_TREASURE:
+	elif type == Util.DECK_TYPE.DRAW_TREASURE:
 		deck_treasures.shuffle()
-	elif type == DECK_TYPE.DISCARD_DOOR:
+	elif type == Util.DECK_TYPE.DISCARD_DOOR:
 		deck_doors.append_array(discard_pile_doors)
 		discard_pile_doors.clear()
 		deck_doors.shuffle()
-	elif type == DECK_TYPE.DISCARD_TREASURE:
+	elif type == Util.DECK_TYPE.DISCARD_TREASURE:
 		deck_treasures.append_array(discard_pile_treasures)
 		discard_pile_treasures.clear()
 		deck_treasures.shuffle()
 	emit_signal("_on_update_decks")
 	
-func get_deck(type: DECK_TYPE):
-	if type == DECK_TYPE.DRAW_DOOR:
+func get_deck(type: Util.DECK_TYPE):
+	if type == Util.DECK_TYPE.DRAW_DOOR:
 		return deck_doors
-	elif type == DECK_TYPE.DRAW_TREASURE:
+	elif type == Util.DECK_TYPE.DRAW_TREASURE:
 		return deck_treasures
-	elif type == DECK_TYPE.DISCARD_DOOR:
+	elif type == Util.DECK_TYPE.DISCARD_DOOR:
 		return discard_pile_doors
-	elif type == DECK_TYPE.DISCARD_TREASURE:
+	elif type == Util.DECK_TYPE.DISCARD_TREASURE:
 		return discard_pile_treasures
 
 

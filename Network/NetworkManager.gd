@@ -77,11 +77,11 @@ func rpc_login(username: String):
 	rpc_update_players.rpc(Game.players)
 
 @rpc("any_peer")
-func rpc_discard_card(card: int, type: Game.DECK_TYPE):
+func rpc_discard_card(card: int, type: Util.DECK_TYPE):
 	Game.discard_card(card, type)
 
 @rpc("any_peer")
-func rpc_shuffle_deck(type: Game.DECK_TYPE):
+func rpc_shuffle_deck(type: Util.DECK_TYPE):
 	Game.shuffle_deck(type)
 	print("SERVER MEZCLA MASO")
 	rpc_update_decks.rpc(Game.deck_doors, Game.deck_treasures, Game.discard_pile_doors, Game.discard_pile_treasures)
@@ -100,12 +100,11 @@ func rpc_roll_dice():
 func login(username: String):
 	rpc_login.rpc(username)
 	
-
-func discard_card(card: int, type: Game.DECK_TYPE):
+func discard_card(card: int, type: Util.DECK_TYPE):
 	rpc_discard_card(card, type)
 	rpc_discard_card.rpc(card, type)
 
-func shuffle_deck(type: Game.DECK_TYPE):
+func shuffle_deck(type: Util.DECK_TYPE):
 	if multiplayer.is_server():
 		rpc_shuffle_deck(type)
 	else:

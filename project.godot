@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Game="*res://Scripts/Game.gd"
 NetworkManager="*res://Network/NetworkManager.gd"
+Util="*res://Scripts/Util.gd"
 
 [display]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://extpsqcv3e2g"]
 
-[ext_resource type="Script" path="res://Scripts/Draggable.gd" id="1_hu8el"]
+[ext_resource type="Script" path="res://Scenes/Card.gd" id="1_tmhx5"]
 [ext_resource type="Texture2D" uid="uid://lgy0xfym0cnx" path="res://Assets/DoorBack.jpg" id="2_1h4gc"]
 
 [sub_resource type="Animation" id="Animation_3bhjo"]
@@ -61,7 +61,7 @@ _data = {
 custom_minimum_size = Vector2(100, 155)
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("1_hu8el")
+script = ExtResource("1_tmhx5")
 
 [node name="CardBack" type="Sprite2D" parent="."]
 position = Vector2(50, 78)
