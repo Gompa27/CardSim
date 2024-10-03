@@ -21,19 +21,27 @@ func _process(delta):
 
 
 func _on_gui_input(event: InputEvent) -> void:
+	#El evento es de mouse
 	if event is InputEventMouseButton:
+		#Es click direcho
 		if event.button_index == 2:
+			#Click
 			if event.button_mask == 0:
 				isFaceDown = !isFaceDown
 				NetworkManager.flip_card(self)
 				
+		#Es click izquierdo
 		if event.button_index == 1:
+			#Start dragging
 			if event.button_mask == 1:
 				isCardSelected = true
 				offsetMouse = event.position
+				
+			#Finish dragging
 			elif event.button_mask == 0:
 				isCardSelected = false
 				offsetMouse = Vector2(0,0)
+
 
 
 
