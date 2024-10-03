@@ -78,9 +78,17 @@ offset_right = 710.0
 offset_bottom = 256.0
 
 [node name="Acciones" parent="." instance=ExtResource("8_52i7s")]
-offset_top = 300.0
-offset_right = -1673.0
-offset_bottom = -959.0
+clip_contents = true
+custom_minimum_size = Vector2(300, 300)
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = -1.0
+offset_top = 372.0
+offset_right = 299.0
+offset_bottom = 672.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [connection signal="mouse_entered" from="UI/CardContainer" to="UI/CardContainer" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="UI/CardContainer" to="UI/CardContainer" method="_on_mouse_exited"]
