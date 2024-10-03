@@ -22,5 +22,5 @@ NetworkManager="*res://Network/NetworkManager.gd"
 
 [display]
 
-window/size/viewport_width=1500
-window/size/viewport_height=800
+window/size/viewport_width=2000
+window/size/viewport_height=1500
