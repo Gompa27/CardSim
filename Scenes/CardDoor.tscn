@@ -26,7 +26,6 @@ custom_minimum_size = Vector2(100, 155)
 offset_right = 100.0
 offset_bottom = 155.0
 script = ExtResource("1_60uea")
-metadata/TYPE = "DOOR"
 
 [node name="Card" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true

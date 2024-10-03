@@ -95,8 +95,17 @@ func rpc_roll_dice():
 	var random_numer = randi_range(0,5)
 	rpc_set_dice(random_numer)
 	rpc_set_dice.rpc(random_numer)
-
-
+	
+@rpc("any_peer")
+func rpc_flip_card(cardNumber: int, cardType: Util.CARD_TYPE):
+	var card = Card.findCard(cardNumber, cardType)
+	card.flipCard()
+	
+@rpc("any_peer")
+func rpc_move_card(cardNumber: int, position: Vector2, cardType: Util.CARD_TYPE):
+	var card = Card.findCard(cardNumber, cardType)
+	card.moveCard(position)
+	
 func login(username: String):
 	rpc_login.rpc(username)
 	
@@ -115,3 +124,9 @@ func roll_dice():
 		rpc_roll_dice()
 	else:
 		rpc_roll_dice.rpc_id(1)
+		
+func flip_card(card: Card):
+	rpc_flip_card.rpc(card.cardNumber, card.cardType)
+
+func move_card(card: Card):
+	rpc_move_card.rpc(card.cardNumber, card.global_position, card.cardType)
