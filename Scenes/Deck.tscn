@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://fvasgrdaeq63"]
+
+[node name="Deck" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 118.0
+offset_bottom = 183.0

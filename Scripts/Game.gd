@@ -14,38 +14,20 @@ var deck_treasures: Array[int]= []
 var discard_pile_doors: Array[int]= []
 var discard_pile_treasures: Array[int] = []
 
-
 var players: Dictionary = {}
 
 func _ready():
+	print("GAME INSTANCE", self.get_instance_id())
+
 	fill_deck(deck_doors, Util.AMOUNT_DOORS_CARDS)
 	fill_deck(deck_treasures, Util.AMOUNT_TREASURE_CARDS)
 	
 	deck_doors.shuffle()
 	deck_treasures.shuffle()
-	_create_all_door_cards()
-
-func _create_all_door_cards():
-	for card in deck_doors:
-		var instance = load("res://Scenes/CardDoor.tscn").instantiate()
-		instance.cardNumber = card
-		instance.isShowingCard = true
-		instance.visible = true
-		self.add_child(instance)
-	
-	for card in deck_treasures:
-		var instance = load("res://Scenes/CardTreasure.tscn").instantiate()
-		instance.cardNumber = card
-		instance.isShowingCard = true
-		instance.visible = true
-		self.add_child(instance)
-
 
 func add_player(player: Dictionary):
 	players[player.peer_id] = player
 	emit_signal("_on_update_players", players)
-
-
 
 func update_players(players: Dictionary):
 	self.players =  players

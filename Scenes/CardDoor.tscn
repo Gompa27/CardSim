@@ -23,8 +23,8 @@ _data = {
 
 [node name="CardDoor" type="Container"]
 custom_minimum_size = Vector2(100, 155)
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 100.0
+offset_bottom = 155.0
 script = ExtResource("1_60uea")
 metadata/TYPE = "DOOR"
 
@@ -40,5 +40,3 @@ libraries = {
 }
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
-[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

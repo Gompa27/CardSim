@@ -1,17 +1,23 @@
-[gd_scene load_steps=10 format=3 uid="uid://0nnrr220wiov"]
+[gd_scene load_steps=12 format=3 uid="uid://0nnrr220wiov"]
 
-[ext_resource type="Script" path="res://Scripts/Game.gd" id="1_2p6wv"]
 [ext_resource type="Script" path="res://Scripts/CardContainer.gd" id="1_e3wdx"]
+[ext_resource type="Script" path="res://Scenes/MainScreen.gd" id="1_jhv6w"]
 [ext_resource type="PackedScene" uid="uid://extpsqcv3e2g" path="res://Scenes/CardDoor.tscn" id="3_se05s"]
+[ext_resource type="PackedScene" uid="uid://cqsvdvo2n4uwl" path="res://Scenes/CardTreasure.tscn" id="3_spmbg"]
 [ext_resource type="Texture2D" uid="uid://cida6attahoce" path="res://Assets/Table.jpg" id="4_qocbl"]
 [ext_resource type="PackedScene" uid="uid://cof8g185d3swr" path="res://Scenes/CardPlacement.tscn" id="5_e4fg7"]
 [ext_resource type="Script" path="res://Scripts/players_list_container.gd" id="6_yvmnw"]
-[ext_resource type="PackedScene" uid="uid://sbavbjalqk4i" path="res://Scenes/Decks.tscn" id="7_hn7hb"]
 [ext_resource type="PackedScene" uid="uid://c6veuv4jsp811" path="res://Scenes/Acciones.tscn" id="8_52i7s"]
 [ext_resource type="PackedScene" uid="uid://xgjo7w3aj2q7" path="res://Scenes/Dice.tscn" id="10_un8n7"]
+[ext_resource type="Texture2D" uid="uid://bm1g4bm7mmv01" path="res://Assets/fondo_deck.png" id="11_7owbh"]
+[ext_resource type="PackedScene" uid="uid://by8i6djguymtp" path="res://Scenes/PileCards.tscn" id="12_0crwh"]
 
-[node name="Main" type="Node"]
-script = ExtResource("1_2p6wv")
+[node name="Main" type="Node" node_paths=PackedStringArray("pile_doors", "pile_treaasures")]
+script = ExtResource("1_jhv6w")
+card_door_scene = ExtResource("3_se05s")
+card_treasure_scene = ExtResource("3_spmbg")
+pile_doors = NodePath("Decks/PileDoors")
+pile_treaasures = NodePath("Decks/PileTreasures")
 
 [node name="Fondo" type="Sprite2D" parent="."]
 texture_repeat = 2
@@ -72,13 +78,6 @@ offset_right = 148.0
 offset_bottom = 204.0
 script = ExtResource("6_yvmnw")
 
-[node name="Deck" parent="Control" instance=ExtResource("7_hn7hb")]
-layout_mode = 1
-offset_left = 710.0
-offset_top = 256.0
-offset_right = 710.0
-offset_bottom = 256.0
-
 [node name="Acciones" parent="." instance=ExtResource("8_52i7s")]
 clip_contents = true
 custom_minimum_size = Vector2(300, 300)
@@ -106,6 +105,54 @@ offset_left = 36.0
 offset_top = 993.0
 offset_right = 1663.0
 offset_bottom = 1239.0
+
+[node name="Decks" type="Control" parent="."]
+z_as_relative = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 710.0
+offset_top = 256.0
+offset_right = 1328.0
+offset_bottom = 456.0
+
+[node name="FondoDecks" type="Sprite2D" parent="Decks"]
+z_index = 1
+scale = Vector2(0.26, 0.26)
+texture = ExtResource("11_7owbh")
+centered = false
+
+[node name="PileDoors" parent="Decks" instance=ExtResource("12_0crwh")]
+z_as_relative = false
+layout_mode = 1
+offset_left = 173.0
+offset_top = 9.0
+offset_right = -327.0
+offset_bottom = -8.0
+metadata/face_down = true
+
+[node name="PileTreasures" parent="Decks" instance=ExtResource("12_0crwh")]
+layout_mode = 1
+offset_left = 333.0
+offset_top = 9.0
+offset_right = -167.0
+offset_bottom = -8.0
+metadata/face_down = true
+
+[node name="PileDiscardDoors" parent="Decks" instance=ExtResource("12_0crwh")]
+layout_mode = 1
+offset_left = 14.0
+offset_top = 9.0
+offset_right = -486.0
+offset_bottom = -8.0
+metadata/face_down = false
+
+[node name="PileDiscardTreasures" parent="Decks" instance=ExtResource("12_0crwh")]
+layout_mode = 1
+offset_left = 492.0
+offset_top = 9.0
+offset_right = -8.0
+offset_bottom = -8.0
+metadata/face_down = false
 
 [connection signal="mouse_entered" from="UI/CardContainer" to="UI/CardContainer" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="UI/CardContainer" to="UI/CardContainer" method="_on_mouse_exited"]
