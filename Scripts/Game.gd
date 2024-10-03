@@ -3,6 +3,7 @@ extends Node
 signal _on_update_players(players: Dictionary)
 signal _on_update_decks()
 
+var CARD_TREASURE_SCENE = load("res://Scenes/CardTreasure.tscn")
 
 var cardSelected
 var mouseOnPlacement = false
@@ -11,7 +12,7 @@ var mouseOnHand = false
 var deck_doors: Array[int]= []
 var deck_treasures: Array[int]= []
 var discard_pile_doors: Array[int]= []
-var discard_pile_treasures: Array[int]= []
+var discard_pile_treasures: Array[int] = []
 
 
 var players: Dictionary = {}
@@ -22,6 +23,22 @@ func _ready():
 	
 	deck_doors.shuffle()
 	deck_treasures.shuffle()
+	_create_all_door_cards()
+
+func _create_all_door_cards():
+	for card in deck_doors:
+		var instance = load("res://Scenes/CardDoor.tscn").instantiate()
+		instance.cardNumber = card
+		instance.isShowingCard = true
+		instance.visible = true
+		self.add_child(instance)
+	
+	for card in deck_treasures:
+		var instance = load("res://Scenes/CardTreasure.tscn").instantiate()
+		instance.cardNumber = card
+		instance.isShowingCard = true
+		instance.visible = true
+		self.add_child(instance)
 
 
 func add_player(player: Dictionary):

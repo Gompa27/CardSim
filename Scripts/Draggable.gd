@@ -1,3 +1,4 @@
+class_name Draggable
 extends Container
 
 @onready var card = preload("res://Scenes/CardHolder.tscn")

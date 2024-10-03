@@ -3,7 +3,7 @@ extends HBoxContainer
 var startPosition
 var maxCardsAllowed = 6
 
-@onready var card = preload("res://Scenes/Card.tscn")
+@onready var card = preload("res://Scenes/CardDoor.tscn")
 
 func _ready():
 	self.size.x = maxCardsAllowed*105

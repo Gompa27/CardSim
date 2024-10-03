@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://0nnrr220wiov"]
+[gd_scene load_steps=10 format=3 uid="uid://0nnrr220wiov"]
 
 [ext_resource type="Script" path="res://Scripts/Game.gd" id="1_2p6wv"]
 [ext_resource type="Script" path="res://Scripts/CardContainer.gd" id="1_e3wdx"]
-[ext_resource type="PackedScene" uid="uid://extpsqcv3e2g" path="res://Scenes/Card.tscn" id="3_se05s"]
+[ext_resource type="PackedScene" uid="uid://extpsqcv3e2g" path="res://Scenes/CardDoor.tscn" id="3_se05s"]
 [ext_resource type="Texture2D" uid="uid://cida6attahoce" path="res://Assets/Table.jpg" id="4_qocbl"]
-[ext_resource type="Script" path="res://Scripts/Card.gd" id="5_03syc"]
 [ext_resource type="PackedScene" uid="uid://cof8g185d3swr" path="res://Scenes/CardPlacement.tscn" id="5_e4fg7"]
 [ext_resource type="Script" path="res://Scripts/players_list_container.gd" id="6_yvmnw"]
 [ext_resource type="PackedScene" uid="uid://sbavbjalqk4i" path="res://Scenes/Decks.tscn" id="7_hn7hb"]
@@ -36,19 +35,15 @@ script = ExtResource("1_e3wdx")
 
 [node name="Card" parent="UI/CardContainer" instance=ExtResource("3_se05s")]
 layout_mode = 2
-script = ExtResource("5_03syc")
 
 [node name="Card2" parent="UI/CardContainer" instance=ExtResource("3_se05s")]
 layout_mode = 2
-script = ExtResource("5_03syc")
 
 [node name="Card3" parent="UI/CardContainer" instance=ExtResource("3_se05s")]
 layout_mode = 2
-script = ExtResource("5_03syc")
 
 [node name="Card4" parent="UI/CardContainer" instance=ExtResource("3_se05s")]
 layout_mode = 2
-script = ExtResource("5_03syc")
 
 [node name="CardPlacement" parent="UI" instance=ExtResource("5_e4fg7")]
 offset_left = 545.0
@@ -90,10 +85,10 @@ custom_minimum_size = Vector2(300, 300)
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = -1.0
-offset_top = 372.0
-offset_right = 299.0
-offset_bottom = 672.0
+offset_left = 5.0
+offset_top = 219.0
+offset_right = 305.0
+offset_bottom = 519.0
 grow_horizontal = 1
 grow_vertical = 1
 
@@ -104,6 +99,13 @@ offset_top = 59.0
 offset_right = 2262.0
 offset_bottom = 459.0
 scale = Vector2(0.2, 0.2)
+
+[node name="BORRARCARTAS" type="HBoxContainer" parent="."]
+unique_name_in_owner = true
+offset_left = 36.0
+offset_top = 993.0
+offset_right = 1663.0
+offset_bottom = 1239.0
 
 [connection signal="mouse_entered" from="UI/CardContainer" to="UI/CardContainer" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="UI/CardContainer" to="UI/CardContainer" method="_on_mouse_exited"]

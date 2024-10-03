@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://extpsqcv3e2g"]
+
+[ext_resource type="Script" path="res://Scripts/Card.gd" id="1_60uea"]
+[ext_resource type="SpriteFrames" uid="uid://bftorln374wsx" path="res://Resources/doors.tres" id="2_uy801"]
+
+[sub_resource type="Animation" id="Animation_3bhjo"]
+resource_name = "Deselect"
+length = 0.2
+
+[sub_resource type="Animation" id="Animation_lyg4l"]
+length = 0.01
+
+[sub_resource type="Animation" id="Animation_436xi"]
+resource_name = "Select"
+length = 0.2
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ieh8m"]
+_data = {
+"Deselect": SubResource("Animation_3bhjo"),
+"RESET": SubResource("Animation_lyg4l"),
+"Select": SubResource("Animation_436xi")
+}
+
+[node name="CardDoor" type="Container"]
+custom_minimum_size = Vector2(100, 155)
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_60uea")
+metadata/TYPE = "DOOR"
+
+[node name="Card" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(0.25, 0.25)
+sprite_frames = ExtResource("2_uy801")
+centered = false
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ieh8m")
+}
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
