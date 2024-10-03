@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c6veuv4jsp811"]
 
-[ext_resource type="Script" path="res://Scenes/acciones.gd" id="1_etlos"]
+[ext_resource type="Script" path="res://Scripts/acciones.gd" id="1_etlos"]
 
 [node name="Acciones" type="Panel"]
 anchors_preset = 15

@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://0nnrr220wiov"]
+[gd_scene load_steps=11 format=3 uid="uid://0nnrr220wiov"]
 
 [ext_resource type="Script" path="res://Scripts/CardContainer.gd" id="1_e3wdx"]
-[ext_resource type="Script" path="res://Scenes/MainScreen.gd" id="1_jhv6w"]
+[ext_resource type="Script" path="res://Scripts/MainScreen.gd" id="1_jhv6w"]
 [ext_resource type="PackedScene" uid="uid://extpsqcv3e2g" path="res://Scenes/CardDoor.tscn" id="3_se05s"]
 [ext_resource type="PackedScene" uid="uid://cqsvdvo2n4uwl" path="res://Scenes/CardTreasure.tscn" id="3_spmbg"]
 [ext_resource type="Texture2D" uid="uid://cida6attahoce" path="res://Assets/Table.jpg" id="4_qocbl"]
-[ext_resource type="PackedScene" uid="uid://cof8g185d3swr" path="res://Scenes/CardPlacement.tscn" id="5_e4fg7"]
 [ext_resource type="Script" path="res://Scripts/players_list_container.gd" id="6_yvmnw"]
 [ext_resource type="PackedScene" uid="uid://c6veuv4jsp811" path="res://Scenes/Acciones.tscn" id="8_52i7s"]
 [ext_resource type="PackedScene" uid="uid://xgjo7w3aj2q7" path="res://Scenes/Dice.tscn" id="10_un8n7"]
@@ -38,24 +37,6 @@ offset_bottom = 789.0
 theme_override_constants/separation = -25
 alignment = 1
 script = ExtResource("1_e3wdx")
-
-[node name="Card" parent="UI/CardContainer" instance=ExtResource("3_se05s")]
-layout_mode = 2
-
-[node name="Card2" parent="UI/CardContainer" instance=ExtResource("3_se05s")]
-layout_mode = 2
-
-[node name="Card3" parent="UI/CardContainer" instance=ExtResource("3_se05s")]
-layout_mode = 2
-
-[node name="Card4" parent="UI/CardContainer" instance=ExtResource("3_se05s")]
-layout_mode = 2
-
-[node name="CardPlacement" parent="UI" instance=ExtResource("5_e4fg7")]
-offset_left = 545.0
-offset_top = 367.0
-offset_right = 933.0
-offset_bottom = 553.0
 
 [node name="CardHolder" type="Node" parent="."]
 
@@ -153,6 +134,13 @@ offset_top = 9.0
 offset_right = -8.0
 offset_bottom = -8.0
 metadata/face_down = false
+
+[node name="Cards" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [connection signal="mouse_entered" from="UI/CardContainer" to="UI/CardContainer" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="UI/CardContainer" to="UI/CardContainer" method="_on_mouse_exited"]

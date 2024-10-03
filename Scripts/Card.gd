@@ -36,13 +36,16 @@ func _on_gui_input(event: InputEvent) -> void:
 			if event.button_mask == 1:
 				isCardSelected = true
 				offsetMouse = event.position
+				self.move_to_front()
 				
 			#Finish dragging
 			elif event.button_mask == 0:
 				isCardSelected = false
 				offsetMouse = Vector2(0,0)
-
-
+				
+				
+				
+				
 
 
 static func findCard(cardNumber: int, cardType: Util.CARD_TYPE):

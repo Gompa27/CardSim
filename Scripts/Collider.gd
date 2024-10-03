@@ -1,5 +1,11 @@
-extends Control
+extends Container
 
+enum COLLIDER_TYPE {
+	PILE,
+	CARD
+}
+
+@export var type : COLLIDER_TYPE
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

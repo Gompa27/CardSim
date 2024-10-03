@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cqsvdvo2n4uwl"]
+[gd_scene load_steps=8 format=3 uid="uid://cqsvdvo2n4uwl"]
 
 [ext_resource type="Script" path="res://Scripts/Card.gd" id="1_gvxsa"]
+[ext_resource type="Script" path="res://Scripts/Collider.gd" id="2_l88cg"]
 [ext_resource type="SpriteFrames" uid="uid://c42r3wqt2seea" path="res://Resources/treasures.tres" id="2_md36j"]
 
 [sub_resource type="Animation" id="Animation_3bhjo"]
@@ -27,13 +28,19 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_gvxsa")
 
-[node name="Card" type="AnimatedSprite2D" parent="."]
+[node name="Container" type="Container" parent="."]
+layout_mode = 2
+script = ExtResource("2_l88cg")
+type = 1
+
+[node name="Card" type="AnimatedSprite2D" parent="Container"]
 unique_name_in_owner = true
 scale = Vector2(0.25, 0.25)
 sprite_frames = ExtResource("2_md36j")
 centered = false
 
-[node name="Anim" type="AnimationPlayer" parent="."]
+[node name="Anim" type="AnimationPlayer" parent="Container"]
+root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_ieh8m")
 }
