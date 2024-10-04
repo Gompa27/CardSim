@@ -35,17 +35,35 @@ func _on_gui_input(event: InputEvent) -> void:
 		if event.button_index == 1:
 			#Start dragging
 			if event.button_mask == 1:
-				isCardSelected = true
-				offsetMouse = event.position
-				currentCardSelected = self
-				
-			#Finish dragging
+				_startDragging(event)
 			elif event.button_mask == 0:
-				isCardSelected = false
-				offsetMouse = Vector2(0,0)
-				currentCardSelected = null
-				if Pile.currentPile:
-					self.reparent(Pile.currentPile)
+				_finishDragging()
+				
+func _startDragging(event: InputEventMouseButton):
+	isCardSelected = true
+	offsetMouse = event.position
+	currentCardSelected = self
+
+func _finishDragging():
+	isCardSelected = false
+	offsetMouse = Vector2(0,0)
+	currentCardSelected = null
+	var piles_nodes = get_tree().get_nodes_in_group("Pile")
+	var isReparented = false
+	for pile in piles_nodes:
+		if is_dragging_over(pile):
+			self.reparent(pile)
+			isReparented = true
+			pass
+	
+	if self.get_parent() is Pile && !isReparented:
+		self.reparent(get_tree().current_scene.get_node('%Cards'))
+
+func is_dragging_over(pile: Pile) -> bool:
+	var drop_area_rect = get_global_rect()
+	var pile_rect = pile.get_global_rect()
+	return drop_area_rect.intersects(pile_rect)
+
 
 
 static func findCard(cardNumber: int, cardType: Util.CARD_TYPE):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://0nnrr220wiov"]
+[gd_scene load_steps=12 format=3 uid="uid://0nnrr220wiov"]
 
 [ext_resource type="Script" path="res://Scripts/CardContainer.gd" id="1_e3wdx"]
 [ext_resource type="Script" path="res://Scripts/MainScreen.gd" id="1_jhv6w"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c6veuv4jsp811" path="res://Scenes/Acciones.tscn" id="8_52i7s"]
 [ext_resource type="PackedScene" uid="uid://xgjo7w3aj2q7" path="res://Scenes/Dice.tscn" id="10_un8n7"]
 [ext_resource type="Texture2D" uid="uid://bm1g4bm7mmv01" path="res://Assets/fondo_deck.png" id="11_7owbh"]
+[ext_resource type="Script" path="res://Scripts/Pile.gd" id="11_an6km"]
 [ext_resource type="PackedScene" uid="uid://by8i6djguymtp" path="res://Scenes/PileCards.tscn" id="12_0crwh"]
 
 [node name="Main" type="Node" node_paths=PackedStringArray("pile_doors", "pile_treaasures")]
@@ -109,6 +110,7 @@ offset_left = 173.0
 offset_top = 9.0
 offset_right = -327.0
 offset_bottom = -8.0
+pile_name = "Doors"
 metadata/face_down = true
 
 [node name="PileTreasures" parent="Decks" instance=ExtResource("12_0crwh")]
@@ -117,6 +119,7 @@ offset_left = 333.0
 offset_top = 9.0
 offset_right = -167.0
 offset_bottom = -8.0
+pile_name = "Treasure"
 metadata/face_down = true
 
 [node name="PileDiscardDoors" parent="Decks" instance=ExtResource("12_0crwh")]
@@ -125,6 +128,7 @@ offset_left = 14.0
 offset_top = 9.0
 offset_right = -486.0
 offset_bottom = -8.0
+pile_name = "Discard Doors"
 metadata/face_down = false
 
 [node name="PileDiscardTreasures" parent="Decks" instance=ExtResource("12_0crwh")]
@@ -133,14 +137,15 @@ offset_left = 492.0
 offset_top = 9.0
 offset_right = -8.0
 offset_bottom = -8.0
+pile_name = "Discard Treasures"
 metadata/face_down = false
 
-[node name="Cards" type="Control" parent="."]
+[node name="Cards" type="Container" parent="."]
 unique_name_in_owner = true
-layout_mode = 3
-anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("11_an6km")
+pile_name = "General Table"
 
 [connection signal="mouse_entered" from="UI/CardContainer" to="UI/CardContainer" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="UI/CardContainer" to="UI/CardContainer" method="_on_mouse_exited"]
