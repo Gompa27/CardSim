@@ -27,7 +27,7 @@ func _on_gui_input(event: InputEvent) -> void:
 		#Es click direcho
 		if event.button_index == 2:
 			#Click
-			if event.button_mask == 0:
+			if event.button_mask == 0 && get_parent().pileType == Util.PILE_TYPE.TABLE:
 				isFaceDown = !isFaceDown
 				NetworkManager.flip_card(self)
 				
@@ -66,6 +66,7 @@ func _finishDragging():
 func is_dragging_over(pile: Pile) -> bool:
 	var drop_area_rect = get_global_rect()
 	var pile_rect = pile.get_global_rect()
+	print('INTERSECT: ',pile.pileType,' - ',drop_area_rect,' - ', pile_rect)
 	return drop_area_rect.intersects(pile_rect)
 
 

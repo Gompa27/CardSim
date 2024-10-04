@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://0nnrr220wiov"]
+[gd_scene load_steps=12 format=3 uid="uid://0nnrr220wiov"]
 
 [ext_resource type="Script" path="res://Scripts/MainScreen.gd" id="1_jhv6w"]
 [ext_resource type="PackedScene" uid="uid://extpsqcv3e2g" path="res://Scenes/CardDoor.tscn" id="3_se05s"]
@@ -9,48 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://xgjo7w3aj2q7" path="res://Scenes/Dice.tscn" id="10_un8n7"]
 [ext_resource type="Texture2D" uid="uid://bm1g4bm7mmv01" path="res://Assets/fondo_deck.png" id="11_7owbh"]
 [ext_resource type="Script" path="res://Scripts/Pile.gd" id="11_an6km"]
-[ext_resource type="PackedScene" uid="uid://crokd7wx17j4r" path="res://Scenes/LevelControl.tscn" id="11_mvkgk"]
+[ext_resource type="PackedScene" uid="uid://dgef27bi45iu7" path="res://Scenes/LevelControl.tscn" id="11_mvkgk"]
 [ext_resource type="PackedScene" uid="uid://by8i6djguymtp" path="res://Scenes/PileCards.tscn" id="12_0crwh"]
-
-[sub_resource type="GDScript" id="GDScript_rdgpd"]
-script/source = "extends HBoxContainer
-
-var startPosition
-var maxCardsAllowed = 6
-
-@onready var card = preload(\"res://Scenes/CardDoor.tscn\")
-
-func _ready():
-	self.size.x = maxCardsAllowed*105
-	self.pivot_offset.x = maxCardsAllowed*52.5
-	var projectResolution = ProjectSettings.get_setting(\"display/window/size/viewport_width\")
-	var projectResolutionHeight = ProjectSettings.get_setting(\"display/window/size/viewport_height\")
-	self.global_position.x = projectResolution/4
-	self.global_position.y = (projectResolutionHeight) - 60
-	startPosition = self.position
-	
-func _on_mouse_entered() -> void:
-	Game.mouseOnHand = true
-	var target_position = startPosition + Vector2(0, -100)
-	var tween = get_tree().create_tween()
-	var tween2 = get_tree().create_tween()
-	tween.tween_property(self, \"position\", target_position, 0.2)
-	tween2.tween_property(self, \"scale\", Vector2(1.3,1.3), 0.2)
-
-
-func _on_mouse_exited() -> void:
-	Game.mouseOnHand = false
-	if !Game.cardSelected:
-		var tween = get_tree().create_tween()
-		var tween2 = get_tree().create_tween()
-		tween.tween_property(self, \"position\", startPosition, 0.2)
-		tween2.tween_property(self, \"scale\", Vector2(1,1), 0.2)
-
-
-func placeCard():
-	var cardTemp = card.instantiate()
-	add_child(cardTemp)
-"
 
 [node name="Main" type="Node" node_paths=PackedStringArray("pile_doors", "pile_treaasures")]
 script = ExtResource("1_jhv6w")
@@ -61,24 +21,11 @@ pile_treaasures = NodePath("Decks/PileTreasures")
 
 [node name="Fondo" type="Sprite2D" parent="."]
 texture_repeat = 2
-scale = Vector2(1.21, 1.125)
+scale = Vector2(1.064, 1.1225)
 texture = ExtResource("4_qocbl")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 1500, 800)
-
-[node name="UI" type="CanvasLayer" parent="."]
-
-[node name="CardContainer" type="HBoxContainer" parent="UI"]
-offset_left = 474.0
-offset_top = 598.0
-offset_right = 995.0
-offset_bottom = 789.0
-theme_override_constants/separation = -25
-alignment = 1
-script = SubResource("GDScript_rdgpd")
-
-[node name="CardHolder" type="Node" parent="."]
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -101,16 +48,11 @@ script = ExtResource("6_yvmnw")
 
 [node name="Acciones" parent="." instance=ExtResource("8_52i7s")]
 clip_contents = true
-custom_minimum_size = Vector2(300, 300)
-anchors_preset = 0
+custom_minimum_size = Vector2(200, 200)
+anchors_preset = -1
 anchor_right = 0.0
-anchor_bottom = 0.0
-offset_left = 5.0
-offset_top = 219.0
-offset_right = 305.0
-offset_bottom = 519.0
+offset_right = 300.0
 grow_horizontal = 1
-grow_vertical = 1
 
 [node name="Dice" parent="." instance=ExtResource("10_un8n7")]
 unique_name_in_owner = true
@@ -160,6 +102,7 @@ offset_top = 9.0
 offset_right = -486.0
 offset_bottom = -8.0
 pileType = 2
+canSeeCards = true
 metadata/face_down = false
 
 [node name="PileDiscardTreasures" parent="Decks" instance=ExtResource("12_0crwh")]
@@ -169,6 +112,7 @@ offset_top = 9.0
 offset_right = -8.0
 offset_bottom = -8.0
 pileType = 3
+canSeeCards = true
 metadata/face_down = false
 
 [node name="Table" type="Container" parent="."]
@@ -179,7 +123,54 @@ script = ExtResource("11_an6km")
 pileType = 4
 
 [node name="PointsControl" parent="." instance=ExtResource("11_mvkgk")]
-position = Vector2(657, 508)
+position = Vector2(786, 501)
 
-[connection signal="mouse_entered" from="UI/CardContainer" to="UI/CardContainer" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="UI/CardContainer" to="UI/CardContainer" method="_on_mouse_exited"]
+[node name="PointsControl2" parent="." instance=ExtResource("11_mvkgk")]
+position = Vector2(1184, 489)
+rotation = -1.5708
+
+[node name="PointsControl3" parent="." instance=ExtResource("11_mvkgk")]
+position = Vector2(881, 281)
+rotation = -3.14159
+
+[node name="PointsControl4" parent="." instance=ExtResource("11_mvkgk")]
+position = Vector2(532, 332)
+rotation = 1.5708
+scale = Vector2(1.21, 1.125)
+
+[node name="PlayerHand" type="HBoxContainer" parent="."]
+offset_left = 454.0
+offset_top = 793.0
+offset_right = 1335.0
+offset_bottom = 989.0
+theme_override_constants/separation = -15
+alignment = 1
+script = ExtResource("11_an6km")
+pileType = 5
+canSeeCards = true
+
+[node name="PlayerHand2" type="HBoxContainer" parent="."]
+offset_left = 1693.0
+offset_top = 685.0
+offset_right = 2182.0
+offset_bottom = 881.0
+rotation = -1.5708
+theme_override_constants/separation = -15
+alignment = 1
+script = ExtResource("11_an6km")
+pileType = 5
+
+[node name="PlayerHand3" type="HBoxContainer" parent="."]
+offset_left = 1439.0
+offset_top = 106.0
+offset_right = 2320.0
+offset_bottom = 302.0
+rotation = -3.14159
+theme_override_constants/separation = -15
+alignment = 1
+script = ExtResource("11_an6km")
+pileType = 5
+
+[connection signal="child_entered_tree" from="PlayerHand" to="PlayerHand" method="_on_child_entered_tree"]
+[connection signal="child_entered_tree" from="PlayerHand2" to="PlayerHand2" method="_on_child_entered_tree"]
+[connection signal="child_entered_tree" from="PlayerHand3" to="PlayerHand3" method="_on_child_entered_tree"]
