@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://xgjo7w3aj2q7" path="res://Scenes/Dice.tscn" id="10_un8n7"]
 [ext_resource type="Texture2D" uid="uid://bm1g4bm7mmv01" path="res://Assets/fondo_deck.png" id="11_7owbh"]
 [ext_resource type="Script" path="res://Scripts/Pile.gd" id="11_an6km"]
-[ext_resource type="PackedScene" path="res://Scenes/PileCards.tscn" id="12_0crwh"]
+[ext_resource type="PackedScene" uid="uid://by8i6djguymtp" path="res://Scenes/PileCards.tscn" id="12_0crwh"]
 
 [sub_resource type="GDScript" id="GDScript_rdgpd"]
 script/source = "extends HBoxContainer
@@ -60,8 +60,7 @@ pile_treaasures = NodePath("Decks/PileTreasures")
 
 [node name="Fondo" type="Sprite2D" parent="."]
 texture_repeat = 2
-position = Vector2(4, 2)
-scale = Vector2(1.31826, 1.22615)
+scale = Vector2(1.21, 1.125)
 texture = ExtResource("4_qocbl")
 centered = false
 region_enabled = true
@@ -114,10 +113,10 @@ grow_vertical = 1
 
 [node name="Dice" parent="." instance=ExtResource("10_un8n7")]
 unique_name_in_owner = true
-offset_left = 1872.0
-offset_top = 59.0
-offset_right = 2262.0
-offset_bottom = 459.0
+offset_left = 1497.0
+offset_top = 21.0
+offset_right = 1887.0
+offset_bottom = 421.0
 scale = Vector2(0.2, 0.2)
 
 [node name="BORRARCARTAS" type="HBoxContainer" parent="."]
@@ -131,10 +130,10 @@ offset_bottom = 1239.0
 z_as_relative = false
 layout_mode = 3
 anchors_preset = 0
-offset_left = 710.0
-offset_top = 256.0
-offset_right = 1328.0
-offset_bottom = 456.0
+offset_left = 551.0
+offset_top = 290.0
+offset_right = 1169.0
+offset_bottom = 490.0
 
 [node name="FondoDecks" type="Sprite2D" parent="Decks"]
 z_index = 1
