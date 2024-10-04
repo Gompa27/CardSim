@@ -2,6 +2,7 @@ class_name Card
 extends  Control
 
 static var cards_in_game: Array[Card] = []
+static var currentCardSelected: Card
 
 var cardNumber = 0
 var isFaceDown = true
@@ -36,16 +37,15 @@ func _on_gui_input(event: InputEvent) -> void:
 			if event.button_mask == 1:
 				isCardSelected = true
 				offsetMouse = event.position
-				self.move_to_front()
+				currentCardSelected = self
 				
 			#Finish dragging
 			elif event.button_mask == 0:
 				isCardSelected = false
 				offsetMouse = Vector2(0,0)
-				
-				
-				
-				
+				currentCardSelected = null
+				if Pile.currentPile:
+					self.reparent(Pile.currentPile)
 
 
 static func findCard(cardNumber: int, cardType: Util.CARD_TYPE):

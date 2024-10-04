@@ -6,6 +6,7 @@ signal _on_update_decks()
 var CARD_TREASURE_SCENE = load("res://Scenes/CardTreasure.tscn")
 
 var cardSelected
+
 var mouseOnPlacement = false
 var mouseOnHand = false
 

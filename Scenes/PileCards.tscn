@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://by8i6djguymtp"]
 
-[ext_resource type="Script" path="res://Scripts/Collider.gd" id="1_pcp5g"]
+[ext_resource type="Script" path="res://Scripts/Pile.gd" id="1_pcp5g"]
 
 [node name="PileCards" type="CenterContainer"]
 anchors_preset = 15
@@ -11,3 +11,6 @@ offset_bottom = -1317.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_pcp5g")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
