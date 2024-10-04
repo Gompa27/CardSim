@@ -91,6 +91,12 @@ func rpc_move_card(cardNumber: int, position: Vector2, cardType: Util.CARD_TYPE)
 	var card = Card.findCard(cardNumber, cardType)
 	card.moveCard(position)
 	
+@rpc("any_peer")
+func rpc_reparent_card(cardNumber: int, cardType: Util.CARD_TYPE, pileName: String):
+	var card = Card.findCard(cardNumber, cardType)
+	var pile = Pile.findPile(pileName)
+	card.reparent(pile)
+	
 func login(username: String):
 	rpc_login.rpc(username)
 
@@ -105,3 +111,6 @@ func flip_card(card: Card):
 
 func move_card(card: Card):
 	rpc_move_card.rpc(card.cardNumber, card.global_position, card.cardType)
+
+func reparent_card(card: Card):
+	rpc_reparent_card.rpc(card.cardNumber, card.cardType, card.get_parent().pile_name)
