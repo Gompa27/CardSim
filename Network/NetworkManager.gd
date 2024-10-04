@@ -58,11 +58,6 @@ func _on_connection_failed():
 	
 ######################## GAME LOGIC ########################
 
-@rpc("authority")
-func rpc_update_decks(door: Array[int], treasure: Array[int], discard_door: Array[int], discard_treasure: Array[int]):
-	Game.update_decks(door, treasure, discard_door, discard_treasure)
-	print("ACTUALIAZ DECK")
-
 @rpc("any_peer")
 func rpc_update_players(players: Dictionary):
 	Game.players = players
@@ -75,16 +70,6 @@ func rpc_login(username: String):
 	}
 	Game.add_player(player)
 	rpc_update_players.rpc(Game.players)
-
-@rpc("any_peer")
-func rpc_discard_card(card: int, type: Util.DECK_TYPE):
-	Game.discard_card(card, type)
-
-@rpc("any_peer")
-func rpc_shuffle_deck(type: Util.DECK_TYPE):
-	Game.shuffle_deck(type)
-	print("SERVER MEZCLA MASO")
-	rpc_update_decks.rpc(Game.deck_doors, Game.deck_treasures, Game.discard_pile_doors, Game.discard_pile_treasures)
 
 @rpc("any_peer")
 func rpc_set_dice(number: int):
@@ -108,16 +93,6 @@ func rpc_move_card(cardNumber: int, position: Vector2, cardType: Util.CARD_TYPE)
 	
 func login(username: String):
 	rpc_login.rpc(username)
-	
-func discard_card(card: int, type: Util.DECK_TYPE):
-	rpc_discard_card(card, type)
-	rpc_discard_card.rpc(card, type)
-
-func shuffle_deck(type: Util.DECK_TYPE):
-	if multiplayer.is_server():
-		rpc_shuffle_deck(type)
-	else:
-		rpc_shuffle_deck.rpc_id(1, type)
 
 func roll_dice():
 	if multiplayer.is_server():

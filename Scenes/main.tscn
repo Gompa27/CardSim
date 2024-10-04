@@ -1,6 +1,5 @@
 [gd_scene load_steps=12 format=3 uid="uid://0nnrr220wiov"]
 
-[ext_resource type="Script" path="res://Scripts/CardContainer.gd" id="1_e3wdx"]
 [ext_resource type="Script" path="res://Scripts/MainScreen.gd" id="1_jhv6w"]
 [ext_resource type="PackedScene" uid="uid://extpsqcv3e2g" path="res://Scenes/CardDoor.tscn" id="3_se05s"]
 [ext_resource type="PackedScene" uid="uid://cqsvdvo2n4uwl" path="res://Scenes/CardTreasure.tscn" id="3_spmbg"]
@@ -11,6 +10,46 @@
 [ext_resource type="Texture2D" uid="uid://bm1g4bm7mmv01" path="res://Assets/fondo_deck.png" id="11_7owbh"]
 [ext_resource type="Script" path="res://Scripts/Pile.gd" id="11_an6km"]
 [ext_resource type="PackedScene" uid="uid://by8i6djguymtp" path="res://Scenes/PileCards.tscn" id="12_0crwh"]
+
+[sub_resource type="GDScript" id="GDScript_rdgpd"]
+script/source = "extends HBoxContainer
+
+var startPosition
+var maxCardsAllowed = 6
+
+@onready var card = preload(\"res://Scenes/CardDoor.tscn\")
+
+func _ready():
+	self.size.x = maxCardsAllowed*105
+	self.pivot_offset.x = maxCardsAllowed*52.5
+	var projectResolution = ProjectSettings.get_setting(\"display/window/size/viewport_width\")
+	var projectResolutionHeight = ProjectSettings.get_setting(\"display/window/size/viewport_height\")
+	self.global_position.x = projectResolution/4
+	self.global_position.y = (projectResolutionHeight) - 60
+	startPosition = self.position
+	
+func _on_mouse_entered() -> void:
+	Game.mouseOnHand = true
+	var target_position = startPosition + Vector2(0, -100)
+	var tween = get_tree().create_tween()
+	var tween2 = get_tree().create_tween()
+	tween.tween_property(self, \"position\", target_position, 0.2)
+	tween2.tween_property(self, \"scale\", Vector2(1.3,1.3), 0.2)
+
+
+func _on_mouse_exited() -> void:
+	Game.mouseOnHand = false
+	if !Game.cardSelected:
+		var tween = get_tree().create_tween()
+		var tween2 = get_tree().create_tween()
+		tween.tween_property(self, \"position\", startPosition, 0.2)
+		tween2.tween_property(self, \"scale\", Vector2(1,1), 0.2)
+
+
+func placeCard():
+	var cardTemp = card.instantiate()
+	add_child(cardTemp)
+"
 
 [node name="Main" type="Node" node_paths=PackedStringArray("pile_doors", "pile_treaasures")]
 script = ExtResource("1_jhv6w")
@@ -37,7 +76,7 @@ offset_right = 995.0
 offset_bottom = 789.0
 theme_override_constants/separation = -25
 alignment = 1
-script = ExtResource("1_e3wdx")
+script = SubResource("GDScript_rdgpd")
 
 [node name="CardHolder" type="Node" parent="."]
 
