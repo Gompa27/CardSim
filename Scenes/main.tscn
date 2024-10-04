@@ -61,7 +61,7 @@ pile_treaasures = NodePath("Decks/PileTreasures")
 
 [node name="Fondo" type="Sprite2D" parent="."]
 texture_repeat = 2
-scale = Vector2(1.21, 1.125)
+scale = Vector2(1.06667, 1.125)
 texture = ExtResource("4_qocbl")
 centered = false
 region_enabled = true
