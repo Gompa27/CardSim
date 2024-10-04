@@ -1,0 +1,109 @@
+[gd_scene load_steps=14 format=3 uid="uid://crokd7wx17j4r"]
+
+[ext_resource type="Script" path="res://Scripts/LevelControl.gd" id="1_5ri1g"]
+[ext_resource type="Texture2D" uid="uid://cl8kh2skltvrc" path="res://Assets/Coins.png" id="2_6wqbb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ta06"]
+atlas = ExtResource("2_6wqbb")
+region = Rect2(0, 0, 750, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7aa44"]
+atlas = ExtResource("2_6wqbb")
+region = Rect2(750, 0, 750, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2dmg"]
+atlas = ExtResource("2_6wqbb")
+region = Rect2(1500, 0, 750, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8jg0f"]
+atlas = ExtResource("2_6wqbb")
+region = Rect2(2250, 0, 750, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xtde8"]
+atlas = ExtResource("2_6wqbb")
+region = Rect2(3000, 0, 750, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0up6x"]
+atlas = ExtResource("2_6wqbb")
+region = Rect2(3750, 0, 750, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gly3j"]
+atlas = ExtResource("2_6wqbb")
+region = Rect2(4500, 0, 750, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0nyvd"]
+atlas = ExtResource("2_6wqbb")
+region = Rect2(5250, 0, 750, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_06pmo"]
+atlas = ExtResource("2_6wqbb")
+region = Rect2(6000, 0, 750, 150)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5dp2"]
+atlas = ExtResource("2_6wqbb")
+region = Rect2(6750, 0, 750, 150)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fxabn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ta06")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7aa44")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b2dmg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8jg0f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xtde8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0up6x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gly3j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0nyvd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_06pmo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5dp2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="PointsControl" type="Node2D"]
+script = ExtResource("1_5ri1g")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="UpButton" type="Button" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "⇧"
+
+[node name="DownButton" type="Button" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "⇩"
+
+[node name="LevelSprite" type="AnimatedSprite2D" parent="HBoxContainer"]
+unique_name_in_owner = true
+position = Vector2(213, 39)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_fxabn")
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/UpButton" to="." method="_on_up_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/DownButton" to="." method="_on_down_button_pressed"]
