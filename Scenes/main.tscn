@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://0nnrr220wiov"]
+[gd_scene load_steps=11 format=3 uid="uid://0nnrr220wiov"]
 
 [ext_resource type="Script" path="res://Scripts/MainScreen.gd" id="1_jhv6w"]
 [ext_resource type="PackedScene" uid="uid://extpsqcv3e2g" path="res://Scenes/CardDoor.tscn" id="3_se05s"]
 [ext_resource type="PackedScene" uid="uid://cqsvdvo2n4uwl" path="res://Scenes/CardTreasure.tscn" id="3_spmbg"]
 [ext_resource type="Texture2D" uid="uid://cida6attahoce" path="res://Assets/Table.jpg" id="4_qocbl"]
-[ext_resource type="Script" path="res://Scripts/players_list_container.gd" id="6_yvmnw"]
 [ext_resource type="PackedScene" uid="uid://c6veuv4jsp811" path="res://Scenes/Acciones.tscn" id="8_52i7s"]
 [ext_resource type="PackedScene" uid="uid://xgjo7w3aj2q7" path="res://Scenes/Dice.tscn" id="10_un8n7"]
 [ext_resource type="Texture2D" uid="uid://bm1g4bm7mmv01" path="res://Assets/fondo_deck.png" id="11_7owbh"]
@@ -26,25 +25,6 @@ texture = ExtResource("4_qocbl")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 1500, 800)
-
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Label" type="Label" parent="Control"]
-layout_mode = 2
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Players:"
-
-[node name="PlayersListContainer" type="VBoxContainer" parent="Control"]
-layout_mode = 2
-offset_top = 28.0
-offset_right = 148.0
-offset_bottom = 204.0
-script = ExtResource("6_yvmnw")
 
 [node name="Acciones" parent="." instance=ExtResource("8_52i7s")]
 clip_contents = true
