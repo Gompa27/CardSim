@@ -23,6 +23,6 @@ Util="*res://Scripts/Util.gd"
 
 [display]
 
-window/size/viewport_width=1500
-window/size/viewport_height=1000
+window/size/viewport_width=1600
+window/size/viewport_height=900
 window/stretch/mode="canvas_items"

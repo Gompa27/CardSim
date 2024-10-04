@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://xgjo7w3aj2q7" path="res://Scenes/Dice.tscn" id="10_un8n7"]
 [ext_resource type="Texture2D" uid="uid://bm1g4bm7mmv01" path="res://Assets/fondo_deck.png" id="11_7owbh"]
 [ext_resource type="Script" path="res://Scripts/Pile.gd" id="11_an6km"]
-[ext_resource type="PackedScene" uid="uid://by8i6djguymtp" path="res://Scenes/PileCards.tscn" id="12_0crwh"]
+[ext_resource type="PackedScene" path="res://Scenes/PileCards.tscn" id="12_0crwh"]
 
 [sub_resource type="GDScript" id="GDScript_rdgpd"]
 script/source = "extends HBoxContainer
