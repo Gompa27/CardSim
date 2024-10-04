@@ -60,8 +60,7 @@ pile_treaasures = NodePath("Decks/PileTreasures")
 
 [node name="Fondo" type="Sprite2D" parent="."]
 texture_repeat = 2
-position = Vector2(4, 2)
-scale = Vector2(1.31826, 1.22615)
+scale = Vector2(1.21, 1.125)
 texture = ExtResource("4_qocbl")
 centered = false
 region_enabled = true
@@ -114,20 +113,20 @@ grow_vertical = 1
 
 [node name="Dice" parent="." instance=ExtResource("10_un8n7")]
 unique_name_in_owner = true
-offset_left = 1872.0
-offset_top = 59.0
-offset_right = 2262.0
-offset_bottom = 459.0
+offset_left = 1497.0
+offset_top = 21.0
+offset_right = 1887.0
+offset_bottom = 421.0
 scale = Vector2(0.2, 0.2)
 
 [node name="Decks" type="Control" parent="."]
 z_as_relative = false
 layout_mode = 3
 anchors_preset = 0
-offset_left = 710.0
-offset_top = 256.0
-offset_right = 1328.0
-offset_bottom = 456.0
+offset_left = 551.0
+offset_top = 290.0
+offset_right = 1169.0
+offset_bottom = 490.0
 
 [node name="FondoDecks" type="Sprite2D" parent="Decks"]
 z_index = 1
