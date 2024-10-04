@@ -49,9 +49,9 @@ script = ExtResource("6_yvmnw")
 [node name="Acciones" parent="." instance=ExtResource("8_52i7s")]
 clip_contents = true
 custom_minimum_size = Vector2(200, 200)
-anchors_preset = -1
+anchors_preset = 9
 anchor_right = 0.0
-offset_right = 300.0
+offset_right = 266.0
 grow_horizontal = 1
 
 [node name="Dice" parent="." instance=ExtResource("10_un8n7")]
