@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://crokd7wx17j4r"]
+[gd_scene load_steps=14 format=3 uid="uid://dgef27bi45iu7"]
 
 [ext_resource type="Script" path="res://Scripts/LevelControl.gd" id="1_5ri1g"]
 [ext_resource type="Texture2D" uid="uid://cl8kh2skltvrc" path="res://Assets/Coins.png" id="2_6wqbb"]

@@ -11,3 +11,5 @@ offset_bottom = -1317.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_pcp5g")
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]

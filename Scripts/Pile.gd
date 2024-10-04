@@ -3,6 +3,7 @@ extends Container
 
 static var piles: Array[Pile] = []
 @export var pileType: Util.PILE_TYPE
+@export var canSeeCards: bool
 
 func _ready():
 	piles.append(self)
@@ -47,3 +48,9 @@ func send_cards_to(pileType: Util.PILE_TYPE):
 	for child in get_children():
 		child.isFaceDown = true
 		child.reparent(newPile)
+
+
+func _on_child_entered_tree(node):
+	if node is Card:
+		node.isFaceDown = !canSeeCards
+#

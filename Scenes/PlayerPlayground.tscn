@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://6onxvibslsu0"]
+
+[ext_resource type="Script" path="res://Scripts/Pile.gd" id="1_hfjjt"]
+
+[node name="PlayerPlayground" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="PlayerHand" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 140.0
+offset_right = 779.0
+offset_bottom = 263.0
+theme_override_constants/separation = -29
+alignment = 1
+script = ExtResource("1_hfjjt")
+pileType = 5
+canSeeCards = true
+
+[connection signal="child_entered_tree" from="PlayerHand" to="PlayerHand" method="_on_child_entered_tree"]
