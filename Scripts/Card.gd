@@ -59,14 +59,14 @@ func _finishDragging():
 	
 	if self.get_parent() is Pile && !isReparented:
 		var tableNode =get_tree().current_scene.get_node('%Table')
+		self.isFaceDown = true
 		self.reparent(tableNode)
 		NetworkManager.reparent_card(self)
 
 
 func is_dragging_over(pile: Pile) -> bool:
 	var drop_area_rect = get_global_rect()
-	var pile_rect = pile.get_global_rect()
-	print('INTERSECT: ',pile.pileType,' - ',drop_area_rect,' - ', pile_rect)
+	var pile_rect = pile.get_rotated_rect()
 	return drop_area_rect.intersects(pile_rect)
 
 

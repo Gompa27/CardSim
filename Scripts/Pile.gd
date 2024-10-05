@@ -1,9 +1,11 @@
 class_name Pile
-extends Container
+extends Control
 
 static var piles: Array[Pile] = []
 @export var pileType: Util.PILE_TYPE
 @export var canSeeCards: bool
+@export var pileName: String
+@export var rotationIntersect: int
 
 func _ready():
 	piles.append(self)
@@ -54,3 +56,18 @@ func _on_child_entered_tree(node):
 	if node is Card:
 		node.isFaceDown = !canSeeCards
 #
+
+
+func get_rotated_rect() -> Rect2:
+	var curr = get_global_rect()
+	match rotationIntersect:
+		0:
+			return Rect2(curr.position, curr.size)
+		90:
+			return Rect2(Vector2(curr.position.x - curr.size.y, curr.position.y), Vector2(curr.size.y, curr.size.x))
+		180:
+			return Rect2(Vector2(curr.position.x - curr.size.x, curr.position.y - curr.size.y), curr.size)
+		270:
+			return Rect2(Vector2(curr.position.x, curr.position.y - curr.size.y), Vector2(curr.size.y, curr.size.x))
+		_:
+			return curr  # Por defecto sin rotación
