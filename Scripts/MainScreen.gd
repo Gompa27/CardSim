@@ -18,3 +18,8 @@ func _create_cards(amount: int, scene: PackedScene, parent: Control, cardType: U
 		card.z_index = 50
 		card.cardType = cardType
 		parent.add_child(card)
+
+
+func _on_shuffle_menu_id_pressed(id):
+	NetworkManager.shuffle_deck(id)
+	

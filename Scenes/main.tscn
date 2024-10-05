@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://extpsqcv3e2g" path="res://Scenes/CardDoor.tscn" id="3_se05s"]
 [ext_resource type="PackedScene" uid="uid://cqsvdvo2n4uwl" path="res://Scenes/CardTreasure.tscn" id="3_spmbg"]
 [ext_resource type="Texture2D" uid="uid://cida6attahoce" path="res://Assets/Table.jpg" id="4_qocbl"]
-[ext_resource type="PackedScene" uid="uid://c6veuv4jsp811" path="res://Scenes/Acciones.tscn" id="8_52i7s"]
+[ext_resource type="Script" path="res://Scripts/MenuDeck.gd" id="9_upqhy"]
 [ext_resource type="PackedScene" uid="uid://xgjo7w3aj2q7" path="res://Scenes/Dice.tscn" id="10_un8n7"]
 [ext_resource type="Texture2D" uid="uid://bm1g4bm7mmv01" path="res://Assets/fondo_deck.png" id="11_7owbh"]
 [ext_resource type="Script" path="res://Scripts/Pile.gd" id="11_an6km"]
@@ -26,10 +26,6 @@ centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 1500, 800)
 
-[node name="Acciones" parent="." instance=ExtResource("8_52i7s")]
-clip_contents = true
-custom_minimum_size = Vector2(200, 200)
-
 [node name="Dice" parent="." instance=ExtResource("10_un8n7")]
 unique_name_in_owner = true
 offset_left = 559.0
@@ -38,7 +34,7 @@ offset_right = 949.0
 offset_bottom = 901.0
 scale = Vector2(0.2, 0.2)
 
-[node name="Decks" type="Control" parent="."]
+[node name="Decks" type="Control" parent="." node_paths=PackedStringArray("popupMenu")]
 z_as_relative = false
 layout_mode = 3
 anchors_preset = 0
@@ -46,6 +42,8 @@ offset_left = 551.0
 offset_top = 290.0
 offset_right = 1169.0
 offset_bottom = 490.0
+script = ExtResource("9_upqhy")
+popupMenu = NodePath("../ShuffleMenu")
 
 [node name="FondoDecks" type="Sprite2D" parent="Decks"]
 z_index = 1
@@ -98,19 +96,19 @@ offset_bottom = 40.0
 script = ExtResource("11_an6km")
 pileType = 4
 
-[node name="PointsControl" parent="." instance=ExtResource("11_mvkgk")]
-position = Vector2(786, 501)
+[node name="PointsPlayer1" parent="." instance=ExtResource("11_mvkgk")]
+position = Vector2(667, 508)
 
-[node name="PointsControl2" parent="." instance=ExtResource("11_mvkgk")]
-position = Vector2(1184, 489)
+[node name="PointsPlayer2" parent="." instance=ExtResource("11_mvkgk")]
+position = Vector2(1177, 561)
 rotation = -1.5708
 
-[node name="PointsControl3" parent="." instance=ExtResource("11_mvkgk")]
-position = Vector2(881, 281)
+[node name="PointsPlayer3" parent="." instance=ExtResource("11_mvkgk")]
+position = Vector2(1147, 273)
 rotation = -3.14159
 
-[node name="PointsControl4" parent="." instance=ExtResource("11_mvkgk")]
-position = Vector2(532, 332)
+[node name="PointsPlayer4" parent="." instance=ExtResource("11_mvkgk")]
+position = Vector2(543, 216)
 rotation = 1.5708
 scale = Vector2(1.21, 1.125)
 
@@ -126,10 +124,10 @@ pileType = 5
 canSeeCards = true
 
 [node name="PlayerHand2" type="HBoxContainer" parent="."]
-offset_left = 1693.0
-offset_top = 685.0
-offset_right = 2182.0
-offset_bottom = 881.0
+offset_left = 1466.0
+offset_top = 665.0
+offset_right = 1955.0
+offset_bottom = 861.0
 rotation = -1.5708
 theme_override_constants/separation = -15
 alignment = 1
@@ -147,6 +145,23 @@ alignment = 1
 script = ExtResource("11_an6km")
 pileType = 5
 
+[node name="ShuffleMenu" type="PopupMenu" parent="."]
+title = "Acciones"
+size = Vector2i(362, 168)
+theme_override_font_sizes/font_size = 25
+allow_search = false
+item_count = 5
+item_0/text = "Mezclar mazo de Puertas"
+item_1/text = "Mezclar mazo de Tesoros"
+item_1/id = 1
+item_2/id = 5
+item_2/separator = true
+item_3/text = "Mezclar descarte de Puertas"
+item_3/id = 2
+item_4/text = "Mezclar descarte de Tesoros"
+item_4/id = 3
+
 [connection signal="child_entered_tree" from="PlayerHand" to="PlayerHand" method="_on_child_entered_tree"]
 [connection signal="child_entered_tree" from="PlayerHand2" to="PlayerHand2" method="_on_child_entered_tree"]
 [connection signal="child_entered_tree" from="PlayerHand3" to="PlayerHand3" method="_on_child_entered_tree"]
+[connection signal="id_pressed" from="ShuffleMenu" to="." method="_on_shuffle_menu_id_pressed"]
