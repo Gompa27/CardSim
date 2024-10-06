@@ -138,12 +138,7 @@ func rpc_change_seat(newPlayerPosition: int):
 	if (peerId == 0):
 		peerId = 1
 	
-	var realPosition = Game.playersPositions.find(peerId)
-	var newPosition = realPosition + newPlayerPosition
-	if newPosition > 3:
-		newPosition -= 4
-	
-	Game.change_position(peerId, newPosition)
+	Game.change_position(peerId, newPlayerPosition)
 	rpc_update_players.rpc(Game.serialize())
 
 func login(username: String):

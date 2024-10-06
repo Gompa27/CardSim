@@ -1,13 +1,32 @@
-[gd_scene load_steps=2 format=3 uid="uid://carbbaijo03o1"]
+[gd_scene load_steps=2 format=3 uid="uid://ctggstv42l6fp"]
 
-[ext_resource type="Script" path="res://sit_and_player.gd" id="1_2t1oo"]
+[sub_resource type="GDScript" id="GDScript_45gfo"]
+script/source = "extends Control
+
+@export var playerPosition: int
+
+func _ready():
+	if playerPosition == 0:
+		%SitHere.hide()
+
+func _process(delta):
+	%SitHere.disabled = playerPosition >= Game.playersPositions.size()
+	
+	if playerPosition < Game.playersPositions.size():
+		%PlayerName.text = Game.players[Game.playersPositions[playerPosition]].username
+	else:
+		%PlayerName.text = 'Lugar vacio'
+
+func _on_sit_here_pressed():
+	NetworkManager.change_seat(playerPosition)
+"
 
 [node name="SitAndPlayer" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 255.0
 offset_bottom = 108.0
-script = ExtResource("1_2t1oo")
+script = SubResource("GDScript_45gfo")
 
 [node name="SitHere" type="Button" parent="."]
 unique_name_in_owner = true

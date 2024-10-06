@@ -22,5 +22,29 @@ func _create_cards(amount: int, scene: PackedScene, newParent: Control, cardType
 func _on_shuffle_menu_id_pressed(id):
 	NetworkManager.shuffle_deck(id)
 
-func _update_dot(pos: Vector2):
-	%dot.position = pos
+
+func _process(delta):
+	var i = 0
+	for playerNameLabel in get_tree().get_nodes_in_group('playerName'):
+		if i < Game.playersPositions.size():
+			playerNameLabel.text = Game.players[Game.playersPositions[i]].username
+		else:
+			playerNameLabel.text = 'Lugar vacio'
+		i += 1
+
+
+
+
+func _on_sit_button_1_pressed():
+	NetworkManager.change_seat(0)
+
+
+func _on_sit_button_2_pressed():
+	NetworkManager.change_seat(1)
+
+
+func _on_sit_button_3_pressed():
+	NetworkManager.change_seat(2)
+
+func _on_sit_button_4_pressed():
+	NetworkManager.change_seat(3)

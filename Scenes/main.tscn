@@ -60,7 +60,7 @@ script = ExtResource("11_an6km")
 pileType = 9
 pileName = "Mano 1"
 
-[node name="PlayerName1" type="Label" parent="Player1"]
+[node name="PlayerName1" type="Label" parent="Player1" groups=["playerName"]]
 offset_left = 685.0
 offset_top = 380.0
 offset_right = 823.0
@@ -69,7 +69,7 @@ rotation = 4.71239
 theme_override_font_sizes/font_size = 25
 text = "Lugar vacio"
 
-[node name="SitButton1" type="Button" parent="Player1"]
+[node name="SitButton1" type="Button" parent="Player1" groups=["sitButton"]]
 offset_left = 692.0
 offset_top = 387.0
 offset_right = 768.0
@@ -113,7 +113,7 @@ pileType = 10
 pileName = "Mano 2"
 playerNumber = 1
 
-[node name="PlayerName2" type="Label" parent="Player2"]
+[node name="PlayerName2" type="Label" parent="Player2" groups=["playerName"]]
 offset_left = -44.0
 offset_top = 381.0
 offset_right = 94.0
@@ -122,7 +122,7 @@ rotation = 4.71239
 theme_override_font_sizes/font_size = 25
 text = "Lugar vacio"
 
-[node name="SitButton2" type="Button" parent="Player2"]
+[node name="SitButton2" type="Button" parent="Player2" groups=["sitButton"]]
 offset_left = -88.0
 offset_top = 386.0
 offset_right = -12.0
@@ -164,7 +164,7 @@ pileType = 11
 pileName = "Mano 3"
 playerNumber = 2
 
-[node name="PlayerName3" type="Label" parent="Player3"]
+[node name="PlayerName3" type="Label" parent="Player3" groups=["playerName"]]
 offset_left = -12.0
 offset_top = -80.0
 offset_right = 126.0
@@ -173,7 +173,7 @@ rotation = 1.5708
 theme_override_font_sizes/font_size = 25
 text = "Lugar vacio"
 
-[node name="SitButton3" type="Button" parent="Player3"]
+[node name="SitButton3" type="Button" parent="Player3" groups=["sitButton"]]
 offset_left = -89.0
 offset_top = -116.0
 offset_right = -13.0
@@ -211,7 +211,7 @@ pileType = 12
 pileName = "Mano 4"
 playerNumber = 3
 
-[node name="PlayerName4" type="Label" parent="Player4"]
+[node name="PlayerName4" type="Label" parent="Player4" groups=["playerName"]]
 offset_left = 727.0
 offset_top = -77.0
 offset_right = 865.0
@@ -220,7 +220,7 @@ rotation = 1.5708
 theme_override_font_sizes/font_size = 25
 text = "Lugar vacio"
 
-[node name="SitButton4" type="Button" parent="Player4"]
+[node name="SitButton4" type="Button" parent="Player4" groups=["sitButton"]]
 offset_left = 694.0
 offset_top = -116.0
 offset_right = 770.0
@@ -231,20 +231,20 @@ text = "Sentarse"
 z_as_relative = false
 layout_mode = 3
 anchors_preset = 0
-offset_left = 706.0
-offset_top = 340.0
-offset_right = 898.0
-offset_bottom = 673.0
+offset_left = 700.0
+offset_top = 291.0
+offset_right = 895.0
+offset_bottom = 652.0
 script = ExtResource("9_upqhy")
 popupMenu = NodePath("../ShuffleMenu")
 
 [node name="DiscardDoors" type="Control" parent="Decks"]
 layout_mode = 2
 anchors_preset = 0
-offset_left = -10.0
-offset_top = -33.0
-offset_right = 81.0
-offset_bottom = 109.0
+offset_left = -7.0
+offset_top = -4.0
+offset_right = 84.0
+offset_bottom = 138.0
 metadata/_edit_group_ = true
 
 [node name="FondoDiscardDoors" type="Sprite2D" parent="Decks/DiscardDoors"]
@@ -269,10 +269,10 @@ metadata/face_down = false
 [node name="Doors" type="Control" parent="Decks"]
 layout_mode = 2
 anchors_preset = 0
-offset_left = 102.0
-offset_top = -32.0
-offset_right = 193.0
-offset_bottom = 110.0
+offset_left = 105.0
+offset_top = -3.0
+offset_right = 196.0
+offset_bottom = 139.0
 metadata/_edit_group_ = true
 
 [node name="FondoDoors" type="Sprite2D" parent="Decks/Doors"]
@@ -298,10 +298,10 @@ metadata/face_down = true
 [node name="Treasure" type="Control" parent="Decks"]
 layout_mode = 2
 anchors_preset = 0
-offset_left = 103.0
-offset_top = 187.0
-offset_right = 194.0
-offset_bottom = 329.0
+offset_left = 102.0
+offset_top = 211.0
+offset_right = 193.0
+offset_bottom = 353.0
 metadata/_edit_group_ = true
 
 [node name="FondoTreasure" type="Sprite2D" parent="Decks/Treasure"]
@@ -327,10 +327,10 @@ metadata/_edit_use_anchors_ = true
 [node name="DiscardTreasure" type="Control" parent="Decks"]
 layout_mode = 2
 anchors_preset = 0
-offset_left = -5.0
-offset_top = 188.0
-offset_right = 86.0
-offset_bottom = 330.0
+offset_left = -6.0
+offset_top = 212.0
+offset_right = 85.0
+offset_bottom = 354.0
 metadata/_edit_group_ = true
 
 [node name="FondoDiscardTreasure" type="Sprite2D" parent="Decks/DiscardTreasure"]
@@ -363,10 +363,10 @@ pileName = "buffer"
 
 [node name="Dice" parent="." instance=ExtResource("10_un8n7")]
 unique_name_in_owner = true
-offset_left = 767.0
-offset_top = 459.0
-offset_right = 1042.0
-offset_bottom = 739.0
+offset_left = 762.0
+offset_top = 440.0
+offset_right = 1037.0
+offset_bottom = 720.0
 scale = Vector2(0.2, 0.2)
 
 [node name="ShuffleMenu" type="PopupMenu" parent="."]
@@ -386,7 +386,11 @@ item_4/text = "Mezclar descarte de Tesoros"
 item_4/id = 3
 
 [connection signal="child_entered_tree" from="Player1/PanelContainer/PlayerHand" to="Player1/PanelContainer/PlayerHand" method="_on_child_entered_tree"]
+[connection signal="pressed" from="Player1/SitButton1" to="." method="_on_sit_button_1_pressed"]
 [connection signal="child_entered_tree" from="Player2/PanelContainer/PlayerHand" to="Player2/PanelContainer/PlayerHand" method="_on_child_entered_tree"]
+[connection signal="pressed" from="Player2/SitButton2" to="." method="_on_sit_button_2_pressed"]
 [connection signal="child_entered_tree" from="Player3/PanelContainer/PlayerHand" to="Player3/PanelContainer/PlayerHand" method="_on_child_entered_tree"]
+[connection signal="pressed" from="Player3/SitButton3" to="." method="_on_sit_button_3_pressed"]
 [connection signal="child_entered_tree" from="Player4/PanelContainer/PlayerHand" to="Player4/PanelContainer/PlayerHand" method="_on_child_entered_tree"]
+[connection signal="pressed" from="Player4/SitButton4" to="." method="_on_sit_button_4_pressed"]
 [connection signal="id_pressed" from="ShuffleMenu" to="." method="_on_shuffle_menu_id_pressed"]
