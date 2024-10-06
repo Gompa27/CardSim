@@ -2,8 +2,11 @@ extends Node
 
 @export var card_door_scene: PackedScene
 @export var card_treasure_scene: PackedScene
-@export var pile_doors: Control
-@export var pile_treaasures: Control
+@export var pile_doors: Pile
+@export var pile_treaasures: Pile
+@export var pile_discard_doors: Pile
+@export var pile_discard_treaasures: Pile
+@export var pilePreview: PilePreview
 
 func _ready():
 	_create_cards(Util.AMOUNT_DOORS_CARDS, card_door_scene, pile_doors, Util.CARD_TYPE.DOOR)
@@ -20,7 +23,15 @@ func _create_cards(amount: int, scene: PackedScene, newParent: Control, cardType
 		newParent.add_child(card)
 
 func _on_shuffle_menu_id_pressed(id):
-	NetworkManager.shuffle_deck(id)
+	if id in [0,1,2,3]:
+		NetworkManager.shuffle_deck(id)
+	if id == 6: # Ver descarte puertas
+		pilePreview.pile = pile_discard_doors
+		pilePreview.popup()	
+	if id == 7: # Ver descarte puertas
+		pilePreview.pile = pile_discard_treaasures
+		pilePreview.popup()
+		
 
 
 func _process(delta):

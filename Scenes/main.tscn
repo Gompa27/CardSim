@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://0nnrr220wiov"]
+[gd_scene load_steps=13 format=3 uid="uid://0nnrr220wiov"]
 
 [ext_resource type="Script" path="res://Scripts/MainScreen.gd" id="1_jhv6w"]
 [ext_resource type="PackedScene" uid="uid://extpsqcv3e2g" path="res://Scenes/CardDoor.tscn" id="3_se05s"]
@@ -9,16 +9,20 @@
 [ext_resource type="Texture2D" uid="uid://blgc5wyro17pr" path="res://Assets/FondoTreasure.png" id="10_iu770"]
 [ext_resource type="PackedScene" uid="uid://xgjo7w3aj2q7" path="res://Scenes/Dice.tscn" id="10_un8n7"]
 [ext_resource type="Script" path="res://Scripts/Pile.gd" id="11_an6km"]
+[ext_resource type="PackedScene" uid="uid://gnh684vkbka2" path="res://Scenes/PilePreview.tscn" id="11_benhs"]
 [ext_resource type="PackedScene" uid="uid://by8i6djguymtp" path="res://Scenes/PileCards.tscn" id="12_0crwh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hddut"]
 
-[node name="Main" type="Node" node_paths=PackedStringArray("pile_doors", "pile_treaasures")]
+[node name="Main" type="Node" node_paths=PackedStringArray("pile_doors", "pile_treaasures", "pile_discard_doors", "pile_discard_treaasures", "pilePreview")]
 script = ExtResource("1_jhv6w")
 card_door_scene = ExtResource("3_se05s")
 card_treasure_scene = ExtResource("3_spmbg")
 pile_doors = NodePath("Decks/Doors/PileDoors")
 pile_treaasures = NodePath("Decks/Treasure/PileTreasures")
+pile_discard_doors = NodePath("Decks/DiscardDoors")
+pile_discard_treaasures = NodePath("Decks/DiscardTreasure")
+pilePreview = NodePath("PilePreview")
 
 [node name="Fondo" type="Sprite2D" parent="."]
 texture_repeat = 2
@@ -61,6 +65,7 @@ pileType = 9
 pileName = "Mano 1"
 
 [node name="PlayerName1" type="Label" parent="Player1" groups=["playerName"]]
+layout_mode = 0
 offset_left = 685.0
 offset_top = 380.0
 offset_right = 823.0
@@ -70,6 +75,7 @@ theme_override_font_sizes/font_size = 25
 text = "Lugar vacio"
 
 [node name="SitButton1" type="Button" parent="Player1" groups=["sitButton"]]
+layout_mode = 0
 offset_left = 692.0
 offset_top = 387.0
 offset_right = 768.0
@@ -114,6 +120,7 @@ pileName = "Mano 2"
 playerNumber = 1
 
 [node name="PlayerName2" type="Label" parent="Player2" groups=["playerName"]]
+layout_mode = 0
 offset_left = -44.0
 offset_top = 381.0
 offset_right = 94.0
@@ -123,6 +130,7 @@ theme_override_font_sizes/font_size = 25
 text = "Lugar vacio"
 
 [node name="SitButton2" type="Button" parent="Player2" groups=["sitButton"]]
+layout_mode = 0
 offset_left = -88.0
 offset_top = 386.0
 offset_right = -12.0
@@ -165,6 +173,7 @@ pileName = "Mano 3"
 playerNumber = 2
 
 [node name="PlayerName3" type="Label" parent="Player3" groups=["playerName"]]
+layout_mode = 0
 offset_left = -12.0
 offset_top = -80.0
 offset_right = 126.0
@@ -174,6 +183,7 @@ theme_override_font_sizes/font_size = 25
 text = "Lugar vacio"
 
 [node name="SitButton3" type="Button" parent="Player3" groups=["sitButton"]]
+layout_mode = 0
 offset_left = -89.0
 offset_top = -116.0
 offset_right = -13.0
@@ -212,6 +222,7 @@ pileName = "Mano 4"
 playerNumber = 3
 
 [node name="PlayerName4" type="Label" parent="Player4" groups=["playerName"]]
+layout_mode = 0
 offset_left = 727.0
 offset_top = -77.0
 offset_right = 865.0
@@ -221,6 +232,7 @@ theme_override_font_sizes/font_size = 25
 text = "Lugar vacio"
 
 [node name="SitButton4" type="Button" parent="Player4" groups=["sitButton"]]
+layout_mode = 0
 offset_left = 694.0
 offset_top = -116.0
 offset_right = 770.0
@@ -241,10 +253,10 @@ popupMenu = NodePath("../ShuffleMenu")
 [node name="DiscardDoors" type="Control" parent="Decks"]
 layout_mode = 2
 anchors_preset = 0
-offset_left = -7.0
-offset_top = -4.0
-offset_right = 84.0
-offset_bottom = 138.0
+offset_left = 109.0
+offset_top = 211.0
+offset_right = 200.0
+offset_bottom = 353.0
 metadata/_edit_group_ = true
 
 [node name="FondoDiscardDoors" type="Sprite2D" parent="Decks/DiscardDoors"]
@@ -269,9 +281,9 @@ metadata/face_down = false
 [node name="Doors" type="Control" parent="Decks"]
 layout_mode = 2
 anchors_preset = 0
-offset_left = 105.0
+offset_left = 108.0
 offset_top = -3.0
-offset_right = 196.0
+offset_right = 199.0
 offset_bottom = 139.0
 metadata/_edit_group_ = true
 
@@ -298,10 +310,10 @@ metadata/face_down = true
 [node name="Treasure" type="Control" parent="Decks"]
 layout_mode = 2
 anchors_preset = 0
-offset_left = 102.0
-offset_top = 211.0
-offset_right = 193.0
-offset_bottom = 353.0
+offset_left = -3.0
+offset_top = -3.0
+offset_right = 88.0
+offset_bottom = 139.0
 metadata/_edit_group_ = true
 
 [node name="FondoTreasure" type="Sprite2D" parent="Decks/Treasure"]
@@ -354,7 +366,6 @@ metadata/face_down = false
 
 [node name="Table" type="Container" parent="."]
 unique_name_in_owner = true
-visible = false
 offset_right = 38.0
 offset_bottom = 36.0
 script = ExtResource("11_an6km")
@@ -374,16 +385,28 @@ title = "Acciones"
 size = Vector2i(362, 168)
 theme_override_font_sizes/font_size = 25
 allow_search = false
-item_count = 5
+item_count = 8
 item_0/text = "Mezclar mazo de Puertas"
 item_1/text = "Mezclar mazo de Tesoros"
 item_1/id = 1
 item_2/id = 5
+item_2/disabled = true
 item_2/separator = true
 item_3/text = "Mezclar descarte de Puertas"
 item_3/id = 2
 item_4/text = "Mezclar descarte de Tesoros"
 item_4/id = 3
+item_5/id = 5
+item_5/disabled = true
+item_5/separator = true
+item_6/text = "Ver descarte Puertas"
+item_6/id = 6
+item_7/text = "Ver descarte Tesoros"
+item_7/id = 7
+
+[node name="PilePreview" parent="." instance=ExtResource("11_benhs")]
+initial_position = 2
+visible = false
 
 [connection signal="child_entered_tree" from="Player1/PanelContainer/PlayerHand" to="Player1/PanelContainer/PlayerHand" method="_on_child_entered_tree"]
 [connection signal="pressed" from="Player1/SitButton1" to="." method="_on_sit_button_1_pressed"]

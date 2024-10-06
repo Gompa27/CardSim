@@ -1,0 +1,46 @@
+[gd_scene load_steps=2 format=3 uid="uid://gnh684vkbka2"]
+
+[ext_resource type="Script" path="res://Scripts/PilePreview.gd" id="1_0q1f5"]
+
+[node name="PilePreview" type="Window" node_paths=PackedStringArray("list")]
+title = "Pila de descarte"
+size = Vector2i(900, 600)
+script = ExtResource("1_0q1f5")
+list = NodePath("Control/CenterContainer/HBoxContainer")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Robar carta"
+
+[node name="CenterContainer" type="CenterContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/CenterContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Control/CenterContainer/HBoxContainer"]
+layout_mode = 2
+text = "test1
+"
+
+[connection signal="about_to_popup" from="." to="." method="_on_about_to_popup"]

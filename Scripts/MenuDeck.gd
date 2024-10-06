@@ -1,6 +1,5 @@
 extends Control
 
-#var _last_mouse_position
 @export var popupMenu: PopupMenu
 
 func _gui_input(event: InputEvent) -> void:
