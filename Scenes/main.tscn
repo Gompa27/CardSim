@@ -1,13 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://0nnrr220wiov"]
+[gd_scene load_steps=14 format=3 uid="uid://0nnrr220wiov"]
 
 [ext_resource type="Script" path="res://Scripts/MainScreen.gd" id="1_jhv6w"]
 [ext_resource type="PackedScene" uid="uid://extpsqcv3e2g" path="res://Scenes/CardDoor.tscn" id="3_se05s"]
 [ext_resource type="PackedScene" uid="uid://cqsvdvo2n4uwl" path="res://Scenes/CardTreasure.tscn" id="3_spmbg"]
 [ext_resource type="Texture2D" uid="uid://cida6attahoce" path="res://Assets/Table.jpg" id="4_qocbl"]
 [ext_resource type="PackedScene" uid="uid://carbbaijo03o1" path="res://Scenes/SitAndPlayer.tscn" id="6_b5m5k"]
+[ext_resource type="Texture2D" uid="uid://dn0yk0tpvf3sk" path="res://Assets/FondoDoor.png" id="9_4tseu"]
 [ext_resource type="Script" path="res://Scripts/MenuDeck.gd" id="9_upqhy"]
+[ext_resource type="Texture2D" uid="uid://blgc5wyro17pr" path="res://Assets/FondoTreasure.png" id="10_iu770"]
 [ext_resource type="PackedScene" uid="uid://xgjo7w3aj2q7" path="res://Scenes/Dice.tscn" id="10_un8n7"]
-[ext_resource type="Texture2D" uid="uid://bm1g4bm7mmv01" path="res://Assets/fondo_deck.png" id="11_7owbh"]
 [ext_resource type="Script" path="res://Scripts/Pile.gd" id="11_an6km"]
 [ext_resource type="PackedScene" uid="uid://dgef27bi45iu7" path="res://Scenes/LevelControl.tscn" id="11_mvkgk"]
 [ext_resource type="PackedScene" uid="uid://by8i6djguymtp" path="res://Scenes/PileCards.tscn" id="12_0crwh"]
@@ -18,8 +19,8 @@
 script = ExtResource("1_jhv6w")
 card_door_scene = ExtResource("3_se05s")
 card_treasure_scene = ExtResource("3_spmbg")
-pile_doors = NodePath("Decks/PileDoors")
-pile_treaasures = NodePath("Decks/PileTreasures")
+pile_doors = NodePath("Decks/Doors/PileDoors")
+pile_treaasures = NodePath("Decks/Treasure/PileTreasures")
 metadata/_edit_horizontal_guides_ = [556.0, 194.0, -168.0]
 
 [node name="Fondo" type="Sprite2D" parent="."]
@@ -36,9 +37,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -256.0
-offset_top = -462.0
+offset_top = -400.0
 offset_right = 256.0
-offset_bottom = -130.0
+offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_hddut")
@@ -52,8 +53,7 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 30.0
-offset_bottom = 180.0
+offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -68,10 +68,10 @@ canSeeCards = true
 pileName = "Mano 1"
 
 [node name="SitAndPlayer" parent="Player1" instance=ExtResource("6_b5m5k")]
-offset_left = 543.0
-offset_top = 354.0
-offset_right = 798.0
-offset_bottom = 462.0
+offset_left = 537.0
+offset_top = 290.0
+offset_right = 792.0
+offset_bottom = 398.0
 
 [node name="Player2" type="Panel" parent="."]
 anchors_preset = 6
@@ -79,10 +79,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -462.0
+offset_left = -400.0
 offset_top = 256.0
-offset_right = 50.0
-offset_bottom = 618.0
+offset_right = 112.0
+offset_bottom = 556.0
 grow_horizontal = 0
 grow_vertical = 2
 rotation = 4.71239
@@ -124,9 +124,9 @@ anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = 256.0
-offset_top = 462.0
+offset_top = 400.0
 offset_right = 768.0
-offset_bottom = 824.0
+offset_bottom = 700.0
 grow_horizontal = 2
 rotation = 3.14159
 theme_override_styles/panel = SubResource("StyleBoxFlat_hddut")
@@ -168,10 +168,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -338.0
+offset_left = -400.0
 offset_top = -256.0
-offset_right = 174.0
-offset_bottom = 106.0
+offset_right = 112.0
+offset_bottom = 44.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 1.5708
@@ -212,53 +212,97 @@ playerPosition = 3
 z_as_relative = false
 layout_mode = 3
 anchors_preset = 0
-offset_left = 551.0
-offset_top = 290.0
-offset_right = 1169.0
-offset_bottom = 490.0
+offset_left = 569.0
+offset_top = 384.0
+offset_right = 1031.0
+offset_bottom = 526.0
 script = ExtResource("9_upqhy")
 popupMenu = NodePath("../ShuffleMenu")
 
-[node name="FondoDecks" type="Sprite2D" parent="Decks"]
-z_index = 1
-scale = Vector2(0.26, 0.26)
-texture = ExtResource("11_7owbh")
+[node name="DiscardDoors" type="Control" parent="Decks"]
+layout_mode = 2
+anchors_preset = 0
+offset_right = 91.0
+offset_bottom = 142.0
+metadata/_edit_group_ = true
+
+[node name="FondoDiscardDoors" type="Sprite2D" parent="Decks/DiscardDoors"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("9_4tseu")
 centered = false
 
-[node name="PileDoors" parent="Decks" instance=ExtResource("12_0crwh")]
-z_as_relative = false
+[node name="PileDiscardDoors" parent="Decks/DiscardDoors" instance=ExtResource("12_0crwh")]
 layout_mode = 1
-offset_left = 173.0
-offset_top = 9.0
-offset_right = -327.0
-offset_bottom = -8.0
-metadata/face_down = true
-
-[node name="PileTreasures" parent="Decks" instance=ExtResource("12_0crwh")]
-layout_mode = 1
-offset_left = 333.0
-offset_top = 9.0
-offset_right = -167.0
-offset_bottom = -8.0
-pileType = 1
-metadata/face_down = true
-
-[node name="PileDiscardDoors" parent="Decks" instance=ExtResource("12_0crwh")]
-layout_mode = 1
-offset_left = 14.0
-offset_top = 9.0
-offset_right = -486.0
-offset_bottom = -8.0
+offset_right = 0.0
+offset_bottom = 0.0
 pileType = 2
 canSeeCards = true
 metadata/face_down = false
 
-[node name="PileDiscardTreasures" parent="Decks" instance=ExtResource("12_0crwh")]
+[node name="Doors" type="Control" parent="Decks"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 120.0
+offset_right = 211.0
+offset_bottom = 142.0
+
+[node name="FondoDoors" type="Sprite2D" parent="Decks/Doors"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("9_4tseu")
+centered = false
+
+[node name="PileDoors" parent="Decks/Doors" instance=ExtResource("12_0crwh")]
+z_index = 10
+z_as_relative = false
 layout_mode = 1
-offset_left = 492.0
-offset_top = 9.0
-offset_right = -8.0
-offset_bottom = -8.0
+offset_top = -1.0
+offset_right = 0.0
+offset_bottom = -1.0
+canSeeCards = true
+pileName = "Pile Doors"
+metadata/face_down = true
+
+[node name="Treasure" type="Control" parent="Decks"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 240.0
+offset_right = 331.0
+offset_bottom = 142.0
+metadata/_edit_group_ = true
+
+[node name="FondoTreasure" type="Sprite2D" parent="Decks/Treasure"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("10_iu770")
+centered = false
+
+[node name="PileTreasures" parent="Decks/Treasure" instance=ExtResource("12_0crwh")]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.791304
+anchor_bottom = 0.801136
+offset_right = 18.9913
+offset_bottom = 28.0398
+pileType = 1
+metadata/face_down = true
+metadata/_edit_use_anchors_ = true
+
+[node name="DiscardTreasure" type="Control" parent="Decks"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 360.0
+offset_right = 451.0
+offset_bottom = 142.0
+metadata/_edit_group_ = true
+
+[node name="FondoDiscardTreasure" type="Sprite2D" parent="Decks/DiscardTreasure"]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("10_iu770")
+centered = false
+
+[node name="PileDiscardTreasures" parent="Decks/DiscardTreasure" instance=ExtResource("12_0crwh")]
+layout_mode = 1
+offset_right = 0.0
+offset_bottom = 0.0
 pileType = 3
 canSeeCards = true
 metadata/face_down = false
@@ -272,14 +316,14 @@ pileType = 4
 pileName = "buffer"
 
 [node name="PointsPlayer1" parent="." instance=ExtResource("11_mvkgk")]
-position = Vector2(667, 508)
+position = Vector2(1082, 719)
 
 [node name="PointsPlayer2" parent="." instance=ExtResource("11_mvkgk")]
-position = Vector2(1177, 561)
+position = Vector2(1234, 181)
 rotation = -1.5708
 
 [node name="PointsPlayer3" parent="." instance=ExtResource("11_mvkgk")]
-position = Vector2(1147, 273)
+position = Vector2(1066, 319)
 rotation = -3.14159
 
 [node name="PointsPlayer4" parent="." instance=ExtResource("11_mvkgk")]
@@ -289,10 +333,10 @@ scale = Vector2(1.21, 1.125)
 
 [node name="Dice" parent="." instance=ExtResource("10_un8n7")]
 unique_name_in_owner = true
-offset_left = 559.0
-offset_top = 501.0
-offset_right = 949.0
-offset_bottom = 901.0
+offset_left = 417.0
+offset_top = 714.0
+offset_right = 807.0
+offset_bottom = 1114.0
 scale = Vector2(0.2, 0.2)
 
 [node name="ShuffleMenu" type="PopupMenu" parent="."]
