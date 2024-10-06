@@ -64,10 +64,10 @@ func get_rotated_rect() -> Rect2:
 		0:
 			return Rect2(curr.position, curr.size)
 		90:
-			return Rect2(Vector2(curr.position.x - curr.size.y, curr.position.y), Vector2(curr.size.y, curr.size.x))
+			return Rect2(Vector2(curr.position.x - curr.size.y, curr.position.y), curr.size)
 		180:
 			return Rect2(Vector2(curr.position.x - curr.size.x, curr.position.y - curr.size.y), curr.size)
 		270:
-			return Rect2(Vector2(curr.position.x, curr.position.y - curr.size.y), Vector2(curr.size.y, curr.size.x))
+			return Rect2(Vector2(curr.position.x, curr.position.y - curr.size.y), curr.size)
 		_:
 			return curr  # Por defecto sin rotación
