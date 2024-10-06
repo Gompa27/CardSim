@@ -10,6 +10,7 @@ offset_bottom = 108.0
 script = ExtResource("1_2t1oo")
 
 [node name="SitHere" type="Button" parent="."]
+unique_name_in_owner = true
 layout_mode = 0
 offset_top = 61.0
 offset_right = 100.0
