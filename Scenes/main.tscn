@@ -245,6 +245,7 @@ anchors_preset = 0
 offset_left = 120.0
 offset_right = 211.0
 offset_bottom = 142.0
+metadata/_edit_group_ = true
 
 [node name="FondoDoors" type="Sprite2D" parent="Decks/Doors"]
 scale = Vector2(0.2, 0.2)
@@ -258,7 +259,6 @@ layout_mode = 1
 offset_top = -1.0
 offset_right = 0.0
 offset_bottom = -1.0
-canSeeCards = true
 pileName = "Pile Doors"
 metadata/face_down = true
 
