@@ -104,9 +104,12 @@ func rpc_flip_card(cardNumber: int, cardType: Util.CARD_TYPE):
 @rpc("any_peer")
 func rpc_move_card(cardNumber: int, position: Vector2, cardType: Util.CARD_TYPE):
 	var peerId = multiplayer.get_remote_sender_id()
+	var playerPosition = Game.playersPositions.find(peerId)
 	var card = Card.findCard(cardNumber, cardType)
-	var cardPosition = Util.calculate_position_for_user(position, Game.playersPositions.find(peerId))
-	card.moveCard(cardPosition)
+	#var cardPosition = Util.calculate_position_for_user(card, position, playerPosition)
+	var cardRotation = Util.calculate_rotation_for_user(playerPosition)
+	card.rotation_degrees = cardRotation
+	card.moveCard(position)
 	
 @rpc("any_peer")
 func rpc_reparent_card(cardNumber: int, cardType: Util.CARD_TYPE, pileType: Util.PILE_TYPE):

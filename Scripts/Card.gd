@@ -1,6 +1,8 @@
 class_name Card
 extends  Control
 
+signal change_pos(pos: Vector2)
+
 static var cards_in_game: Array[Card] = []
 static var currentCardSelected: Card
 
@@ -22,13 +24,12 @@ func _process(_delta):
 
 
 func _on_gui_input(event: InputEvent) -> void:
-	print('EVENT: ', event)
 	#El evento es de mouse
 	if event is InputEventMouseButton:
 		#Es click direcho
 		if event.button_index == 2:
 			#Click
-			if event.button_mask == 0 && get_parent().pileType == Util.PILE_TYPE.TABLE:
+			if event.button_mask == 0 && get_parent().pileType in Util.PILE_ALL_TABLES:
 				isFaceDown = !isFaceDown
 				NetworkManager.flip_card(self)
 				
@@ -62,16 +63,17 @@ func _finishDragging():
 		var tableNode =get_tree().current_scene.get_node('%Table')
 		self.isFaceDown = true
 		self.reparent(tableNode)
+		self.global_position = get_global_mouse_position() - _fixOffsetWhenRotate()
 		NetworkManager.reparent_card(self)
 	isCardSelected = false
 	offsetMouse = Vector2(0,0)
 
 
 func is_dragging_over(pile: Pile) -> bool:
-	var drop_area_rect = get_global_rect()
+	#var drop_area_rect = get_global_rect()
+	var mouse_pos = get_global_mouse_position()
 	var pile_rect = pile.get_rotated_rect()
-	return drop_area_rect.intersects(pile_rect)
-
+	return pile_rect.has_point(mouse_pos)
 
 static func findCard(_cardNumber: int, _cardType: Util.CARD_TYPE):
 	var cards = Card.cards_in_game
@@ -84,7 +86,6 @@ func moveCard(_position: Vector2):
 	
 func flipCard():
 	isFaceDown = !isFaceDown
-
 
 
 func _fixOffsetWhenRotate():

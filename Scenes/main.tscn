@@ -21,7 +21,6 @@ card_door_scene = ExtResource("3_se05s")
 card_treasure_scene = ExtResource("3_spmbg")
 pile_doors = NodePath("Decks/Doors/PileDoors")
 pile_treaasures = NodePath("Decks/Treasure/PileTreasures")
-metadata/_edit_horizontal_guides_ = [556.0, 194.0, -168.0]
 
 [node name="Fondo" type="Sprite2D" parent="."]
 texture_repeat = 2
@@ -36,16 +35,16 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -256.0
-offset_top = -400.0
-offset_right = 256.0
+offset_left = -310.0
+offset_top = -370.0
+offset_right = 305.0
 offset_bottom = -100.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_hddut")
 script = ExtResource("11_an6km")
-pileType = 4
-pileName = "MesaJugador4"
+pileType = 5
+pileName = "MesaJugador1"
 
 [node name="PanelContainer" type="PanelContainer" parent="Player1"]
 layout_mode = 1
@@ -63,15 +62,14 @@ layout_mode = 2
 theme_override_constants/separation = -40
 alignment = 1
 script = ExtResource("11_an6km")
-pileType = 5
-canSeeCards = true
+pileType = 9
 pileName = "Mano 1"
 
 [node name="SitAndPlayer" parent="Player1" instance=ExtResource("6_b5m5k")]
-offset_left = 537.0
-offset_top = 290.0
-offset_right = 792.0
-offset_bottom = 398.0
+offset_left = 617.0
+offset_top = 257.0
+offset_right = 872.0
+offset_bottom = 365.0
 
 [node name="Player2" type="Panel" parent="."]
 anchors_preset = 6
@@ -79,16 +77,16 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -400.0
+offset_left = -433.0
 offset_top = 256.0
-offset_right = 112.0
-offset_bottom = 556.0
+offset_right = 79.0
+offset_bottom = 589.0
 grow_horizontal = 0
 grow_vertical = 2
 rotation = 4.71239
 theme_override_styles/panel = SubResource("StyleBoxFlat_hddut")
 script = ExtResource("11_an6km")
-pileType = 4
+pileType = 6
 pileName = "MesaJugador2"
 rotationIntersect = 270
 
@@ -108,30 +106,31 @@ layout_mode = 2
 theme_override_constants/separation = -40
 alignment = 1
 script = ExtResource("11_an6km")
-pileType = 5
+pileType = 10
 pileName = "Mano 2"
 rotationIntersect = 270
+playerNumber = 1
 
 [node name="SitAndPlayer" parent="Player2" instance=ExtResource("6_b5m5k")]
 offset_left = 522.0
-offset_top = 340.0
+offset_top = 279.0
 offset_right = 777.0
-offset_bottom = 448.0
+offset_bottom = 387.0
 playerPosition = 1
 
 [node name="Player3" type="Panel" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 256.0
-offset_top = 400.0
-offset_right = 768.0
-offset_bottom = 700.0
+offset_left = 307.0
+offset_top = 370.0
+offset_right = 922.0
+offset_bottom = 640.0
 grow_horizontal = 2
 rotation = 3.14159
 theme_override_styles/panel = SubResource("StyleBoxFlat_hddut")
 script = ExtResource("11_an6km")
-pileType = 4
+pileType = 7
 pileName = "MesaJugador3"
 rotationIntersect = 180
 
@@ -151,15 +150,16 @@ layout_mode = 2
 theme_override_constants/separation = -40
 alignment = 1
 script = ExtResource("11_an6km")
-pileType = 5
+pileType = 11
 pileName = "Mano 3"
 rotationIntersect = 180
+playerNumber = 2
 
 [node name="SitAndPlayer" parent="Player3" instance=ExtResource("6_b5m5k")]
-offset_left = 513.0
-offset_top = 354.0
-offset_right = 768.0
-offset_bottom = 462.0
+offset_left = 624.999
+offset_top = 251.002
+offset_right = 879.999
+offset_bottom = 359.002
 playerPosition = 2
 
 [node name="Player4" type="Panel" parent="."]
@@ -168,16 +168,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -400.0
+offset_left = -349.0
 offset_top = -256.0
-offset_right = 112.0
-offset_bottom = 44.0
+offset_right = 163.0
+offset_bottom = 95.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 1.5708
 theme_override_styles/panel = SubResource("StyleBoxFlat_hddut")
 script = ExtResource("11_an6km")
-pileType = 4
+pileType = 8
 pileName = "MesaJugador4"
 rotationIntersect = 90
 
@@ -197,15 +197,16 @@ layout_mode = 2
 theme_override_constants/separation = -40
 alignment = 1
 script = ExtResource("11_an6km")
-pileType = 5
+pileType = 12
 pileName = "Mano 4"
 rotationIntersect = 90
+playerNumber = 3
 
 [node name="SitAndPlayer" parent="Player4" instance=ExtResource("6_b5m5k")]
-offset_left = 518.0
-offset_top = 351.0
-offset_right = 773.0
-offset_bottom = 459.0
+offset_left = 519.001
+offset_top = 281.998
+offset_right = 774.001
+offset_bottom = 389.998
 playerPosition = 3
 
 [node name="Decks" type="Control" parent="." node_paths=PackedStringArray("popupMenu")]
@@ -213,9 +214,9 @@ z_as_relative = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 569.0
-offset_top = 384.0
+offset_top = 378.0
 offset_right = 1031.0
-offset_bottom = 526.0
+offset_bottom = 520.0
 script = ExtResource("9_upqhy")
 popupMenu = NodePath("../ShuffleMenu")
 
@@ -232,11 +233,17 @@ texture = ExtResource("9_4tseu")
 centered = false
 
 [node name="PileDiscardDoors" parent="Decks/DiscardDoors" instance=ExtResource("12_0crwh")]
-layout_mode = 1
-offset_right = 0.0
-offset_bottom = 0.0
+custom_minimum_size = Vector2(91, 142)
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 71.0
+offset_bottom = 142.0
+grow_horizontal = 1
+grow_vertical = 1
 pileType = 2
-canSeeCards = true
+pileName = "DiscardDoors"
 metadata/face_down = false
 
 [node name="Doors" type="Control" parent="Decks"]
@@ -255,10 +262,15 @@ centered = false
 [node name="PileDoors" parent="Decks/Doors" instance=ExtResource("12_0crwh")]
 z_index = 10
 z_as_relative = false
-layout_mode = 1
-offset_top = -1.0
-offset_right = 0.0
-offset_bottom = -1.0
+custom_minimum_size = Vector2(91, 142)
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 91.0
+offset_bottom = 142.0
+grow_horizontal = 1
+grow_vertical = 1
 pileName = "Pile Doors"
 metadata/face_down = true
 
@@ -276,13 +288,17 @@ texture = ExtResource("10_iu770")
 centered = false
 
 [node name="PileTreasures" parent="Decks/Treasure" instance=ExtResource("12_0crwh")]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.791304
-anchor_bottom = 0.801136
-offset_right = 18.9913
-offset_bottom = 28.0398
+custom_minimum_size = Vector2(91, 142)
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 91.0
+offset_bottom = 142.0
+grow_horizontal = 1
+grow_vertical = 1
 pileType = 1
+pileName = "PileTreasures"
 metadata/face_down = true
 metadata/_edit_use_anchors_ = true
 
@@ -300,11 +316,17 @@ texture = ExtResource("10_iu770")
 centered = false
 
 [node name="PileDiscardTreasures" parent="Decks/DiscardTreasure" instance=ExtResource("12_0crwh")]
-layout_mode = 1
-offset_right = 0.0
-offset_bottom = 0.0
+custom_minimum_size = Vector2(91, 142)
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 91.0
+offset_bottom = 142.0
+grow_horizontal = 1
+grow_vertical = 1
 pileType = 3
-canSeeCards = true
+pileName = "DiscardTreasures"
 metadata/face_down = false
 
 [node name="Table" type="Container" parent="."]
@@ -316,27 +338,30 @@ pileType = 4
 pileName = "buffer"
 
 [node name="PointsPlayer1" parent="." instance=ExtResource("11_mvkgk")]
-position = Vector2(1082, 719)
+position = Vector2(1116, 719)
+scale = Vector2(0.75, 0.75)
 
 [node name="PointsPlayer2" parent="." instance=ExtResource("11_mvkgk")]
 position = Vector2(1234, 181)
 rotation = -1.5708
+scale = Vector2(0.75, 0.75)
 
 [node name="PointsPlayer3" parent="." instance=ExtResource("11_mvkgk")]
-position = Vector2(1066, 319)
+position = Vector2(429, 172)
 rotation = -3.14159
+scale = Vector2(0.75, 0.75)
 
 [node name="PointsPlayer4" parent="." instance=ExtResource("11_mvkgk")]
-position = Vector2(543, 216)
+position = Vector2(214, 718)
 rotation = 1.5708
-scale = Vector2(1.21, 1.125)
+scale = Vector2(0.75, 0.697)
 
 [node name="Dice" parent="." instance=ExtResource("10_un8n7")]
 unique_name_in_owner = true
-offset_left = 417.0
-offset_top = 714.0
-offset_right = 807.0
-offset_bottom = 1114.0
+offset_left = 354.0
+offset_top = 725.0
+offset_right = 744.0
+offset_bottom = 1125.0
 scale = Vector2(0.2, 0.2)
 
 [node name="ShuffleMenu" type="PopupMenu" parent="."]

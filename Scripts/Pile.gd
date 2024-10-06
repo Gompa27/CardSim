@@ -3,9 +3,10 @@ extends Control
 
 static var piles: Array[Pile] = []
 @export var pileType: Util.PILE_TYPE
-@export var canSeeCards: bool
+#@export var canSeeCards: bool
 @export var pileName: String
 @export var rotationIntersect: int
+@export var playerNumber: int
 
 func _ready():
 	piles.append(self)
@@ -53,21 +54,31 @@ func send_cards_to(pileType: Util.PILE_TYPE):
 
 
 func _on_child_entered_tree(node):
+	Game.playersPositions
 	if node is Card:
-		node.isFaceDown = !canSeeCards
+		if pileType == Util.PILE_TYPE.DOOR || pileType == Util.PILE_TYPE.TREASURE:
+			node.isFaceDown = true
+		if pileType == Util.PILE_TYPE.DISCARD_DOOR || pileType == Util.PILE_TYPE.DISCARD_TREASURE:
+			node.isFaceDown = false
+		if pileType in Util.PILE_HAND_PLAYER:
+			node.isFaceDown = playerNumber != Game.myPosition
 #
 
 
 func get_rotated_rect() -> Rect2:
 	var curr = get_global_rect()
+	var posX = curr.position.x
+	var posY = curr.position.y
+	var sizeX = curr.size.x
+	var sizeY = curr.size.y
 	match rotationIntersect:
 		0:
-			return Rect2(curr.position, curr.size)
+			return curr
 		90:
-			return Rect2(Vector2(curr.position.x - curr.size.y, curr.position.y), curr.size)
+			return Rect2(Vector2(posX - sizeY, posY), Vector2(sizeY, sizeX))
 		180:
-			return Rect2(Vector2(curr.position.x - curr.size.x, curr.position.y - curr.size.y), curr.size)
+			return Rect2(Vector2(posX - sizeX, posY - sizeY), curr.size)
 		270:
-			return Rect2(Vector2(curr.position.x, curr.position.y - curr.size.y), curr.size)
+			return Rect2(Vector2(posX, posY - sizeX), Vector2(sizeY, sizeX))
 		_:
 			return curr  # Por defecto sin rotación
