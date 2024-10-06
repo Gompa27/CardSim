@@ -8,6 +8,9 @@ extends Node
 func _ready():
 	_create_cards(Util.AMOUNT_DOORS_CARDS, card_door_scene, pile_doors, Util.CARD_TYPE.DOOR)
 	_create_cards(Util.AMOUNT_TREASURE_CARDS, card_treasure_scene, pile_treaasures, Util.CARD_TYPE.TREASURE)
+	if !multiplayer.is_server():
+		self.rotation_degrees = 90
+
 
 func _create_cards(amount: int, scene: PackedScene, parent: Control, cardType: Util.CARD_TYPE):
 	for cardNumber in range(1, amount):
@@ -22,4 +25,3 @@ func _create_cards(amount: int, scene: PackedScene, parent: Control, cardType: U
 
 func _on_shuffle_menu_id_pressed(id):
 	NetworkManager.shuffle_deck(id)
-	

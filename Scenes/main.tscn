@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://0nnrr220wiov"]
+[gd_scene load_steps=13 format=3 uid="uid://0nnrr220wiov"]
 
 [ext_resource type="Script" path="res://Scripts/MainScreen.gd" id="1_jhv6w"]
 [ext_resource type="PackedScene" uid="uid://extpsqcv3e2g" path="res://Scenes/CardDoor.tscn" id="3_se05s"]
 [ext_resource type="PackedScene" uid="uid://cqsvdvo2n4uwl" path="res://Scenes/CardTreasure.tscn" id="3_spmbg"]
 [ext_resource type="Texture2D" uid="uid://cida6attahoce" path="res://Assets/Table.jpg" id="4_qocbl"]
+[ext_resource type="PackedScene" uid="uid://carbbaijo03o1" path="res://Scenes/SitAndPlayer.tscn" id="6_b5m5k"]
 [ext_resource type="Script" path="res://Scripts/MenuDeck.gd" id="9_upqhy"]
 [ext_resource type="PackedScene" uid="uid://xgjo7w3aj2q7" path="res://Scenes/Dice.tscn" id="10_un8n7"]
 [ext_resource type="Texture2D" uid="uid://bm1g4bm7mmv01" path="res://Assets/fondo_deck.png" id="11_7owbh"]
@@ -66,6 +67,12 @@ pileType = 5
 canSeeCards = true
 pileName = "Mano 1"
 
+[node name="SitAndPlayer" parent="Player1" instance=ExtResource("6_b5m5k")]
+offset_left = 543.0
+offset_top = 354.0
+offset_right = 798.0
+offset_bottom = 462.0
+
 [node name="Player2" type="Panel" parent="."]
 anchors_preset = 6
 anchor_left = 1.0
@@ -105,6 +112,13 @@ pileType = 5
 pileName = "Mano 2"
 rotationIntersect = 270
 
+[node name="SitAndPlayer" parent="Player2" instance=ExtResource("6_b5m5k")]
+offset_left = 522.0
+offset_top = 340.0
+offset_right = 777.0
+offset_bottom = 448.0
+playerPosition = 1
+
 [node name="Player3" type="Panel" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
@@ -140,6 +154,13 @@ script = ExtResource("11_an6km")
 pileType = 5
 pileName = "Mano 3"
 rotationIntersect = 180
+
+[node name="SitAndPlayer" parent="Player3" instance=ExtResource("6_b5m5k")]
+offset_left = 513.0
+offset_top = 354.0
+offset_right = 768.0
+offset_bottom = 462.0
+playerPosition = 2
 
 [node name="Player4" type="Panel" parent="."]
 anchors_preset = 8
@@ -179,6 +200,13 @@ script = ExtResource("11_an6km")
 pileType = 5
 pileName = "Mano 4"
 rotationIntersect = 90
+
+[node name="SitAndPlayer" parent="Player4" instance=ExtResource("6_b5m5k")]
+offset_left = 518.0
+offset_top = 351.0
+offset_right = 773.0
+offset_bottom = 459.0
+playerPosition = 3
 
 [node name="Decks" type="Control" parent="." node_paths=PackedStringArray("popupMenu")]
 z_as_relative = false
