@@ -5,7 +5,6 @@ static var piles: Array[Pile] = []
 @export var pileType: Util.PILE_TYPE
 #@export var canSeeCards: bool
 @export var pileName: String
-@export var rotationIntersect: int
 @export var playerNumber: int
 
 func _ready():
@@ -63,22 +62,3 @@ func _on_child_entered_tree(node):
 		if pileType in Util.PILE_HAND_PLAYER:
 			node.isFaceDown = playerNumber != Game.myPosition
 #
-
-
-func get_rotated_rect() -> Rect2:
-	var curr = get_global_rect()
-	var posX = curr.position.x
-	var posY = curr.position.y
-	var sizeX = curr.size.x
-	var sizeY = curr.size.y
-	match rotationIntersect:
-		0:
-			return curr
-		90:
-			return Rect2(Vector2(posX - sizeY, posY), Vector2(sizeY, sizeX))
-		180:
-			return Rect2(Vector2(posX - sizeX, posY - sizeY), curr.size)
-		270:
-			return Rect2(Vector2(posX, posY - sizeX), Vector2(sizeY, sizeX))
-		_:
-			return curr  # Por defecto sin rotación

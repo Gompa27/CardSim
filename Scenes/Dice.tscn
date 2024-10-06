@@ -4,13 +4,13 @@
 [ext_resource type="SpriteFrames" uid="uid://c7mqpsccfh3qw" path="res://Resources/dice.tres" id="3_kr80n"]
 
 [node name="Dice" type="Button"]
-offset_right = 400.0
-offset_bottom = 400.0
+offset_right = 274.0
+offset_bottom = 279.0
 script = ExtResource("1_idwl5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(200, 200)
-scale = Vector2(0.585, 0.596)
+position = Vector2(137, 140)
+scale = Vector2(0.4, 0.408)
 sprite_frames = ExtResource("3_kr80n")
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -1,16 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://0nnrr220wiov"]
+[gd_scene load_steps=12 format=3 uid="uid://0nnrr220wiov"]
 
 [ext_resource type="Script" path="res://Scripts/MainScreen.gd" id="1_jhv6w"]
 [ext_resource type="PackedScene" uid="uid://extpsqcv3e2g" path="res://Scenes/CardDoor.tscn" id="3_se05s"]
 [ext_resource type="PackedScene" uid="uid://cqsvdvo2n4uwl" path="res://Scenes/CardTreasure.tscn" id="3_spmbg"]
 [ext_resource type="Texture2D" uid="uid://cida6attahoce" path="res://Assets/Table.jpg" id="4_qocbl"]
-[ext_resource type="PackedScene" uid="uid://carbbaijo03o1" path="res://Scenes/SitAndPlayer.tscn" id="6_b5m5k"]
 [ext_resource type="Texture2D" uid="uid://dn0yk0tpvf3sk" path="res://Assets/FondoDoor.png" id="9_4tseu"]
 [ext_resource type="Script" path="res://Scripts/MenuDeck.gd" id="9_upqhy"]
 [ext_resource type="Texture2D" uid="uid://blgc5wyro17pr" path="res://Assets/FondoTreasure.png" id="10_iu770"]
 [ext_resource type="PackedScene" uid="uid://xgjo7w3aj2q7" path="res://Scenes/Dice.tscn" id="10_un8n7"]
 [ext_resource type="Script" path="res://Scripts/Pile.gd" id="11_an6km"]
-[ext_resource type="PackedScene" uid="uid://dgef27bi45iu7" path="res://Scenes/LevelControl.tscn" id="11_mvkgk"]
 [ext_resource type="PackedScene" uid="uid://by8i6djguymtp" path="res://Scenes/PileCards.tscn" id="12_0crwh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hddut"]
@@ -30,16 +28,12 @@ region_enabled = true
 region_rect = Rect2(0, 0, 1600, 900)
 
 [node name="Player1" type="Panel" parent="."]
-anchors_preset = 7
-anchor_left = 0.5
+anchors_preset = 2
 anchor_top = 1.0
-anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -310.0
-offset_top = -370.0
-offset_right = 305.0
-offset_bottom = -100.0
-grow_horizontal = 2
+offset_top = -425.0
+offset_right = 680.0
+offset_bottom = -90.0
 grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_hddut")
 script = ExtResource("11_an6km")
@@ -52,9 +46,10 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = 150.0
+offset_bottom = 124.0
 grow_horizontal = 2
 grow_vertical = 0
+metadata/_edit_group_ = true
 
 [node name="PlayerHand" type="HBoxContainer" parent="Player1/PanelContainer"]
 z_index = 10
@@ -65,30 +60,37 @@ script = ExtResource("11_an6km")
 pileType = 9
 pileName = "Mano 1"
 
-[node name="SitAndPlayer" parent="Player1" instance=ExtResource("6_b5m5k")]
-offset_left = 617.0
-offset_top = 257.0
-offset_right = 872.0
-offset_bottom = 365.0
+[node name="PlayerName1" type="Label" parent="Player1"]
+offset_left = 685.0
+offset_top = 380.0
+offset_right = 823.0
+offset_bottom = 415.0
+rotation = 4.71239
+theme_override_font_sizes/font_size = 25
+text = "Lugar vacio"
+
+[node name="SitButton1" type="Button" parent="Player1"]
+offset_left = 692.0
+offset_top = 387.0
+offset_right = 768.0
+offset_bottom = 418.0
+text = "Sentarse"
 
 [node name="Player2" type="Panel" parent="."]
-anchors_preset = 6
+anchors_preset = 3
 anchor_left = 1.0
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -433.0
-offset_top = 256.0
-offset_right = 79.0
-offset_bottom = 589.0
+anchor_bottom = 1.0
+offset_left = -680.0
+offset_top = -425.0
+offset_bottom = -90.0
 grow_horizontal = 0
-grow_vertical = 2
-rotation = 4.71239
+grow_vertical = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_hddut")
 script = ExtResource("11_an6km")
 pileType = 6
 pileName = "MesaJugador2"
-rotationIntersect = 270
 
 [node name="PanelContainer" type="PanelContainer" parent="Player2"]
 layout_mode = 1
@@ -96,9 +98,10 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = 150.0
+offset_bottom = 124.0
 grow_horizontal = 2
 grow_vertical = 0
+metadata/_edit_group_ = true
 
 [node name="PlayerHand" type="HBoxContainer" parent="Player2/PanelContainer"]
 z_index = 10
@@ -108,31 +111,36 @@ alignment = 1
 script = ExtResource("11_an6km")
 pileType = 10
 pileName = "Mano 2"
-rotationIntersect = 270
 playerNumber = 1
 
-[node name="SitAndPlayer" parent="Player2" instance=ExtResource("6_b5m5k")]
-offset_left = 522.0
-offset_top = 279.0
-offset_right = 777.0
-offset_bottom = 387.0
-playerPosition = 1
+[node name="PlayerName2" type="Label" parent="Player2"]
+offset_left = -44.0
+offset_top = 381.0
+offset_right = 94.0
+offset_bottom = 416.0
+rotation = 4.71239
+theme_override_font_sizes/font_size = 25
+text = "Lugar vacio"
+
+[node name="SitButton2" type="Button" parent="Player2"]
+offset_left = -88.0
+offset_top = 386.0
+offset_right = -12.0
+offset_bottom = 417.0
+text = "Sentarse"
 
 [node name="Player3" type="Panel" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = 307.0
-offset_top = 370.0
-offset_right = 922.0
-offset_bottom = 640.0
-grow_horizontal = 2
-rotation = 3.14159
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -680.0
+offset_top = 124.0
+offset_bottom = 459.0
+grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_hddut")
 script = ExtResource("11_an6km")
 pileType = 7
 pileName = "MesaJugador3"
-rotationIntersect = 180
 
 [node name="PanelContainer" type="PanelContainer" parent="Player3"]
 layout_mode = 1
@@ -140,9 +148,11 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = 150.0
+offset_top = -459.0
+offset_bottom = -335.0
 grow_horizontal = 2
 grow_vertical = 0
+metadata/_edit_group_ = true
 
 [node name="PlayerHand" type="HBoxContainer" parent="Player3/PanelContainer"]
 z_index = 10
@@ -152,34 +162,32 @@ alignment = 1
 script = ExtResource("11_an6km")
 pileType = 11
 pileName = "Mano 3"
-rotationIntersect = 180
 playerNumber = 2
 
-[node name="SitAndPlayer" parent="Player3" instance=ExtResource("6_b5m5k")]
-offset_left = 624.999
-offset_top = 251.002
-offset_right = 879.999
-offset_bottom = 359.002
-playerPosition = 2
+[node name="PlayerName3" type="Label" parent="Player3"]
+offset_left = -12.0
+offset_top = -80.0
+offset_right = 126.0
+offset_bottom = -45.0
+rotation = 1.5708
+theme_override_font_sizes/font_size = 25
+text = "Lugar vacio"
+
+[node name="SitButton3" type="Button" parent="Player3"]
+offset_left = -89.0
+offset_top = -116.0
+offset_right = -13.0
+offset_bottom = -85.0
+text = "Sentarse"
 
 [node name="Player4" type="Panel" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -349.0
-offset_top = -256.0
-offset_right = 163.0
-offset_bottom = 95.0
-grow_horizontal = 2
-grow_vertical = 2
-rotation = 1.5708
+offset_top = 124.0
+offset_right = 680.0
+offset_bottom = 459.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_hddut")
 script = ExtResource("11_an6km")
 pileType = 8
 pileName = "MesaJugador4"
-rotationIntersect = 90
 
 [node name="PanelContainer" type="PanelContainer" parent="Player4"]
 layout_mode = 1
@@ -187,9 +195,11 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = 150.0
+offset_top = -459.0
+offset_bottom = -335.0
 grow_horizontal = 2
 grow_vertical = 0
+metadata/_edit_group_ = true
 
 [node name="PlayerHand" type="HBoxContainer" parent="Player4/PanelContainer"]
 z_index = 10
@@ -199,32 +209,42 @@ alignment = 1
 script = ExtResource("11_an6km")
 pileType = 12
 pileName = "Mano 4"
-rotationIntersect = 90
 playerNumber = 3
 
-[node name="SitAndPlayer" parent="Player4" instance=ExtResource("6_b5m5k")]
-offset_left = 519.001
-offset_top = 281.998
-offset_right = 774.001
-offset_bottom = 389.998
-playerPosition = 3
+[node name="PlayerName4" type="Label" parent="Player4"]
+offset_left = 727.0
+offset_top = -77.0
+offset_right = 865.0
+offset_bottom = -42.0
+rotation = 1.5708
+theme_override_font_sizes/font_size = 25
+text = "Lugar vacio"
+
+[node name="SitButton4" type="Button" parent="Player4"]
+offset_left = 694.0
+offset_top = -116.0
+offset_right = 770.0
+offset_bottom = -85.0
+text = "Sentarse"
 
 [node name="Decks" type="Control" parent="." node_paths=PackedStringArray("popupMenu")]
 z_as_relative = false
 layout_mode = 3
 anchors_preset = 0
-offset_left = 569.0
-offset_top = 378.0
-offset_right = 1031.0
-offset_bottom = 520.0
+offset_left = 706.0
+offset_top = 340.0
+offset_right = 898.0
+offset_bottom = 673.0
 script = ExtResource("9_upqhy")
 popupMenu = NodePath("../ShuffleMenu")
 
 [node name="DiscardDoors" type="Control" parent="Decks"]
 layout_mode = 2
 anchors_preset = 0
-offset_right = 91.0
-offset_bottom = 142.0
+offset_left = -10.0
+offset_top = -33.0
+offset_right = 81.0
+offset_bottom = 109.0
 metadata/_edit_group_ = true
 
 [node name="FondoDiscardDoors" type="Sprite2D" parent="Decks/DiscardDoors"]
@@ -249,9 +269,10 @@ metadata/face_down = false
 [node name="Doors" type="Control" parent="Decks"]
 layout_mode = 2
 anchors_preset = 0
-offset_left = 120.0
-offset_right = 211.0
-offset_bottom = 142.0
+offset_left = 102.0
+offset_top = -32.0
+offset_right = 193.0
+offset_bottom = 110.0
 metadata/_edit_group_ = true
 
 [node name="FondoDoors" type="Sprite2D" parent="Decks/Doors"]
@@ -277,9 +298,10 @@ metadata/face_down = true
 [node name="Treasure" type="Control" parent="Decks"]
 layout_mode = 2
 anchors_preset = 0
-offset_left = 240.0
-offset_right = 331.0
-offset_bottom = 142.0
+offset_left = 103.0
+offset_top = 187.0
+offset_right = 194.0
+offset_bottom = 329.0
 metadata/_edit_group_ = true
 
 [node name="FondoTreasure" type="Sprite2D" parent="Decks/Treasure"]
@@ -305,9 +327,10 @@ metadata/_edit_use_anchors_ = true
 [node name="DiscardTreasure" type="Control" parent="Decks"]
 layout_mode = 2
 anchors_preset = 0
-offset_left = 360.0
-offset_right = 451.0
-offset_bottom = 142.0
+offset_left = -5.0
+offset_top = 188.0
+offset_right = 86.0
+offset_bottom = 330.0
 metadata/_edit_group_ = true
 
 [node name="FondoDiscardTreasure" type="Sprite2D" parent="Decks/DiscardTreasure"]
@@ -331,37 +354,19 @@ metadata/face_down = false
 
 [node name="Table" type="Container" parent="."]
 unique_name_in_owner = true
+visible = false
 offset_right = 38.0
 offset_bottom = 36.0
 script = ExtResource("11_an6km")
 pileType = 4
 pileName = "buffer"
 
-[node name="PointsPlayer1" parent="." instance=ExtResource("11_mvkgk")]
-position = Vector2(1116, 719)
-scale = Vector2(0.75, 0.75)
-
-[node name="PointsPlayer2" parent="." instance=ExtResource("11_mvkgk")]
-position = Vector2(1234, 181)
-rotation = -1.5708
-scale = Vector2(0.75, 0.75)
-
-[node name="PointsPlayer3" parent="." instance=ExtResource("11_mvkgk")]
-position = Vector2(429, 172)
-rotation = -3.14159
-scale = Vector2(0.75, 0.75)
-
-[node name="PointsPlayer4" parent="." instance=ExtResource("11_mvkgk")]
-position = Vector2(214, 718)
-rotation = 1.5708
-scale = Vector2(0.75, 0.697)
-
 [node name="Dice" parent="." instance=ExtResource("10_un8n7")]
 unique_name_in_owner = true
-offset_left = 354.0
-offset_top = 725.0
-offset_right = 744.0
-offset_bottom = 1125.0
+offset_left = 767.0
+offset_top = 459.0
+offset_right = 1042.0
+offset_bottom = 739.0
 scale = Vector2(0.2, 0.2)
 
 [node name="ShuffleMenu" type="PopupMenu" parent="."]

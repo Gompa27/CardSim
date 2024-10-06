@@ -19,7 +19,7 @@ func _process(_delta):
 	%Card.frame = 0 if isFaceDown else cardNumber
 		
 	if isCardSelected:
-		self.global_position = get_global_mouse_position() -  _fixOffsetWhenRotate()
+		self.global_position = get_global_mouse_position() - offsetMouse
 		NetworkManager.move_card(self)
 
 
@@ -53,7 +53,7 @@ func _finishDragging():
 	for pile in piles_nodes:
 		if is_dragging_over(pile):
 			self.reparent(pile)
-			self.global_position = get_global_mouse_position() - _fixOffsetWhenRotate()
+			self.global_position = get_global_mouse_position() - offsetMouse
 
 			isReparented = true
 			NetworkManager.reparent_card(self)
@@ -63,7 +63,7 @@ func _finishDragging():
 		var tableNode =get_tree().current_scene.get_node('%Table')
 		self.isFaceDown = true
 		self.reparent(tableNode)
-		self.global_position = get_global_mouse_position() - _fixOffsetWhenRotate()
+		self.global_position = get_global_mouse_position() - offsetMouse
 		NetworkManager.reparent_card(self)
 	isCardSelected = false
 	offsetMouse = Vector2(0,0)
@@ -72,7 +72,7 @@ func _finishDragging():
 func is_dragging_over(pile: Pile) -> bool:
 	#var drop_area_rect = get_global_rect()
 	var mouse_pos = get_global_mouse_position()
-	var pile_rect = pile.get_rotated_rect()
+	var pile_rect = pile.get_global_rect()
 	return pile_rect.has_point(mouse_pos)
 
 static func findCard(_cardNumber: int, _cardType: Util.CARD_TYPE):
@@ -86,17 +86,3 @@ func moveCard(_position: Vector2):
 	
 func flipCard():
 	isFaceDown = !isFaceDown
-
-
-func _fixOffsetWhenRotate():
-	var dX = offsetMouse.x
-	var dY = offsetMouse.y
-	var rotation = self.get_global_transform().get_rotation()
-	if rotation > 3: ### 3.14 === 180
-		return Vector2(-dX, -dY)
-	elif rotation > 1: ### 1.57 === 90
-		return Vector2(-dY, dX)
-	elif rotation < -1 :  ### -1.57 === 270
-		return Vector2(dY, -dX)
-	else:
-		return offsetMouse
