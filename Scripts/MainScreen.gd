@@ -38,7 +38,7 @@ func _on_shuffle_menu_id_pressed(id):
 		
 
 
-func _process(delta):
+func _process(_delta):
 	var i = 0
 	for playerNameLabel in get_tree().get_nodes_in_group('playerName'):
 		if i < Game.playersPositions.size():
@@ -80,13 +80,19 @@ func show_preview(card: Card):
 		newSprite.sprite_frames = sprite.sprite_frames
 		newSprite.frame = sprite.frame
 		
-		%PreviewCard.visible = true
-		var mousePosX =get_viewport().get_mouse_position().x
-		if mousePosX < get_viewport().size.x / 2:
-			%PreviewCard.position.x = get_viewport().size.x - %PreviewCard.size.x
-		else:
-			%PreviewCard.position.x = 0		
 		
+		var mousePosX = %PreviewCard.get_global_mouse_position().x
+		var comparedWith = get_viewport().get_visible_rect().size.x / 2
+		print("ASDASD ",mousePosX,'---',get_viewport().size.x,' -- ',comparedWith, '---',mousePosX < comparedWith)
+		if mousePosX < comparedWith:
+			%PreviewCard.set_anchors_and_offsets_preset(Control.PRESET_CENTER_RIGHT, Control.PRESET_MODE_KEEP_WIDTH)
+			#%PreviewCard.position.x = 0
+		else:
+			%PreviewCard.set_anchors_and_offsets_preset(Control.PRESET_CENTER_LEFT, Control.PRESET_MODE_KEEP_WIDTH)
+			#%PreviewCard.position.x = 0
+		
+		%PreviewCard.z_index = 200
+		%PreviewCard.visible = true
 	
 
 func hide_preview():

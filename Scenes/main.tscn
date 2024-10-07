@@ -455,7 +455,7 @@ max_lines_visible = 2
 
 [node name="PreviewCard" type="Control" parent="."]
 unique_name_in_owner = true
-visible = false
+custom_minimum_size = Vector2(320, 500)
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5

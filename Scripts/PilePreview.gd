@@ -9,7 +9,7 @@ var cardSelected: int
 var controlSelected: Control
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	%DrawCard.disabled = cardSelected == null
 
 

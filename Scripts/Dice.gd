@@ -7,7 +7,7 @@ func _ready() -> void:
 	NetworkManager.connect('_roll_dice', roll)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if isPlaying :
 		get_child(0).frame = randi_range(0,5)
 
