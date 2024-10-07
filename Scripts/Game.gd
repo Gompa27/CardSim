@@ -1,6 +1,8 @@
 extends Node
 
 signal _on_update_players(players: Dictionary)
+signal _on_open_popup(texto: String)
+signal _on_close_popup()
 
 var players: Dictionary = {}
 var playersPositions: Array[int] = []
@@ -45,3 +47,9 @@ func change_position(peerId: int, newPosition: int):
 	myPosition = newPosition
 	#self.playersPositions = _reorderPosition(newPlayerPositions)
 	self.playersPositions = newPlayerPositions
+
+func openAlertViewDiscard(peerId: int):
+	emit_signal("_on_open_popup", "{0} esta viendo la pila de descarte".format([players[peerId].username]))
+
+func closePopup():
+	emit_signal("_on_close_popup")

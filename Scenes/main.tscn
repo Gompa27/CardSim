@@ -20,8 +20,8 @@ card_door_scene = ExtResource("3_se05s")
 card_treasure_scene = ExtResource("3_spmbg")
 pile_doors = NodePath("Decks/Doors/PileDoors")
 pile_treaasures = NodePath("Decks/Treasure/PileTreasures")
-pile_discard_doors = NodePath("Decks/DiscardDoors")
-pile_discard_treaasures = NodePath("Decks/DiscardTreasure")
+pile_discard_doors = NodePath("Decks/DiscardDoors/PileDiscardDoors")
+pile_discard_treaasures = NodePath("Decks/DiscardTreasure/PileDiscardTreasures")
 pilePreview = NodePath("PilePreview")
 
 [node name="Fondo" type="Sprite2D" parent="."]
@@ -408,6 +408,22 @@ item_7/id = 7
 initial_position = 2
 visible = false
 
+[node name="Popup" type="Window" parent="."]
+unique_name_in_owner = true
+initial_position = 2
+size = Vector2i(946, 200)
+visible = false
+
+[node name="Label" type="Label" parent="Popup"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 30
+text = "La concha de tu hermana esta  viendo la pila de descarte"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+max_lines_visible = 2
+
 [connection signal="child_entered_tree" from="Player1/PanelContainer/PlayerHand" to="Player1/PanelContainer/PlayerHand" method="_on_child_entered_tree"]
 [connection signal="pressed" from="Player1/SitButton1" to="." method="_on_sit_button_1_pressed"]
 [connection signal="child_entered_tree" from="Player2/PanelContainer/PlayerHand" to="Player2/PanelContainer/PlayerHand" method="_on_child_entered_tree"]
@@ -417,3 +433,4 @@ visible = false
 [connection signal="child_entered_tree" from="Player4/PanelContainer/PlayerHand" to="Player4/PanelContainer/PlayerHand" method="_on_child_entered_tree"]
 [connection signal="pressed" from="Player4/SitButton4" to="." method="_on_sit_button_4_pressed"]
 [connection signal="id_pressed" from="ShuffleMenu" to="." method="_on_shuffle_menu_id_pressed"]
+[connection signal="close_requested" from="PilePreview" to="PilePreview" method="_on_close_requested"]

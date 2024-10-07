@@ -107,8 +107,8 @@ func rpc_move_card(cardNumber: int, position: Vector2, cardType: Util.CARD_TYPE)
 	var playerPosition = Game.playersPositions.find(peerId)
 	var card = Card.findCard(cardNumber, cardType)
 	#var cardPosition = Util.calculate_position_for_user(card, position, playerPosition)
-	var cardRotation = Util.calculate_rotation_for_user(playerPosition)
-	card.rotation_degrees = cardRotation
+	#var cardRotation = Util.calculate_rotation_for_user(playerPosition)
+	#card.rotation_degrees = cardRotation
 	card.moveCard(position)
 	
 @rpc("any_peer")
@@ -140,6 +140,15 @@ func rpc_change_seat(newPlayerPosition: int):
 	
 	Game.change_position(peerId, newPlayerPosition)
 	rpc_update_players.rpc(Game.serialize())
+	
+@rpc("any_peer")
+func rpc_view_discard():
+	var peerId = multiplayer.get_remote_sender_id()
+	Game.openAlertViewDiscard(peerId)
+	
+@rpc("any_peer")
+func rpc_close_discard():
+	Game.closePopup()
 
 func login(username: String):
 	rpc_login.rpc(username)
@@ -170,3 +179,9 @@ func change_seat(newPlayerPosition: int):
 		rpc_change_seat(newPlayerPosition)
 	else:
 		rpc_change_seat.rpc_id(1, newPlayerPosition)
+		
+func view_discard():
+	rpc_view_discard.rpc()
+
+func close_discard():
+	rpc_close_discard.rpc()

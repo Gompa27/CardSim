@@ -11,6 +11,8 @@ extends Node
 func _ready():
 	_create_cards(Util.AMOUNT_DOORS_CARDS, card_door_scene, pile_doors, Util.CARD_TYPE.DOOR)
 	_create_cards(Util.AMOUNT_TREASURE_CARDS, card_treasure_scene, pile_treaasures, Util.CARD_TYPE.TREASURE)
+	Game.connect("_on_open_popup", open_popup)
+	Game.connect("_on_close_popup", close_popup)
 
 func _create_cards(amount: int, scene: PackedScene, newParent: Control, cardType: Util.CARD_TYPE):
 	for cardNumber in range(1, amount):
@@ -59,3 +61,12 @@ func _on_sit_button_3_pressed():
 
 func _on_sit_button_4_pressed():
 	NetworkManager.change_seat(3)
+
+
+func close_popup():
+	%Popup.hide()
+	
+func open_popup(texto: String):
+	%Popup.get_child(0).text = texto
+	%Popup.popup()
+	
