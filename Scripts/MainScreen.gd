@@ -80,7 +80,6 @@ func show_preview(card: Card):
 		newSprite.sprite_frames = sprite.sprite_frames
 		newSprite.frame = sprite.frame
 		
-		
 		var mousePosX = %PreviewCard.get_global_mouse_position().x
 		var comparedWith = get_viewport().get_visible_rect().size.x / 2
 		if mousePosX < comparedWith:

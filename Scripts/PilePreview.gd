@@ -52,7 +52,8 @@ func _on_select_card(event: InputEvent, control: Control, cardIndex: int):
 
 
 func _on_draw_card_pressed():
-	var card = listCard[cardSelected]
-	card.position.y += 50
+	if cardSelected >= 0:
+		var card = listCard[cardSelected]
+		card.position.y += 50
 	NetworkManager.close_discard()
 	hide()
