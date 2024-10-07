@@ -50,17 +50,21 @@ func _finishDragging():
 	currentCardSelected = null
 	var piles_nodes = Pile.piles
 	var isReparented = false
+	var needsReparented = true
 	for pile in piles_nodes:
 		if is_dragging_over(pile):
-			if get_parent() is Pile && get_parent().pileType in Util.PILE_HAND_PLAYER:
-				self.isFaceDown = true
-			self.reparent(pile)
-			self.global_position = get_global_mouse_position() - offsetMouse
-			isReparented = true
-			NetworkManager.reparent_card(self)
-			pass
+			if pile == get_parent():
+				needsReparented = false
+			else:
+				if get_parent() is Pile && get_parent().pileType in Util.PILE_HAND_PLAYER:
+					self.isFaceDown = true
+				self.reparent(pile)
+				self.global_position = get_global_mouse_position() - offsetMouse
+				isReparented = true
+				NetworkManager.reparent_card(self)
+				pass
 	
-	if self.get_parent() is Pile && !isReparented:
+	if self.get_parent() is Pile && !isReparented && needsReparented:
 		var tableNode =get_tree().current_scene.get_node('%Table')
 		self.isFaceDown = true
 		self.reparent(tableNode)

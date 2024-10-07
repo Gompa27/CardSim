@@ -83,13 +83,10 @@ func show_preview(card: Card):
 		
 		var mousePosX = %PreviewCard.get_global_mouse_position().x
 		var comparedWith = get_viewport().get_visible_rect().size.x / 2
-		print("ASDASD ",mousePosX,'---',get_viewport().size.x,' -- ',comparedWith, '---',mousePosX < comparedWith)
 		if mousePosX < comparedWith:
 			%PreviewCard.set_anchors_and_offsets_preset(Control.PRESET_CENTER_RIGHT, Control.PRESET_MODE_KEEP_WIDTH)
-			#%PreviewCard.position.x = 0
 		else:
 			%PreviewCard.set_anchors_and_offsets_preset(Control.PRESET_CENTER_LEFT, Control.PRESET_MODE_KEEP_WIDTH)
-			#%PreviewCard.position.x = 0
 		
 		%PreviewCard.z_index = 200
 		%PreviewCard.visible = true
