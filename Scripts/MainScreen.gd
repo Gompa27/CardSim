@@ -33,7 +33,6 @@ func _on_shuffle_menu_id_pressed(id):
 		pilePreview.pile = pile_discard_doors
 		pilePreview.popup()	
 	if id == 7: # Ver descarte puertas
-		pilePreview.pile = pile_discard_treaasures
 		pilePreview.popup()
 		
 

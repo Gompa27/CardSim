@@ -106,9 +106,6 @@ func rpc_move_card(cardNumber: int, position: Vector2, cardType: Util.CARD_TYPE)
 	var peerId = multiplayer.get_remote_sender_id()
 	var playerPosition = Game.playersPositions.find(peerId)
 	var card = Card.findCard(cardNumber, cardType)
-	#var cardPosition = Util.calculate_position_for_user(card, position, playerPosition)
-	#var cardRotation = Util.calculate_rotation_for_user(playerPosition)
-	#card.rotation_degrees = cardRotation
 	card.moveCard(position)
 	
 @rpc("any_peer")
