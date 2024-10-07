@@ -3,6 +3,7 @@ extends Node
 signal _on_update_players(players: Dictionary)
 signal _on_open_popup(texto: String)
 signal _on_close_popup()
+signal _on_change_level(playerNumber: int, level: int)
 
 var players: Dictionary = {}
 var playersPositions: Array[int] = []
@@ -53,3 +54,6 @@ func openAlertViewDiscard(peerId: int):
 
 func closePopup():
 	emit_signal("_on_close_popup")
+	
+func change_level(playerNumber: int, level: int):
+	emit_signal('_on_change_level', playerNumber, level)

@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://0nnrr220wiov"]
+[gd_scene load_steps=14 format=3 uid="uid://0nnrr220wiov"]
 
 [ext_resource type="Script" path="res://Scripts/MainScreen.gd" id="1_jhv6w"]
 [ext_resource type="PackedScene" uid="uid://extpsqcv3e2g" path="res://Scenes/CardDoor.tscn" id="3_se05s"]
 [ext_resource type="PackedScene" uid="uid://cqsvdvo2n4uwl" path="res://Scenes/CardTreasure.tscn" id="3_spmbg"]
 [ext_resource type="Texture2D" uid="uid://cida6attahoce" path="res://Assets/Table.jpg" id="4_qocbl"]
+[ext_resource type="PackedScene" uid="uid://wqxpidwcp4xm" path="res://Scenes/Level.tscn" id="6_ntg2e"]
 [ext_resource type="Texture2D" uid="uid://dn0yk0tpvf3sk" path="res://Assets/FondoDoor.png" id="9_4tseu"]
 [ext_resource type="Script" path="res://Scripts/MenuDeck.gd" id="9_upqhy"]
 [ext_resource type="Texture2D" uid="uid://blgc5wyro17pr" path="res://Assets/FondoTreasure.png" id="10_iu770"]
@@ -66,9 +67,9 @@ pileName = "Mano 1"
 
 [node name="PlayerName1" type="Label" parent="Player1" groups=["playerName"]]
 layout_mode = 0
-offset_left = 685.0
+offset_left = 678.0
 offset_top = 380.0
-offset_right = 823.0
+offset_right = 816.0
 offset_bottom = 415.0
 rotation = 4.71239
 theme_override_font_sizes/font_size = 25
@@ -81,6 +82,12 @@ offset_top = 387.0
 offset_right = 768.0
 offset_bottom = 418.0
 text = "Sentarse"
+
+[node name="Level" parent="Player1" instance=ExtResource("6_ntg2e")]
+offset_left = 717.0
+offset_top = 308.0
+offset_right = 717.0
+offset_bottom = 308.0
 
 [node name="Player2" type="Panel" parent="."]
 anchors_preset = 3
@@ -121,10 +128,10 @@ playerNumber = 1
 
 [node name="PlayerName2" type="Label" parent="Player2" groups=["playerName"]]
 layout_mode = 0
-offset_left = -44.0
-offset_top = 381.0
-offset_right = 94.0
-offset_bottom = 416.0
+offset_left = -36.0
+offset_top = 385.0
+offset_right = 102.0
+offset_bottom = 420.0
 rotation = 4.71239
 theme_override_font_sizes/font_size = 25
 text = "Lugar vacio"
@@ -136,6 +143,13 @@ offset_top = 386.0
 offset_right = -12.0
 offset_bottom = 417.0
 text = "Sentarse"
+
+[node name="Level" parent="Player2" instance=ExtResource("6_ntg2e")]
+offset_left = -112.0
+offset_top = 308.0
+offset_right = -112.0
+offset_bottom = 308.0
+playerNumber = 1
 
 [node name="Player3" type="Panel" parent="."]
 anchors_preset = 1
@@ -174,9 +188,9 @@ playerNumber = 2
 
 [node name="PlayerName3" type="Label" parent="Player3" groups=["playerName"]]
 layout_mode = 0
-offset_left = -12.0
+offset_left = 1.0
 offset_top = -80.0
-offset_right = 126.0
+offset_right = 139.0
 offset_bottom = -45.0
 rotation = 1.5708
 theme_override_font_sizes/font_size = 25
@@ -184,11 +198,18 @@ text = "Lugar vacio"
 
 [node name="SitButton3" type="Button" parent="Player3" groups=["sitButton"]]
 layout_mode = 0
-offset_left = -89.0
+offset_left = -83.0
 offset_top = -116.0
-offset_right = -13.0
+offset_right = -7.0
 offset_bottom = -85.0
 text = "Sentarse"
+
+[node name="Level" parent="Player3" instance=ExtResource("6_ntg2e")]
+offset_left = -115.0
+offset_top = -66.0
+offset_right = -115.0
+offset_bottom = -66.0
+playerNumber = 2
 
 [node name="Player4" type="Panel" parent="."]
 offset_top = 124.0
@@ -223,9 +244,9 @@ playerNumber = 3
 
 [node name="PlayerName4" type="Label" parent="Player4" groups=["playerName"]]
 layout_mode = 0
-offset_left = 727.0
+offset_left = 714.0
 offset_top = -77.0
-offset_right = 865.0
+offset_right = 852.0
 offset_bottom = -42.0
 rotation = 1.5708
 theme_override_font_sizes/font_size = 25
@@ -238,6 +259,13 @@ offset_top = -116.0
 offset_right = 770.0
 offset_bottom = -85.0
 text = "Sentarse"
+
+[node name="Level" parent="Player4" instance=ExtResource("6_ntg2e")]
+offset_left = 715.0
+offset_top = -65.0
+offset_right = 715.0
+offset_bottom = -65.0
+playerNumber = 3
 
 [node name="Decks" type="Control" parent="." node_paths=PackedStringArray("popupMenu")]
 z_as_relative = false

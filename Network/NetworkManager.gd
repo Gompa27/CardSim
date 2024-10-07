@@ -149,6 +149,11 @@ func rpc_view_discard():
 @rpc("any_peer")
 func rpc_close_discard():
 	Game.closePopup()
+	
+@rpc("any_peer")
+func rpc_change_level(playerNumber:int, level: int):
+	Game.change_level(playerNumber, level)
+		
 
 func login(username: String):
 	rpc_login.rpc(username)
@@ -185,3 +190,6 @@ func view_discard():
 
 func close_discard():
 	rpc_close_discard.rpc()
+
+func change_level(playerNumber: int, level: int):
+	rpc_change_level.rpc(playerNumber, level)
