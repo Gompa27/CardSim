@@ -52,9 +52,10 @@ func _finishDragging():
 	var isReparented = false
 	for pile in piles_nodes:
 		if is_dragging_over(pile):
+			if get_parent() is Pile && get_parent().pileType in Util.PILE_HAND_PLAYER:
+				self.isFaceDown = true
 			self.reparent(pile)
 			self.global_position = get_global_mouse_position() - offsetMouse
-
 			isReparented = true
 			NetworkManager.reparent_card(self)
 			pass

@@ -22,6 +22,8 @@ func _create_cards(amount: int, scene: PackedScene, newParent: Control, cardType
 		card.visible = true
 		card.z_index = 50
 		card.cardType = cardType
+		card.connect('mouse_entered', show_preview.bind(card))
+		card.connect('mouse_exited', hide_preview)
 		newParent.add_child(card)
 
 func _on_shuffle_menu_id_pressed(id):
@@ -70,3 +72,22 @@ func open_popup(texto: String):
 	%Popup.get_child(0).text = texto
 	%Popup.popup()
 	
+
+func show_preview(card: Card):
+	if !card.isFaceDown:
+		var sprite = card.get_child(0) as AnimatedSprite2D
+		var newSprite = %PreviewCard.get_child(0) as AnimatedSprite2D
+		newSprite.sprite_frames = sprite.sprite_frames
+		newSprite.frame = sprite.frame
+		
+		%PreviewCard.visible = true
+		var mousePosX =get_viewport().get_mouse_position().x
+		if mousePosX < get_viewport().size.x / 2:
+			%PreviewCard.position.x = get_viewport().size.x - %PreviewCard.size.x
+		else:
+			%PreviewCard.position.x = 0		
+		
+	
+
+func hide_preview():
+	%PreviewCard.visible = false

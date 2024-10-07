@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://0nnrr220wiov"]
+[gd_scene load_steps=15 format=3 uid="uid://0nnrr220wiov"]
 
 [ext_resource type="Script" path="res://Scripts/MainScreen.gd" id="1_jhv6w"]
 [ext_resource type="PackedScene" uid="uid://extpsqcv3e2g" path="res://Scenes/CardDoor.tscn" id="3_se05s"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://Scripts/Pile.gd" id="11_an6km"]
 [ext_resource type="PackedScene" uid="uid://gnh684vkbka2" path="res://Scenes/PilePreview.tscn" id="11_benhs"]
 [ext_resource type="PackedScene" uid="uid://by8i6djguymtp" path="res://Scenes/PileCards.tscn" id="12_0crwh"]
+[ext_resource type="SpriteFrames" uid="uid://bftorln374wsx" path="res://Resources/doors.tres" id="13_uhtec"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hddut"]
 
@@ -451,6 +452,27 @@ horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
 max_lines_visible = 2
+
+[node name="PreviewCard" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -160.0
+offset_top = -250.0
+offset_right = 160.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="sprite" type="AnimatedSprite2D" parent="PreviewCard"]
+scale = Vector2(0.8, 0.8)
+sprite_frames = ExtResource("13_uhtec")
+centered = false
 
 [connection signal="child_entered_tree" from="Player1/PanelContainer/PlayerHand" to="Player1/PanelContainer/PlayerHand" method="_on_child_entered_tree"]
 [connection signal="pressed" from="Player1/SitButton1" to="." method="_on_sit_button_1_pressed"]
