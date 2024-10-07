@@ -32,7 +32,8 @@ func _on_shuffle_menu_id_pressed(id):
 	if id == 6: # Ver descarte puertas
 		pilePreview.pile = pile_discard_doors
 		pilePreview.popup()	
-	if id == 7: # Ver descarte puertas
+	if id == 7: # Ver descarte treasures
+		pilePreview.pile = pile_discard_treaasures
 		pilePreview.popup()
 		
 
