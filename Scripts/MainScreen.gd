@@ -55,14 +55,17 @@ func _on_sit_button_1_pressed():
 
 
 func _on_sit_button_2_pressed():
-	NetworkManager.change_seat(1)
+	if (Game.playersPositions.size() >= 2):
+		NetworkManager.change_seat(1)
 
 
 func _on_sit_button_3_pressed():
-	NetworkManager.change_seat(2)
+	if (Game.playersPositions.size() >= 3):
+		NetworkManager.change_seat(2)
 
 func _on_sit_button_4_pressed():
-	NetworkManager.change_seat(3)
+	if (Game.playersPositions.size() >= 4):
+		NetworkManager.change_seat(3)
 
 
 func close_popup():
