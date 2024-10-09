@@ -45,6 +45,8 @@ func _startDragging(event: InputEventMouseButton):
 	isCardSelected = true
 	offsetMouse = event.position
 	currentCardSelected = self
+	self.move_to_front()
+
 
 func _finishDragging():
 	currentCardSelected = null
@@ -88,6 +90,7 @@ static func findCard(_cardNumber: int, _cardType: Util.CARD_TYPE):
 
 func moveCard(_position: Vector2):
 	self.global_position = _position
+	self.move_to_front()
 	
 func flipCard():
 	isFaceDown = !isFaceDown

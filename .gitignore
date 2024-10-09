@@ -1,3 +1,5 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+release/CardSim.exe.zip
+release/CardSim.exe

@@ -48,8 +48,6 @@ func _process(_delta):
 		i += 1
 
 
-
-
 func _on_sit_button_1_pressed():
 	NetworkManager.change_seat(0)
 
