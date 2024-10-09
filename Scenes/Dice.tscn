@@ -8,9 +8,22 @@ offset_right = 274.0
 offset_bottom = 279.0
 script = ExtResource("1_idwl5")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Center" type="AnimatedSprite2D" parent="."]
 position = Vector2(137, 140)
 scale = Vector2(0.4, 0.408)
+sprite_frames = ExtResource("3_kr80n")
+
+[node name="RightSide" type="AnimatedSprite2D" parent="."]
+position = Vector2(303.811, 111.189)
+rotation = 4.71239
+scale = Vector2(0.4, 0.132123)
+skew = -0.785398
+sprite_frames = ExtResource("3_kr80n")
+
+[node name="UpSide" type="AnimatedSprite2D" parent="."]
+position = Vector2(168.541, -25.869)
+scale = Vector2(0.4, 0.120814)
+skew = 0.785398
 sprite_frames = ExtResource("3_kr80n")
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]
