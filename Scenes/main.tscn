@@ -487,6 +487,7 @@ grow_vertical = 2
 [node name="sprite" type="AnimatedSprite2D" parent="PreviewCard"]
 scale = Vector2(0.8, 0.8)
 sprite_frames = ExtResource("13_uhtec")
+animation = &"espanol"
 centered = false
 
 [connection signal="child_entered_tree" from="Player1/PanelContainer/PlayerHand" to="Player1/PanelContainer/PlayerHand" method="_on_child_entered_tree"]

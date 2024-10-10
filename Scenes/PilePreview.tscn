@@ -60,6 +60,7 @@ layout_mode = 2
 [node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="Control/ScrollContainer/CenterContainer/Lista/Control"]
 scale = Vector2(0.6, 0.6)
 sprite_frames = ExtResource("2_0plv6")
+animation = &"espanol"
 frame = 1
 centered = false
 
@@ -69,6 +70,7 @@ layout_mode = 2
 [node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="Control/ScrollContainer/CenterContainer/Lista/Control2"]
 scale = Vector2(0.6, 0.6)
 sprite_frames = ExtResource("2_0plv6")
+animation = &"espanol"
 frame = 1
 centered = false
 
@@ -78,6 +80,7 @@ layout_mode = 2
 [node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="Control/ScrollContainer/CenterContainer/Lista/Control3"]
 scale = Vector2(0.6, 0.6)
 sprite_frames = ExtResource("2_0plv6")
+animation = &"espanol"
 frame = 1
 centered = false
 
@@ -87,6 +90,7 @@ layout_mode = 2
 [node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="Control/ScrollContainer/CenterContainer/Lista/Control4"]
 scale = Vector2(0.6, 0.6)
 sprite_frames = ExtResource("2_0plv6")
+animation = &"espanol"
 frame = 1
 centered = false
 
@@ -96,6 +100,7 @@ layout_mode = 2
 [node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="Control/ScrollContainer/CenterContainer/Lista/Control5"]
 scale = Vector2(0.6, 0.6)
 sprite_frames = ExtResource("2_0plv6")
+animation = &"espanol"
 frame = 1
 centered = false
 
