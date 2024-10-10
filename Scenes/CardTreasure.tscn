@@ -16,6 +16,7 @@ script = ExtResource("1_gvxsa")
 unique_name_in_owner = true
 scale = Vector2(0.2, 0.2)
 sprite_frames = ExtResource("2_md36j")
+animation = &"espanol"
 centered = false
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
