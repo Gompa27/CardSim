@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://0nnrr220wiov"]
+[gd_scene load_steps=21 format=3 uid="uid://0nnrr220wiov"]
 
 [ext_resource type="Script" path="res://Scripts/MainScreen.gd" id="1_jhv6w"]
 [ext_resource type="PackedScene" uid="uid://extpsqcv3e2g" path="res://Scenes/CardDoor.tscn" id="3_se05s"]
 [ext_resource type="PackedScene" uid="uid://cqsvdvo2n4uwl" path="res://Scenes/CardTreasure.tscn" id="3_spmbg"]
 [ext_resource type="Texture2D" uid="uid://cida6attahoce" path="res://Assets/Table.jpg" id="4_qocbl"]
 [ext_resource type="PackedScene" uid="uid://wqxpidwcp4xm" path="res://Scenes/Level.tscn" id="6_ntg2e"]
+[ext_resource type="Texture2D" uid="uid://cntbm7d8xm5ow" path="res://Assets/pepecoin.png" id="7_y0lit"]
 [ext_resource type="Texture2D" uid="uid://dn0yk0tpvf3sk" path="res://Assets/FondoDoor.png" id="9_4tseu"]
 [ext_resource type="Script" path="res://Scripts/MenuDeck.gd" id="9_upqhy"]
 [ext_resource type="Texture2D" uid="uid://blgc5wyro17pr" path="res://Assets/FondoTreasure.png" id="10_iu770"]
@@ -13,15 +14,17 @@
 [ext_resource type="PackedScene" uid="uid://gnh684vkbka2" path="res://Scenes/PilePreview.tscn" id="11_benhs"]
 [ext_resource type="PackedScene" uid="uid://by8i6djguymtp" path="res://Scenes/PileCards.tscn" id="12_0crwh"]
 [ext_resource type="SpriteFrames" uid="uid://bftorln374wsx" path="res://Resources/doors.tres" id="13_uhtec"]
+[ext_resource type="PackedScene" uid="uid://bcyf3jmkos3cp" path="res://Scenes/PlayersPointers.tscn" id="14_fm4dp"]
+[ext_resource type="Script" path="res://Scenes/TurnManager.gd" id="15_pyosa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y8bi1"]
 bg_color = Color(0.309804, 0.505882, 0.741176, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hddut"]
-bg_color = Color(0.298039, 0.686275, 0.313726, 1)
+bg_color = Color(0.3358, 0.73, 0.35551, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_55xnb"]
-bg_color = Color(1, 0.717647, 0.301961, 1)
+bg_color = Color(1, 0.771798, 0.463012, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_phxxg"]
 bg_color = Color(0.584314, 0.458824, 0.803922, 1)
@@ -490,6 +493,54 @@ sprite_frames = ExtResource("13_uhtec")
 animation = &"espanol"
 centered = false
 
+[node name="PlayersPointers" parent="." instance=ExtResource("14_fm4dp")]
+z_index = 200
+
+[node name="TurnManager" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("15_pyosa")
+
+[node name="Player1EndTurn" type="TextureButton" parent="TurnManager" groups=["endTurnButton"]]
+layout_mode = 2
+offset_left = 603.0
+offset_top = 474.0
+offset_right = 1115.0
+offset_bottom = 986.0
+scale = Vector2(0.15, 0.15)
+texture_normal = ExtResource("7_y0lit")
+
+[node name="Player2EndTurn" type="TextureButton" parent="TurnManager" groups=["endTurnButton"]]
+layout_mode = 2
+offset_left = 920.0
+offset_top = 475.0
+offset_right = 1432.0
+offset_bottom = 987.0
+scale = Vector2(0.15, 0.15)
+texture_normal = ExtResource("7_y0lit")
+flip_h = true
+
+[node name="Player3EndTurn" type="TextureButton" parent="TurnManager" groups=["endTurnButton"]]
+layout_mode = 2
+offset_left = 920.0
+offset_top = 382.0
+offset_right = 1432.0
+offset_bottom = 894.0
+scale = Vector2(0.15, 0.15)
+texture_normal = ExtResource("7_y0lit")
+flip_h = true
+
+[node name="Player4EndTurn" type="TextureButton" parent="TurnManager" groups=["endTurnButton"]]
+layout_mode = 2
+offset_left = 603.0
+offset_top = 382.0
+offset_right = 1115.0
+offset_bottom = 894.0
+scale = Vector2(0.15, 0.15)
+texture_normal = ExtResource("7_y0lit")
+
 [connection signal="child_entered_tree" from="Player1/PanelContainer/PlayerHand" to="Player1/PanelContainer/PlayerHand" method="_on_child_entered_tree"]
 [connection signal="pressed" from="Player1/SitButton1" to="." method="_on_sit_button_1_pressed"]
 [connection signal="child_entered_tree" from="Player2/PanelContainer/PlayerHand" to="Player2/PanelContainer/PlayerHand" method="_on_child_entered_tree"]
@@ -500,3 +551,7 @@ centered = false
 [connection signal="pressed" from="Player4/SitButton4" to="." method="_on_sit_button_4_pressed"]
 [connection signal="id_pressed" from="ShuffleMenu" to="." method="_on_shuffle_menu_id_pressed"]
 [connection signal="close_requested" from="PilePreview" to="PilePreview" method="_on_close_requested"]
+[connection signal="pressed" from="TurnManager/Player1EndTurn" to="TurnManager" method="_on_player_1_end_turn_pressed"]
+[connection signal="pressed" from="TurnManager/Player2EndTurn" to="TurnManager" method="_on_player_2_end_turn_pressed"]
+[connection signal="pressed" from="TurnManager/Player3EndTurn" to="TurnManager" method="_on_player_3_end_turn_pressed"]
+[connection signal="pressed" from="TurnManager/Player4EndTurn" to="TurnManager" method="_on_player_4_end_turn_pressed"]

@@ -25,7 +25,7 @@ func _create_cards(amount: int, scene: PackedScene, newParent: Control, cardType
 		card.connect('mouse_entered', show_preview.bind(card))
 		card.connect('mouse_exited', hide_preview)
 		newParent.add_child(card)
-
+		
 func _on_shuffle_menu_id_pressed(id):
 	if id in [0,1,2,3]:
 		NetworkManager.shuffle_deck(id)

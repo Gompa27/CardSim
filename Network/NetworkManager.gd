@@ -150,7 +150,16 @@ func rpc_close_discard():
 @rpc("any_peer")
 func rpc_change_level(playerNumber:int, level: int):
 	Game.change_level(playerNumber, level)
+
+@rpc("any_peer")
+func rpc_update_pointer(position: Vector2):
+	var peerId = multiplayer.get_remote_sender_id()
+	Game.update_pointer(peerId, position)
 		
+@rpc("any_peer")
+func rpc_end_turn():
+	var peerId = multiplayer.get_remote_sender_id()
+	Game.endTurn(peerId)
 
 func login(username: String):
 	rpc_login.rpc(username)
@@ -190,3 +199,13 @@ func close_discard():
 
 func change_level(playerNumber: int, level: int):
 	rpc_change_level.rpc(playerNumber, level)
+
+func update_pointer(position: Vector2):
+	rpc_update_pointer.rpc(position)
+	
+func end_turn():
+	var myPeerId = multiplayer.get_unique_id()
+	if myPeerId == 0: 
+		myPeerId = 1
+	Game.endTurn(myPeerId)
+	rpc_end_turn.rpc()
