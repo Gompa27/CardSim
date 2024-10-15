@@ -69,7 +69,7 @@ func change_level(playerNumber: int, level: int):
 
 func endTurn(peerId):
 	var nextTurn = playersPositions.find(peerId) + 1
-	if nextTurn > 3:
+	if nextTurn >= playersPositions.size():
 		nextTurn = 0
 	currentPlayerTurn = nextTurn
 	
