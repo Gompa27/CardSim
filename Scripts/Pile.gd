@@ -26,6 +26,12 @@ func shuffle():
 		cardsInPile.shuffle()
 		cardsInPile.shuffle()
 		cardsInPile.shuffle()
+		cardsInPile.shuffle()
+		cardsInPile.shuffle()
+		cardsInPile.shuffle()
+		cardsInPile.shuffle()
+		cardsInPile.shuffle()
+		cardsInPile.shuffle()
 		updatePile(cardsInPile)
 			
 		return cardsInPile
