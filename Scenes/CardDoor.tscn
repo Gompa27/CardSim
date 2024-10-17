@@ -4,17 +4,17 @@
 [ext_resource type="SpriteFrames" uid="uid://bftorln374wsx" path="res://Resources/doors.tres" id="2_uy801"]
 
 [node name="CardDoor" type="Control"]
-custom_minimum_size = Vector2(80, 124)
+custom_minimum_size = Vector2(81, 121)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 80.0
-offset_bottom = 124.0
+offset_right = 81.0
+offset_bottom = 121.0
 mouse_default_cursor_shape = 2
 script = ExtResource("1_60uea")
 
 [node name="Card" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
-scale = Vector2(0.2, 0.2)
+scale = Vector2(0.26, 0.26)
 sprite_frames = ExtResource("2_uy801")
 animation = &"espanol"
 centered = false

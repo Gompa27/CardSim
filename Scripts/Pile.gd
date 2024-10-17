@@ -9,6 +9,11 @@ static var piles: Array[Pile] = []
 
 func _ready():
 	piles.append(self)
+	
+func _process(delta):
+	if self.pileType in Util.PILE_TABLE_PLAYER:
+		visible = self.playerNumber < Game.playersPositions.size()
+		
 
 
 static func findPile(pileType: Util.PILE_TYPE):
@@ -23,10 +28,6 @@ func shuffle():
 		for child in get_children():
 			cardsInPile.append(child.cardNumber)
 		
-		cardsInPile.shuffle()
-		cardsInPile.shuffle()
-		cardsInPile.shuffle()
-		cardsInPile.shuffle()
 		cardsInPile.shuffle()
 		cardsInPile.shuffle()
 		cardsInPile.shuffle()

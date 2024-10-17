@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://by8i6djguymtp" path="res://Scenes/PileCards.tscn" id="12_0crwh"]
 [ext_resource type="SpriteFrames" uid="uid://bftorln374wsx" path="res://Resources/doors.tres" id="13_uhtec"]
 [ext_resource type="PackedScene" uid="uid://bcyf3jmkos3cp" path="res://Scenes/PlayersPointers.tscn" id="14_fm4dp"]
-[ext_resource type="Script" path="res://Scenes/TurnManager.gd" id="15_pyosa"]
+[ext_resource type="Script" path="res://Scripts/PlayerEndTurn.gd" id="17_ln0h1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y8bi1"]
 bg_color = Color(0.309804, 0.505882, 0.741176, 1)
@@ -104,6 +104,16 @@ offset_right = 717.0
 offset_bottom = 308.0
 bgcolor = Color(0.309804, 0.505882, 0.741176, 1)
 
+[node name="Player1EndTurn" type="TextureButton" parent="Player1" groups=["endTurnButton"]]
+layout_mode = 0
+offset_left = 603.0
+offset_top = -1.0
+offset_right = 1115.0
+offset_bottom = 511.0
+scale = Vector2(0.15, 0.15)
+texture_normal = ExtResource("7_y0lit")
+script = ExtResource("17_ln0h1")
+
 [node name="Player2" type="Panel" parent="."]
 anchors_preset = 3
 anchor_left = 1.0
@@ -119,6 +129,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_hddut")
 script = ExtResource("11_an6km")
 pileType = 6
 pileName = "MesaJugador2"
+playerNumber = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="Player2"]
 layout_mode = 1
@@ -167,6 +178,16 @@ offset_bottom = 308.0
 playerNumber = 1
 bgcolor = Color(0.298039, 0.686275, 0.313726, 1)
 
+[node name="Player2EndTurn" type="TextureButton" parent="Player2" groups=["endTurnButton"]]
+layout_mode = 2
+offset_right = 512.0
+offset_bottom = 512.0
+scale = Vector2(0.15, 0.15)
+texture_normal = ExtResource("7_y0lit")
+flip_h = true
+script = ExtResource("17_ln0h1")
+playerTurn = 1
+
 [node name="Player3" type="Panel" parent="."]
 anchors_preset = 1
 anchor_left = 1.0
@@ -179,6 +200,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_55xnb")
 script = ExtResource("11_an6km")
 pileType = 7
 pileName = "MesaJugador3"
+playerNumber = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="Player3"]
 layout_mode = 1
@@ -228,6 +250,17 @@ offset_bottom = -66.0
 playerNumber = 2
 bgcolor = Color(1, 0.717647, 0.301961, 1)
 
+[node name="Player3EndTurn" type="TextureButton" parent="Player3" groups=["endTurnButton"]]
+layout_mode = 2
+offset_top = 258.0
+offset_right = 512.0
+offset_bottom = 770.0
+scale = Vector2(0.15, 0.15)
+texture_normal = ExtResource("7_y0lit")
+flip_h = true
+script = ExtResource("17_ln0h1")
+playerTurn = 2
+
 [node name="Player4" type="Panel" parent="."]
 offset_top = 124.0
 offset_right = 680.0
@@ -236,6 +269,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_phxxg")
 script = ExtResource("11_an6km")
 pileType = 8
 pileName = "MesaJugador4"
+playerNumber = 3
 
 [node name="PanelContainer" type="PanelContainer" parent="Player4"]
 layout_mode = 1
@@ -284,6 +318,17 @@ offset_right = 715.0
 offset_bottom = -65.0
 playerNumber = 3
 bgcolor = Color(0.584314, 0.458824, 0.803922, 1)
+
+[node name="Player4EndTurn" type="TextureButton" parent="Player4" groups=["endTurnButton"]]
+layout_mode = 2
+offset_left = 603.0
+offset_top = 258.0
+offset_right = 1115.0
+offset_bottom = 770.0
+scale = Vector2(0.15, 0.15)
+texture_normal = ExtResource("7_y0lit")
+script = ExtResource("17_ln0h1")
+playerTurn = 3
 
 [node name="Decks" type="Control" parent="." node_paths=PackedStringArray("popupMenu")]
 z_as_relative = false
@@ -473,7 +518,7 @@ max_lines_visible = 2
 [node name="PreviewCard" type="Control" parent="."]
 unique_name_in_owner = true
 visible = false
-custom_minimum_size = Vector2(320, 500)
+custom_minimum_size = Vector2(313, 464)
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -482,13 +527,12 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -160.0
 offset_top = -250.0
-offset_right = 160.0
-offset_bottom = 250.0
+offset_right = 153.0
+offset_bottom = 214.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="sprite" type="AnimatedSprite2D" parent="PreviewCard"]
-scale = Vector2(0.8, 0.8)
 sprite_frames = ExtResource("13_uhtec")
 animation = &"espanol"
 centered = false
@@ -496,62 +540,17 @@ centered = false
 [node name="PlayersPointers" parent="." instance=ExtResource("14_fm4dp")]
 z_index = 200
 
-[node name="TurnManager" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("15_pyosa")
-
-[node name="Player1EndTurn" type="TextureButton" parent="TurnManager" groups=["endTurnButton"]]
-layout_mode = 2
-offset_left = 603.0
-offset_top = 474.0
-offset_right = 1115.0
-offset_bottom = 986.0
-scale = Vector2(0.15, 0.15)
-texture_normal = ExtResource("7_y0lit")
-
-[node name="Player2EndTurn" type="TextureButton" parent="TurnManager" groups=["endTurnButton"]]
-layout_mode = 2
-offset_left = 920.0
-offset_top = 475.0
-offset_right = 1432.0
-offset_bottom = 987.0
-scale = Vector2(0.15, 0.15)
-texture_normal = ExtResource("7_y0lit")
-flip_h = true
-
-[node name="Player3EndTurn" type="TextureButton" parent="TurnManager" groups=["endTurnButton"]]
-layout_mode = 2
-offset_left = 920.0
-offset_top = 382.0
-offset_right = 1432.0
-offset_bottom = 894.0
-scale = Vector2(0.15, 0.15)
-texture_normal = ExtResource("7_y0lit")
-flip_h = true
-
-[node name="Player4EndTurn" type="TextureButton" parent="TurnManager" groups=["endTurnButton"]]
-layout_mode = 2
-offset_left = 603.0
-offset_top = 382.0
-offset_right = 1115.0
-offset_bottom = 894.0
-scale = Vector2(0.15, 0.15)
-texture_normal = ExtResource("7_y0lit")
-
 [connection signal="child_entered_tree" from="Player1/PanelContainer/PlayerHand" to="Player1/PanelContainer/PlayerHand" method="_on_child_entered_tree"]
 [connection signal="pressed" from="Player1/SitButton1" to="." method="_on_sit_button_1_pressed"]
+[connection signal="pressed" from="Player1/Player1EndTurn" to="Player1/Player1EndTurn" method="_on_pressed"]
 [connection signal="child_entered_tree" from="Player2/PanelContainer/PlayerHand" to="Player2/PanelContainer/PlayerHand" method="_on_child_entered_tree"]
 [connection signal="pressed" from="Player2/SitButton2" to="." method="_on_sit_button_2_pressed"]
+[connection signal="pressed" from="Player2/Player2EndTurn" to="Player2/Player2EndTurn" method="_on_pressed"]
 [connection signal="child_entered_tree" from="Player3/PanelContainer/PlayerHand" to="Player3/PanelContainer/PlayerHand" method="_on_child_entered_tree"]
 [connection signal="pressed" from="Player3/SitButton3" to="." method="_on_sit_button_3_pressed"]
+[connection signal="pressed" from="Player3/Player3EndTurn" to="Player3/Player3EndTurn" method="_on_pressed"]
 [connection signal="child_entered_tree" from="Player4/PanelContainer/PlayerHand" to="Player4/PanelContainer/PlayerHand" method="_on_child_entered_tree"]
 [connection signal="pressed" from="Player4/SitButton4" to="." method="_on_sit_button_4_pressed"]
+[connection signal="pressed" from="Player4/Player4EndTurn" to="Player4/Player4EndTurn" method="_on_pressed"]
 [connection signal="id_pressed" from="ShuffleMenu" to="." method="_on_shuffle_menu_id_pressed"]
 [connection signal="close_requested" from="PilePreview" to="PilePreview" method="_on_close_requested"]
-[connection signal="pressed" from="TurnManager/Player1EndTurn" to="TurnManager" method="_on_player_1_end_turn_pressed"]
-[connection signal="pressed" from="TurnManager/Player2EndTurn" to="TurnManager" method="_on_player_2_end_turn_pressed"]
-[connection signal="pressed" from="TurnManager/Player3EndTurn" to="TurnManager" method="_on_player_3_end_turn_pressed"]
-[connection signal="pressed" from="TurnManager/Player4EndTurn" to="TurnManager" method="_on_player_4_end_turn_pressed"]
