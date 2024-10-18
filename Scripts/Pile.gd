@@ -10,9 +10,9 @@ static var piles: Array[Pile] = []
 func _ready():
 	piles.append(self)
 	
-func _process(delta):
-	if self.pileType in Util.PILE_TABLE_PLAYER:
-		visible = self.playerNumber < Game.playersPositions.size()
+#func _process(delta):
+	#if self.pileType in Util.PILE_TABLE_PLAYER:
+		#visible = self.playerNumber < Game.playersPositions.size()
 		
 
 

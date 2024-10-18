@@ -1,14 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://bcyf3jmkos3cp"]
+[gd_scene load_steps=8 format=3 uid="uid://bcyf3jmkos3cp"]
 
 [ext_resource type="Script" path="res://Scripts/PlayersPointers.gd" id="1_bfekk"]
 [ext_resource type="Texture2D" uid="uid://ox4ctbq6axyj" path="res://Assets/Blue.png" id="2_ctqad"]
 [ext_resource type="Texture2D" uid="uid://c21p0uapu68ww" path="res://Assets/Green.png" id="3_ytp2o"]
 [ext_resource type="Texture2D" uid="uid://cpw26vapq4i08" path="res://Assets/Orange.png" id="4_3s35a"]
 [ext_resource type="Texture2D" uid="uid://b21w014q7e7lf" path="res://Assets/Purple.png" id="5_tttkd"]
+[ext_resource type="Texture2D" uid="uid://d3ckdl0d1semt" path="res://Assets/Red.png" id="6_210v6"]
+[ext_resource type="Texture2D" uid="uid://b4xnos4x1yw5r" path="res://Assets/Yellow.png" id="7_w6ee5"]
 
 [node name="PlayersPointers" type="Node2D" node_paths=PackedStringArray("PlayerPointers")]
 script = ExtResource("1_bfekk")
-PlayerPointers = [NodePath("PointerPlayer1"), NodePath("PointerPlayer2"), NodePath("PointerPlayer3"), NodePath("PointerPlayer4")]
+PlayerPointers = [NodePath("PointerPlayer1"), NodePath("PointerPlayer2"), NodePath("PointerPlayer3"), NodePath("PointerPlayer4"), NodePath("PointerPlayer5"), NodePath("PointerPlayer6")]
 
 [node name="PointerPlayer1" type="Sprite2D" parent="."]
 scale = Vector2(0.04, 0.04)
@@ -25,3 +27,11 @@ texture = ExtResource("4_3s35a")
 [node name="PointerPlayer4" type="Sprite2D" parent="."]
 scale = Vector2(0.04, 0.04)
 texture = ExtResource("5_tttkd")
+
+[node name="PointerPlayer5" type="Sprite2D" parent="."]
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("6_210v6")
+
+[node name="PointerPlayer6" type="Sprite2D" parent="."]
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("7_w6ee5")

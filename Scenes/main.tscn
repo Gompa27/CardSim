@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://0nnrr220wiov"]
+[gd_scene load_steps=24 format=3 uid="uid://0nnrr220wiov"]
 
 [ext_resource type="Script" path="res://Scripts/MainScreen.gd" id="1_jhv6w"]
 [ext_resource type="PackedScene" uid="uid://extpsqcv3e2g" path="res://Scenes/CardDoor.tscn" id="3_se05s"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://by8i6djguymtp" path="res://Scenes/PileCards.tscn" id="12_0crwh"]
 [ext_resource type="SpriteFrames" uid="uid://bftorln374wsx" path="res://Resources/doors.tres" id="13_uhtec"]
 [ext_resource type="PackedScene" uid="uid://bcyf3jmkos3cp" path="res://Scenes/PlayersPointers.tscn" id="14_fm4dp"]
+[ext_resource type="Script" path="res://Scenes/Camera.gd" id="17_4saal"]
 [ext_resource type="Script" path="res://Scripts/PlayerEndTurn.gd" id="17_ln0h1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y8bi1"]
@@ -24,10 +25,16 @@ bg_color = Color(0.309804, 0.505882, 0.741176, 1)
 bg_color = Color(0.3358, 0.73, 0.35551, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_55xnb"]
-bg_color = Color(1, 0.771798, 0.463012, 1)
+bg_color = Color(0.957867, 0.462354, 0.215704, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_phxxg"]
 bg_color = Color(0.584314, 0.458824, 0.803922, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hnnpu"]
+bg_color = Color(0.6, 0.258, 0.258, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aermk"]
+bg_color = Color(0.833337, 0.734009, 0.293851, 1)
 
 [node name="Main" type="Node" node_paths=PackedStringArray("pile_doors", "pile_treaasures", "pile_discard_doors", "pile_discard_treaasures", "pilePreview")]
 script = ExtResource("1_jhv6w")
@@ -40,11 +47,13 @@ pile_discard_treaasures = NodePath("Decks/DiscardTreasure/PileDiscardTreasures")
 pilePreview = NodePath("PilePreview")
 
 [node name="Fondo" type="Sprite2D" parent="."]
-texture_repeat = 2
+texture_repeat = 3
+position = Vector2(-200, -560)
+scale = Vector2(1.002, 1)
 texture = ExtResource("4_qocbl")
 centered = false
 region_enabled = true
-region_rect = Rect2(0, 0, 1600, 900)
+region_rect = Rect2(0, 0, 2000, 2060)
 
 [node name="Player1" type="Panel" parent="."]
 anchors_preset = 2
@@ -76,7 +85,7 @@ layout_mode = 2
 theme_override_constants/separation = -40
 alignment = 1
 script = ExtResource("11_an6km")
-pileType = 9
+pileType = 11
 pileName = "Mano 1"
 
 [node name="PlayerName1" type="Label" parent="Player1" groups=["playerName"]]
@@ -105,6 +114,7 @@ offset_bottom = 308.0
 bgcolor = Color(0.309804, 0.505882, 0.741176, 1)
 
 [node name="Player1EndTurn" type="TextureButton" parent="Player1" groups=["endTurnButton"]]
+visible = false
 layout_mode = 0
 offset_left = 603.0
 offset_top = -1.0
@@ -148,7 +158,7 @@ layout_mode = 2
 theme_override_constants/separation = -40
 alignment = 1
 script = ExtResource("11_an6km")
-pileType = 10
+pileType = 12
 pileName = "Mano 2"
 playerNumber = 1
 
@@ -179,6 +189,7 @@ playerNumber = 1
 bgcolor = Color(0.298039, 0.686275, 0.313726, 1)
 
 [node name="Player2EndTurn" type="TextureButton" parent="Player2" groups=["endTurnButton"]]
+visible = false
 layout_mode = 2
 offset_right = 512.0
 offset_bottom = 512.0
@@ -220,7 +231,7 @@ layout_mode = 2
 theme_override_constants/separation = -40
 alignment = 1
 script = ExtResource("11_an6km")
-pileType = 11
+pileType = 13
 pileName = "Mano 3"
 playerNumber = 2
 
@@ -251,6 +262,7 @@ playerNumber = 2
 bgcolor = Color(1, 0.717647, 0.301961, 1)
 
 [node name="Player3EndTurn" type="TextureButton" parent="Player3" groups=["endTurnButton"]]
+visible = false
 layout_mode = 2
 offset_top = 258.0
 offset_right = 512.0
@@ -289,7 +301,7 @@ layout_mode = 2
 theme_override_constants/separation = -40
 alignment = 1
 script = ExtResource("11_an6km")
-pileType = 12
+pileType = 14
 pileName = "Mano 4"
 playerNumber = 3
 
@@ -320,6 +332,7 @@ playerNumber = 3
 bgcolor = Color(0.584314, 0.458824, 0.803922, 1)
 
 [node name="Player4EndTurn" type="TextureButton" parent="Player4" groups=["endTurnButton"]]
+visible = false
 layout_mode = 2
 offset_left = 603.0
 offset_top = 258.0
@@ -329,6 +342,151 @@ scale = Vector2(0.15, 0.15)
 texture_normal = ExtResource("7_y0lit")
 script = ExtResource("17_ln0h1")
 playerTurn = 3
+
+[node name="Player5" type="Panel" parent="."]
+offset_left = 449.0
+offset_top = -428.0
+offset_right = 1129.0
+offset_bottom = -93.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_hnnpu")
+script = ExtResource("11_an6km")
+pileType = 9
+pileName = "MesaJugador5"
+playerNumber = 4
+
+[node name="PanelContainer" type="PanelContainer" parent="Player5"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -459.0
+offset_bottom = -335.0
+grow_horizontal = 2
+grow_vertical = 0
+metadata/_edit_group_ = true
+
+[node name="PlayerHand" type="HBoxContainer" parent="Player5/PanelContainer"]
+z_index = 10
+layout_mode = 2
+theme_override_constants/separation = -40
+alignment = 1
+script = ExtResource("11_an6km")
+pileType = 15
+pileName = "Mano 5"
+playerNumber = 4
+
+[node name="PlayerName" type="Label" parent="Player5" groups=["playerName"]]
+layout_mode = 0
+offset_left = 332.0
+offset_top = 377.0
+offset_right = 470.0
+offset_bottom = 412.0
+theme_override_font_sizes/font_size = 25
+text = "Lugar vacio"
+
+[node name="SitButton" type="Button" parent="Player5" groups=["sitButton"]]
+layout_mode = 0
+offset_left = 340.0
+offset_top = 345.0
+offset_right = 416.0
+offset_bottom = 376.0
+text = "Sentarse"
+
+[node name="Level" parent="Player5" instance=ExtResource("6_ntg2e")]
+offset_left = 234.0
+offset_top = 341.0
+offset_right = 234.0
+offset_bottom = 341.0
+playerNumber = 4
+bgcolor = Color(0.584314, 0.458824, 0.803922, 1)
+
+[node name="PlayerEndTurn" type="TextureButton" parent="Player5" groups=["endTurnButton"]]
+visible = false
+layout_mode = 2
+offset_left = 603.0
+offset_top = 258.0
+offset_right = 1115.0
+offset_bottom = 770.0
+scale = Vector2(0.15, 0.15)
+texture_normal = ExtResource("7_y0lit")
+script = ExtResource("17_ln0h1")
+playerTurn = 5
+
+[node name="Player6" type="Panel" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1153.0
+offset_top = 130.0
+offset_right = -473.0
+offset_bottom = 465.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_aermk")
+script = ExtResource("11_an6km")
+pileType = 10
+pileName = "MesaJugador6"
+playerNumber = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="Player6"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 124.0
+grow_horizontal = 2
+grow_vertical = 0
+metadata/_edit_group_ = true
+
+[node name="PlayerHand" type="HBoxContainer" parent="Player6/PanelContainer"]
+z_index = 10
+layout_mode = 2
+theme_override_constants/separation = -40
+alignment = 1
+script = ExtResource("11_an6km")
+pileType = 16
+pileName = "Mano 6"
+playerNumber = 5
+
+[node name="PlayerName" type="Label" parent="Player6" groups=["playerName"]]
+layout_mode = 0
+offset_left = 342.0
+offset_top = -90.0
+offset_right = 480.0
+offset_bottom = -55.0
+theme_override_font_sizes/font_size = 25
+text = "Lugar vacio"
+
+[node name="SitButton" type="Button" parent="Player6" groups=["sitButton"]]
+layout_mode = 0
+offset_left = 345.0
+offset_top = -59.0
+offset_right = 421.0
+offset_bottom = -28.0
+text = "Sentarse"
+
+[node name="Level" parent="Player6" instance=ExtResource("6_ntg2e")]
+offset_left = 243.0
+offset_top = -89.0
+offset_right = 243.0
+offset_bottom = -89.0
+playerNumber = 5
+bgcolor = Color(0.298039, 0.686275, 0.313726, 1)
+
+[node name="PlayerEndTurn" type="TextureButton" parent="Player6" groups=["endTurnButton"]]
+visible = false
+layout_mode = 2
+offset_right = 512.0
+offset_bottom = 512.0
+scale = Vector2(0.15, 0.15)
+texture_normal = ExtResource("7_y0lit")
+flip_h = true
+script = ExtResource("17_ln0h1")
+playerTurn = 6
 
 [node name="Decks" type="Control" parent="." node_paths=PackedStringArray("popupMenu")]
 z_as_relative = false
@@ -540,6 +698,10 @@ centered = false
 [node name="PlayersPointers" parent="." instance=ExtResource("14_fm4dp")]
 z_index = 200
 
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(800, 450)
+script = ExtResource("17_4saal")
+
 [connection signal="child_entered_tree" from="Player1/PanelContainer/PlayerHand" to="Player1/PanelContainer/PlayerHand" method="_on_child_entered_tree"]
 [connection signal="pressed" from="Player1/SitButton1" to="." method="_on_sit_button_1_pressed"]
 [connection signal="pressed" from="Player1/Player1EndTurn" to="Player1/Player1EndTurn" method="_on_pressed"]
@@ -552,5 +714,11 @@ z_index = 200
 [connection signal="child_entered_tree" from="Player4/PanelContainer/PlayerHand" to="Player4/PanelContainer/PlayerHand" method="_on_child_entered_tree"]
 [connection signal="pressed" from="Player4/SitButton4" to="." method="_on_sit_button_4_pressed"]
 [connection signal="pressed" from="Player4/Player4EndTurn" to="Player4/Player4EndTurn" method="_on_pressed"]
+[connection signal="child_entered_tree" from="Player5/PanelContainer/PlayerHand" to="Player5/PanelContainer/PlayerHand" method="_on_child_entered_tree"]
+[connection signal="pressed" from="Player5/SitButton" to="." method="_on_sit_button_5_pressed"]
+[connection signal="pressed" from="Player5/PlayerEndTurn" to="Player5/PlayerEndTurn" method="_on_pressed"]
+[connection signal="child_entered_tree" from="Player6/PanelContainer/PlayerHand" to="Player6/PanelContainer/PlayerHand" method="_on_child_entered_tree"]
+[connection signal="pressed" from="Player6/SitButton" to="." method="_on_sit_button_6_pressed"]
+[connection signal="pressed" from="Player6/PlayerEndTurn" to="Player6/PlayerEndTurn" method="_on_pressed"]
 [connection signal="id_pressed" from="ShuffleMenu" to="." method="_on_shuffle_menu_id_pressed"]
 [connection signal="close_requested" from="PilePreview" to="PilePreview" method="_on_close_requested"]
