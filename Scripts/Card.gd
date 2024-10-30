@@ -11,13 +11,14 @@ var isFaceDown = true
 var offsetMouse: Vector2
 var isCardSelected: bool = false
 var cardType: Util.CARD_TYPE
+var lockedBy = null
 
 func _ready():
 	cards_in_game.append(self)
 	
 func _process(_delta):
 	%Card.frame = 0 if isFaceDown else cardNumber
-		
+	
 	if isCardSelected:
 		self.global_position = get_global_mouse_position() - offsetMouse
 		NetworkManager.move_card(self)
@@ -30,13 +31,13 @@ func _on_gui_input(event: InputEvent) -> void:
 		if event.button_index == 2:
 			#Click
 			if event.button_mask == 0 && get_parent().pileType in Util.PILE_ALL_TABLES:
-				isFaceDown = !isFaceDown
+				flipCard()
 				NetworkManager.flip_card(self)
 				
 		#Es click izquierdo
 		if event.button_index == 1:
 			#Start dragging
-			if event.button_mask == 1:
+			if event.button_mask == 1 and !lockedBy:
 				_startDragging(event)
 			elif event.button_mask == 0:
 				_finishDragging()
@@ -46,6 +47,7 @@ func _startDragging(event: InputEventMouseButton):
 	offsetMouse = event.position
 	currentCardSelected = self
 	self.move_to_front()
+	NetworkManager.lock_card(self)
 
 
 func _finishDragging():
@@ -73,6 +75,7 @@ func _finishDragging():
 		self.global_position = get_global_mouse_position() - offsetMouse
 		NetworkManager.reparent_card(self)
 	isCardSelected = false
+	NetworkManager.unlock_card(self)
 	offsetMouse = Vector2(0,0)
 
 
@@ -94,3 +97,18 @@ func moveCard(_position: Vector2):
 	
 func flipCard():
 	isFaceDown = !isFaceDown
+	if cardType == Util.CARD_TYPE.DOOR:
+		if cardNumber == 79:
+			$Ooopsie.play()
+		if cardNumber== 94:
+			$Cuack.play()
+		
+
+
+func lockCardBy(peerId: int):
+	lockedBy = peerId
+	$Locked.visible = true
+	
+func unlock():
+	lockedBy = null
+	$Locked.visible = false

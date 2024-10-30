@@ -10,12 +10,14 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if isPlaying :
 		for child in get_children():
-			child.frame = randi_range(0,5)
+			if child is AnimatedSprite2D:
+				child.frame = randi_range(0,5)
 
 func _on_pressed() -> void:
 	NetworkManager.roll_dice()
 
 func roll(number : int):
+	$Sound.play()
 	isPlaying = true
 	await get_tree().create_timer(3).timeout
 	isPlaying = false

@@ -19,4 +19,11 @@ sprite_frames = ExtResource("2_md36j")
 animation = &"espanol"
 centered = false
 
+[node name="Locked" type="ColorRect" parent="."]
+visible = false
+custom_minimum_size = Vector2(81, 121)
+offset_right = 81.0
+offset_bottom = 121.0
+color = Color(0.3, 0.3, 0.3, 0.623529)
+
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

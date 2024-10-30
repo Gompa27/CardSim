@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://xgjo7w3aj2q7"]
+[gd_scene load_steps=4 format=3 uid="uid://xgjo7w3aj2q7"]
 
 [ext_resource type="Script" path="res://Scripts/Dice.gd" id="1_idwl5"]
+[ext_resource type="AudioStream" uid="uid://dwq1ohrwenn7i" path="res://Assets/sounds/dice_sound.mp3" id="3_55di1"]
 [ext_resource type="SpriteFrames" uid="uid://c7mqpsccfh3qw" path="res://Resources/dice.tres" id="3_kr80n"]
 
 [node name="Dice" type="Button"]
@@ -15,7 +16,7 @@ sprite_frames = ExtResource("3_kr80n")
 
 [node name="RightSide" type="AnimatedSprite2D" parent="."]
 position = Vector2(303.811, 111.189)
-rotation = 4.71239
+rotation = -1.5708
 scale = Vector2(0.4, 0.132123)
 skew = -0.785398
 sprite_frames = ExtResource("3_kr80n")
@@ -25,5 +26,9 @@ position = Vector2(168.541, -25.869)
 scale = Vector2(0.4, 0.120814)
 skew = 0.785398
 sprite_frames = ExtResource("3_kr80n")
+
+[node name="Sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_55di1")
+volume_db = 24.0
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

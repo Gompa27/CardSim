@@ -4,6 +4,13 @@ extends Control
 @onready var ip_address = %IpAddressText
 @onready var username = %UsernameText
 
+func _ready():
+	NetworkManager.on_connection_failed.connect(_reset_buttons)
+
+func _reset_buttons():
+	%JoinButton.disabled = false
+	%HostButton.disabled = false
+
 
 func _on_join_button_pressed():
 	%JoinButton.disabled = true

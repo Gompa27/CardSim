@@ -1,5 +1,6 @@
 extends Node
 signal _roll_dice(number : int)
+signal on_connection_failed()
 	
 const MAX_PEERS = 5
 var connection_client = ENetMultiplayerPeer.new()
@@ -54,7 +55,8 @@ func _on_connection_succeeded(username: String):
 	
 
 func _on_connection_failed():
-	print("Custom Client _on_connection_failed")
+	emit_signal("on_connection_failed")
+	print("Custom Client _on_connection_failed", )
 	
 	
 ######################## GAME LOGIC ########################
@@ -160,7 +162,26 @@ func rpc_update_pointer(position: Vector2):
 func rpc_end_turn():
 	var peerId = multiplayer.get_remote_sender_id()
 	Game.endTurn(peerId)
+	
+@rpc("any_peer")
+func rpc_lock_card(cardNumber: int, cardType: Util.CARD_TYPE):
+	var peerId = multiplayer.get_remote_sender_id()
+	if peerId == 0: 
+		peerId = 1
+	var playerPosition = Game.playersPositions.find(peerId)
+	var card = Card.findCard(cardNumber, cardType)
+	card.lockCardBy(peerId)
 
+@rpc("any_peer")
+func rpc_unlock_card(cardNumber: int, cardType: Util.CARD_TYPE):
+	var peerId = multiplayer.get_remote_sender_id()
+	if peerId == 0: 
+		peerId = 1
+	var playerPosition = Game.playersPositions.find(peerId)
+	var card = Card.findCard(cardNumber, cardType)
+	if card.lockedBy == peerId:
+		card.unlock()
+	
 func login(username: String):
 	rpc_login.rpc(username)
 
@@ -209,3 +230,10 @@ func end_turn():
 		myPeerId = 1
 	Game.endTurn(myPeerId)
 	rpc_end_turn.rpc()
+
+func lock_card(card: Card):
+	#rpc_lock_card(card.cardNumber, card.cardType)
+	rpc_lock_card.rpc(card.cardNumber, card.cardType)
+	
+func unlock_card(card: Card):
+	rpc_unlock_card.rpc(card.cardNumber, card.cardType)
