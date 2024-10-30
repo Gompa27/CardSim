@@ -34,16 +34,6 @@ func shuffle():
 		cardsInPile.shuffle()
 		cardsInPile.shuffle()
 		
-		var x = cardsInPile.find(94)
-		if x >= 0:
-			cardsInPile.pop_at(x)
-			cardsInPile.push_back(94)
-		
-		var y = cardsInPile.find(79)
-		if y >= 0:
-			cardsInPile.pop_at(y)
-			cardsInPile.push_back(79)
-		
 		updatePile(cardsInPile)
 			
 		return cardsInPile
