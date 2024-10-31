@@ -22,6 +22,7 @@ centered = false
 [node name="Locked" type="ColorRect" parent="."]
 visible = false
 custom_minimum_size = Vector2(81, 121)
+layout_mode = 0
 offset_right = 81.0
 offset_bottom = 121.0
 color = Color(0.3, 0.3, 0.3, 0.623529)

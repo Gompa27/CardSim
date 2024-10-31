@@ -1,6 +1,8 @@
 class_name Pile
 extends Control
 
+signal on_shuffle()
+
 static var piles: Array[Pile] = []
 @export var pileType: Util.PILE_TYPE
 #@export var canSeeCards: bool
@@ -35,7 +37,6 @@ func shuffle():
 		cardsInPile.shuffle()
 		
 		updatePile(cardsInPile)
-			
 		return cardsInPile
 
 func updatePile(newOrder: Array[int]):
@@ -43,6 +44,7 @@ func updatePile(newOrder: Array[int]):
 	for i in range(newOrder.size()):
 		var card = Card.findCard(newOrder[i], cardType)
 		self.move_child(card, i)
+	emit_signal("on_shuffle")
 
 
 func _getTypeCard():

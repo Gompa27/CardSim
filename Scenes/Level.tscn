@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://wqxpidwcp4xm"]
+[gd_scene load_steps=5 format=3 uid="uid://wqxpidwcp4xm"]
 
 [ext_resource type="Script" path="res://Scenes/level.gd" id="1_nye2u"]
+[ext_resource type="AudioStream" uid="uid://bt6h23t8llhhp" path="res://Assets/sounds/general/level_up.mp3" id="2_hcixp"]
+[ext_resource type="AudioStream" uid="uid://kflfe404k4a4" path="res://Assets/sounds/general/level_down.mp3" id="3_jajhi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_om3qw"]
 
@@ -37,6 +39,13 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_om3qw")
 text = "10"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="LevelUpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_hcixp")
+volume_db = -10.0
+
+[node name="LevelDownSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_jajhi")
 
 [connection signal="pressed" from="AddLevel" to="." method="_on_add_level_pressed"]
 [connection signal="pressed" from="RemoveLevel" to="." method="_on_remove_level_pressed"]

@@ -8,7 +8,10 @@ extends Node
 @export var pile_discard_treaasures: Pile
 @export var pilePreview: PilePreview
 
+var soundsDic: Dictionary = {}
+
 func _ready():
+	loadSounds()
 	_create_cards(Util.AMOUNT_DOORS_CARDS, card_door_scene, pile_doors, Util.CARD_TYPE.DOOR)
 	_create_cards(Util.AMOUNT_TREASURE_CARDS, card_treasure_scene, pile_treaasures, Util.CARD_TYPE.TREASURE)
 	Game.connect("_on_open_popup", open_popup)
@@ -16,9 +19,13 @@ func _ready():
 
 func _create_cards(amount: int, scene: PackedScene, newParent: Control, cardType: Util.CARD_TYPE):
 	for cardNumber in range(1, amount):
-		var card = scene.instantiate()
+		var card: Card = scene.instantiate()
 		card.cardNumber = cardNumber
 		card.isFaceDown = newParent.get_meta('face_down')
+		var sound = soundsDic.get(str(cardNumber)+"_"+str(cardType))
+		print("CARTA", cardNumber,"_", cardType, sound)
+		if sound:
+			card.soundOnFlip = sound
 		card.visible = true
 		card.z_index = 50
 		card.cardType = cardType
@@ -102,3 +109,173 @@ func show_preview(card: Card):
 
 func hide_preview():
 	%PreviewCard.visible = false
+	
+
+func _on_deck_shuffle():
+	$ShuffleDeck.play()
+
+
+func loadSounds():
+	var duck = ResourceLoader.load("res://Assets/sounds/cards/duck.mp3") as AudioStream
+	var chicken =ResourceLoader.load("res://Assets/sounds/cards/chicken.mp3") as AudioStream
+	var cleric =ResourceLoader.load("res://Assets/sounds/cards/cleric.mp3") as AudioStream
+	var elf =ResourceLoader.load("res://Assets/sounds/cards/elf.mp3") as AudioStream
+	var hobbit =ResourceLoader.load("res://Assets/sounds/cards/hobbit.mp3") as AudioStream
+	var dwarf =ResourceLoader.load("res://Assets/sounds/cards/dwarf.mp3") as AudioStream
+	var oppsie =ResourceLoader.load("res://Assets/sounds/cards/oopsie.mp3") as AudioStream
+	var myPrecious =ResourceLoader.load("res://Assets/sounds/cards/my-precious.mp3") as AudioStream
+	var powerUp =ResourceLoader.load("res://Assets/sounds/cards/power_up.mp3") as AudioStream
+
+	var audioPlayerDuck =AudioStreamPlayer2D.new()
+	var audioPlayerChicken =AudioStreamPlayer2D.new()
+	var audioPlayerCleric =AudioStreamPlayer2D.new()
+	var audioPlayerElf =AudioStreamPlayer2D.new()
+	var audioPlayerHobbit =AudioStreamPlayer2D.new()
+	var audioPlayerDwarf =AudioStreamPlayer2D.new()
+	var audioPlayerOppsie =AudioStreamPlayer2D.new()
+	var audioPlayerMyPrecious =AudioStreamPlayer2D.new()
+	var audioPlayerPowerUp =AudioStreamPlayer2D.new()
+
+
+	audioPlayerDuck.stream =duck
+	audioPlayerChicken.stream =chicken
+	audioPlayerChicken.volume_db =5
+	audioPlayerCleric.stream =cleric
+
+	audioPlayerElf.stream =elf
+	audioPlayerElf.volume_db = 10
+
+	audioPlayerHobbit.stream =hobbit
+	audioPlayerDwarf.stream =dwarf
+	audioPlayerOppsie.stream =oppsie
+	audioPlayerOppsie.volume_db = 10
+	audioPlayerMyPrecious.stream =myPrecious
+	audioPlayerMyPrecious.volume_db =10
+	audioPlayerPowerUp.stream =powerUp
+	
+	
+	self.add_child(audioPlayerDuck)
+	self.add_child(audioPlayerChicken)
+	self.add_child(audioPlayerCleric)
+	self.add_child(audioPlayerElf)
+	self.add_child(audioPlayerHobbit)
+	self.add_child(audioPlayerDwarf)
+	self.add_child(audioPlayerOppsie)
+	self.add_child(audioPlayerMyPrecious)
+	self.add_child(audioPlayerPowerUp)
+	
+	
+	
+	
+	soundsDic["94_"+str(Util.CARD_TYPE.DOOR)] = audioPlayerDuck
+	soundsDic["65_"+str(Util.CARD_TYPE.DOOR)] = audioPlayerChicken
+	soundsDic["90_"+str(Util.CARD_TYPE.DOOR)] = audioPlayerChicken
+	soundsDic["79_"+str(Util.CARD_TYPE.DOOR)] = audioPlayerOppsie
+	soundsDic["44_"+str(Util.CARD_TYPE.TREASURE)] = audioPlayerMyPrecious
+	soundsDic["6_"+str(Util.CARD_TYPE.DOOR)] = audioPlayerCleric
+	soundsDic["35_"+str(Util.CARD_TYPE.DOOR)] = audioPlayerCleric
+	soundsDic["40_"+str(Util.CARD_TYPE.DOOR)] = audioPlayerCleric
+	soundsDic["20_"+str(Util.CARD_TYPE.DOOR)] = audioPlayerElf
+	soundsDic["30_"+str(Util.CARD_TYPE.DOOR)] = audioPlayerElf
+	soundsDic["75_"+str(Util.CARD_TYPE.DOOR)] = audioPlayerElf
+	soundsDic["55_"+str(Util.CARD_TYPE.DOOR)] = audioPlayerHobbit
+	soundsDic["61_"+str(Util.CARD_TYPE.DOOR)] = audioPlayerHobbit
+	soundsDic["12_"+str(Util.CARD_TYPE.DOOR)] = audioPlayerHobbit
+	soundsDic["14_"+str(Util.CARD_TYPE.DOOR)] = audioPlayerDwarf
+	soundsDic["37_"+str(Util.CARD_TYPE.DOOR)] = audioPlayerDwarf
+	soundsDic["56_"+str(Util.CARD_TYPE.DOOR)] = audioPlayerDwarf
+	soundsDic["1_"+str(Util.CARD_TYPE.TREASURE)] = audioPlayerPowerUp
+	soundsDic["3_"+str(Util.CARD_TYPE.TREASURE)] = audioPlayerPowerUp
+	soundsDic["7_"+str(Util.CARD_TYPE.TREASURE)] = audioPlayerPowerUp
+	soundsDic["12_"+str(Util.CARD_TYPE.TREASURE)] = audioPlayerPowerUp
+	soundsDic["15_"+str(Util.CARD_TYPE.TREASURE)] = audioPlayerPowerUp
+	soundsDic["16_"+str(Util.CARD_TYPE.TREASURE)] = audioPlayerPowerUp
+	soundsDic["22_"+str(Util.CARD_TYPE.TREASURE)] = audioPlayerPowerUp
+	soundsDic["38_"+str(Util.CARD_TYPE.TREASURE)] = audioPlayerPowerUp
+	soundsDic["41_"+str(Util.CARD_TYPE.TREASURE)] = audioPlayerPowerUp
+	soundsDic["71_"+str(Util.CARD_TYPE.TREASURE)] = audioPlayerPowerUp
+	
+	
+	
+	
+	
+	
+	#self.sounds.append([65, Util.CARD_TYPE.DOOR,audioPlayerDuck])
+	#self.sounds.append([90, Util.CARD_TYPE.DOOR,audioPlayerChicken])
+	#self.sounds.append([79, Util.CARD_TYPE.DOOR,audioPlayerOppsie])
+	#self.sounds.append([44, Util.CARD_TYPE.TREASURE,audioPlayerMyPrecious])
+	#
+	#self.sounds.append([6, Util.CARD_TYPE.DOOR,audioPlayerCleric])
+	#self.sounds.append([35, Util.CARD_TYPE.DOOR,audioPlayerCleric])
+	#self.sounds.append([40, Util.CARD_TYPE.DOOR,audioPlayerCleric])
+	#
+	#
+	#self.sounds.append([20, Util.CARD_TYPE.DOOR,audioPlayerElf])
+	#self.sounds.append([30, Util.CARD_TYPE.DOOR,audioPlayerElf])
+	#self.sounds.append([75, Util.CARD_TYPE.DOOR,audioPlayerElf])
+	#
+	#self.sounds.append([55, Util.CARD_TYPE.DOOR,audioPlayerHobbit])
+	#self.sounds.append([61, Util.CARD_TYPE.DOOR,audioPlayerHobbit])
+	#self.sounds.append([12, Util.CARD_TYPE.DOOR,audioPlayerHobbit])
+	#
+	#self.sounds.append([14, Util.CARD_TYPE.DOOR,audioPlayerDwarf])
+	#self.sounds.append([37, Util.CARD_TYPE.DOOR,audioPlayerDwarf])
+	#self.sounds.append([56, Util.CARD_TYPE.DOOR,audioPlayerDwarf])
+	#
+	#
+	#self.sounds.append([1, Util.CARD_TYPE.TREASURE,audioPlayerPowerUp])
+	#self.sounds.append([3, Util.CARD_TYPE.TREASURE,audioPlayerPowerUp])
+	#self.sounds.append([7, Util.CARD_TYPE.TREASURE,audioPlayerPowerUp])
+	#self.sounds.append([12, Util.CARD_TYPE.TREASURE,audioPlayerPowerUp])
+	#self.sounds.append([15, Util.CARD_TYPE.TREASURE,audioPlayerPowerUp])
+	#self.sounds.append([16, Util.CARD_TYPE.TREASURE,audioPlayerPowerUp])
+	#self.sounds.append([22, Util.CARD_TYPE.TREASURE,audioPlayerPowerUp])
+	#self.sounds.append([38, Util.CARD_TYPE.TREASURE,audioPlayerPowerUp])
+	#self.sounds.append([41, Util.CARD_TYPE.TREASURE,audioPlayerPowerUp])
+	#self.sounds.append([71, Util.CARD_TYPE.TREASURE,audioPlayerPowerUp])
+
+
+
+
+
+
+
+
+
+	#self.sounds.append([94, Util.CARD_TYPE.DOOR,"res://Assets/sounds/cards/duck.mp3"])
+	
+	#self.sounds.append([65, Util.CARD_TYPE.DOOR,"res://Assets/sounds/cards/chicken.mp3"])
+	#self.sounds.append([90, Util.CARD_TYPE.DOOR,"res://Assets/sounds/cards/chicken.mp3"])
+	#
+	#self.sounds.append([6, Util.CARD_TYPE.DOOR,"res://Assets/sounds/cards/cleric.mp3"])
+	#self.sounds.append([35, Util.CARD_TYPE.DOOR,"res://Assets/sounds/cards/cleric.mp3"])
+	#self.sounds.append([40, Util.CARD_TYPE.DOOR,"res://Assets/sounds/cards/cleric.mp3"])
+	#
+	#
+	#self.sounds.append([20, Util.CARD_TYPE.DOOR,"res://Assets/sounds/cards/elf.mp3"])
+	#self.sounds.append([30, Util.CARD_TYPE.DOOR,"res://Assets/sounds/cards/elf.mp3"])
+	#self.sounds.append([75, Util.CARD_TYPE.DOOR,"res://Assets/sounds/cards/elf.mp3"])
+	#
+	#self.sounds.append([12, Util.CARD_TYPE.DOOR,"res://Assets/sounds/cards/hobbit.mp3"])
+	#self.sounds.append([55, Util.CARD_TYPE.DOOR,"res://Assets/sounds/cards/hobbit.mp3"])
+	#self.sounds.append([61, Util.CARD_TYPE.DOOR,"res://Assets/sounds/cards/hobbit.mp3"])
+	#
+	#self.sounds.append([14, Util.CARD_TYPE.DOOR,"res://Assets/sounds/cards/dwarf.mp3"])
+	#self.sounds.append([37, Util.CARD_TYPE.DOOR,"res://Assets/sounds/cards/dwarf.mp3"])
+	#self.sounds.append([56, Util.CARD_TYPE.DOOR,"res://Assets/sounds/cards/dwarf.mp3"])
+	#
+	#self.sounds.append([79, Util.CARD_TYPE.DOOR,"res://Assets/sounds/cards/oopsie.mp3"])
+	#self.sounds.append([44, Util.CARD_TYPE.TREASURE,"res://Assets/sounds/cards/my-precious.mp3"])
+	#self.sounds.append([1, Util.CARD_TYPE.TREASURE,"res://Assets/sounds/cards/power_up.mp3"])
+	#self.sounds.append([3, Util.CARD_TYPE.TREASURE,"res://Assets/sounds/cards/power_up.mp3"])
+	#self.sounds.append([7, Util.CARD_TYPE.TREASURE,"res://Assets/sounds/cards/power_up.mp3"])
+	#self.sounds.append([12, Util.CARD_TYPE.TREASURE,"res://Assets/sounds/cards/power_up.mp3"])
+	#self.sounds.append([15, Util.CARD_TYPE.TREASURE,"res://Assets/sounds/cards/power_up.mp3"])
+	#self.sounds.append([16, Util.CARD_TYPE.TREASURE,"res://Assets/sounds/cards/power_up.mp3"])
+	#self.sounds.append([22, Util.CARD_TYPE.TREASURE,"res://Assets/sounds/cards/power_up.mp3"])
+	#self.sounds.append([38, Util.CARD_TYPE.TREASURE,"res://Assets/sounds/cards/power_up.mp3"])
+	#self.sounds.append([41, Util.CARD_TYPE.TREASURE,"res://Assets/sounds/cards/power_up.mp3"])
+	#self.sounds.append([71, Util.CARD_TYPE.TREASURE,"res://Assets/sounds/cards/power_up.mp3"])
+	#self.sounds.append(["", Util.CARD_TYPE.TREASURE,"res://Assets/sounds/cards/power_up.mp3"])
+	
+	

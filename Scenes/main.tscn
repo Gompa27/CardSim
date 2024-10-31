@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://0nnrr220wiov"]
+[gd_scene load_steps=25 format=3 uid="uid://0nnrr220wiov"]
 
 [ext_resource type="Script" path="res://Scripts/MainScreen.gd" id="1_jhv6w"]
 [ext_resource type="PackedScene" uid="uid://extpsqcv3e2g" path="res://Scenes/CardDoor.tscn" id="3_se05s"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://bcyf3jmkos3cp" path="res://Scenes/PlayersPointers.tscn" id="14_fm4dp"]
 [ext_resource type="Script" path="res://Scenes/Camera.gd" id="17_4saal"]
 [ext_resource type="Script" path="res://Scripts/PlayerEndTurn.gd" id="17_ln0h1"]
+[ext_resource type="AudioStream" uid="uid://bce0vam6ldjqw" path="res://Assets/sounds/general/shuffle_cards.mp3" id="18_a3n3l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y8bi1"]
 bg_color = Color(0.309804, 0.505882, 0.741176, 1)
@@ -583,7 +584,6 @@ grow_vertical = 1
 pileType = 1
 pileName = "PileTreasures"
 metadata/face_down = true
-metadata/_edit_use_anchors_ = true
 
 [node name="DiscardTreasure" type="Control" parent="Decks"]
 layout_mode = 2
@@ -702,6 +702,12 @@ z_index = 200
 offset = Vector2(800, 450)
 script = ExtResource("17_4saal")
 
+[node name="ShuffleDeck" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_a3n3l")
+volume_db = 5.0
+
+[node name="Sounds" type="Node2D" parent="."]
+
 [connection signal="child_entered_tree" from="Player1/PanelContainer/PlayerHand" to="Player1/PanelContainer/PlayerHand" method="_on_child_entered_tree"]
 [connection signal="pressed" from="Player1/SitButton1" to="." method="_on_sit_button_1_pressed"]
 [connection signal="pressed" from="Player1/Player1EndTurn" to="Player1/Player1EndTurn" method="_on_pressed"]
@@ -720,5 +726,9 @@ script = ExtResource("17_4saal")
 [connection signal="child_entered_tree" from="Player6/PanelContainer/PlayerHand" to="Player6/PanelContainer/PlayerHand" method="_on_child_entered_tree"]
 [connection signal="pressed" from="Player6/SitButton" to="." method="_on_sit_button_6_pressed"]
 [connection signal="pressed" from="Player6/PlayerEndTurn" to="Player6/PlayerEndTurn" method="_on_pressed"]
+[connection signal="on_shuffle" from="Decks/DiscardDoors/PileDiscardDoors" to="." method="_on_deck_shuffle"]
+[connection signal="on_shuffle" from="Decks/Doors/PileDoors" to="." method="_on_deck_shuffle"]
+[connection signal="on_shuffle" from="Decks/Treasure/PileTreasures" to="." method="_on_deck_shuffle"]
+[connection signal="on_shuffle" from="Decks/DiscardTreasure/PileDiscardTreasures" to="." method="_on_deck_shuffle"]
 [connection signal="id_pressed" from="ShuffleMenu" to="." method="_on_shuffle_menu_id_pressed"]
 [connection signal="close_requested" from="PilePreview" to="PilePreview" method="_on_close_requested"]

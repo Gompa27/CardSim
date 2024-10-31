@@ -18,6 +18,10 @@ func _process(_delta):
 
 func change_level( _playerNumber:int , _level:int):
 	if playerNumber == _playerNumber:
+		if (level < _level):
+			$LevelUpSound.play()
+		else:
+			$LevelDownSound.play()
 		level = _level
 		%Label.text = str(level)	
 
@@ -25,9 +29,11 @@ func _on_add_level_pressed():
 	level +=1
 	%Label.text = str(level)
 	NetworkManager.change_level(playerNumber,level)
+	$LevelUpSound.play()
 
 
 func _on_remove_level_pressed():
 	level -=1
 	%Label.text = str(level)
 	NetworkManager.change_level(playerNumber, level)
+	$LevelDownSound.play()

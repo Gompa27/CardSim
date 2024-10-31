@@ -7,6 +7,7 @@ static var cards_in_game: Array[Card] = []
 static var currentCardSelected: Card
 
 var cardNumber = 0
+var soundOnFlip: AudioStreamPlayer2D
 var isFaceDown = true
 var offsetMouse: Vector2
 var isCardSelected: bool = false
@@ -97,11 +98,11 @@ func moveCard(_position: Vector2):
 	
 func flipCard():
 	isFaceDown = !isFaceDown
-	if cardType == Util.CARD_TYPE.DOOR:
-		if cardNumber == 79:
-			$Ooopsie.play()
-		if cardNumber== 94:
-			$Cuack.play()
+	print("soundOnFlip", soundOnFlip)
+	if !isFaceDown and soundOnFlip: 
+		#cardType == Util.CARD_TYPE.DOOR:
+		#if cardNumber in  [79, 94]:
+		soundOnFlip.play()
 		
 
 
