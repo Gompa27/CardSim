@@ -6,7 +6,7 @@ var level = 1
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	%Label.text = str(level)
-	Game.connect('_on_change_level', change_level)
+	Game.connect('on_change_level', change_level)
 	
 	var styleBox =  StyleBoxFlat.new() 
 	styleBox.bg_color = bgcolor

@@ -24,6 +24,7 @@ buses/default_bus_layout=""
 Game="*res://Scripts/Game.gd"
 NetworkManager="*res://Network/NetworkManager.gd"
 Util="*res://Scripts/Util.gd"
+ExpansionsManager="*res://Managers/ExpansionsManager.gd"
 
 [display]
 

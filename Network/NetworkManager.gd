@@ -1,5 +1,5 @@
 extends Node
-signal _roll_dice(number : int)
+signal on_roll_dice(number : int)
 signal on_connection_failed()
 	
 const MAX_PEERS = 5
@@ -13,7 +13,6 @@ func _process(_delta: float) -> void:
 
 ######################## SERVER ########################
 func host_server(port: int):
-	connection_client.peer_connected.connect(_on_peer_connected)
 	connection_client.peer_disconnected.connect(_on_peer_disconnected)
 	multiplayer_api = MultiplayerAPI.create_default_interface()
 	connection_client.create_server(port, MAX_PEERS)
@@ -21,13 +20,6 @@ func host_server(port: int):
 	multiplayer_api.multiplayer_peer = connection_client
 	#print("SERVER OPEN", connection_client.get_connection_status())
 	get_tree().change_scene_to_file("res://Scenes/main.tscn")
-
-
-func _on_peer_connected(peer_id):
-	#print("SERVER - NUEVO PEER CONECTADA, PEER_ID: {0}".format([peer_id]))
-	await get_tree().create_timer(1).timeout
-	#print("SERVER - PEERS CONECTADAS: {0}".format([multiplayer.get_peers()]))
-		
 
 func _on_peer_disconnected(peer_id):
 	print("SERVER - PEER DESCONECTADA: {0}".format([peer_id]))
@@ -48,14 +40,10 @@ func connect_server(ip_address: String, port: int, username: String):
 
 func _on_connection_succeeded(username: String):
 	await get_tree().create_timer(1).timeout
-	#print("CLIENTE CONECTADO - PEERS CONECTADAS {0}".format([multiplayer.get_peers()]))
 	login(username)
-	get_tree().change_scene_to_file("res://Scenes/main.tscn")
-	
-	
 
 func _on_connection_failed():
-	emit_signal("on_connection_failed")
+	on_connection_failed.emit()
 	print("Custom Client _on_connection_failed", )
 	
 	
@@ -72,8 +60,13 @@ func rpc_send_cards_to(oldPileType: Util.PILE_TYPE, newPileType: Util.PILE_TYPE)
 	pile.send_cards_to(newPileType)
 
 @rpc("any_peer")
-func rpc_update_players(game: Dictionary):
-	Game.deserialize(game)
+func rpc_update_players(_game: Dictionary):
+	Game.deserialize(_game)
+	
+@rpc("authority")
+func rpc_login_succeeded(_game: Dictionary, currentExpansion: int):
+	Game.setCurrentExpansion(currentExpansion)
+	get_tree().change_scene_to_file("res://Scenes/main.tscn")
 
 @rpc("any_peer")
 func rpc_login(username: String):
@@ -87,10 +80,12 @@ func rpc_login(username: String):
 	}
 	Game.add_player(player)
 	rpc_update_players.rpc(Game.serialize())
+	if (peerId != 1):
+		rpc_login_succeeded.rpc_id(peerId, Game.serialize(), Game.currentExpansion)
 
 @rpc("any_peer")
 func rpc_set_dice(number: int):
-	emit_signal('_roll_dice', number)
+	on_roll_dice.emit(number)
 
 @rpc("any_peer")
 func rpc_roll_dice():
@@ -106,7 +101,7 @@ func rpc_flip_card(cardNumber: int, cardType: Util.CARD_TYPE):
 @rpc("any_peer")
 func rpc_move_card(cardNumber: int, position: Vector2, cardType: Util.CARD_TYPE):
 	var peerId = multiplayer.get_remote_sender_id()
-	var playerPosition = Game.playersPositions.find(peerId)
+	var _playerPosition = Game.playersPositions.find(peerId)
 	var card = Card.findCard(cardNumber, cardType)
 	card.moveCard(position)
 	
@@ -168,7 +163,7 @@ func rpc_lock_card(cardNumber: int, cardType: Util.CARD_TYPE):
 	var peerId = multiplayer.get_remote_sender_id()
 	if peerId == 0: 
 		peerId = 1
-	var playerPosition = Game.playersPositions.find(peerId)
+	var _playerPosition = Game.playersPositions.find(peerId)
 	var card = Card.findCard(cardNumber, cardType)
 	card.lockCardBy(peerId)
 
@@ -177,13 +172,13 @@ func rpc_unlock_card(cardNumber: int, cardType: Util.CARD_TYPE):
 	var peerId = multiplayer.get_remote_sender_id()
 	if peerId == 0: 
 		peerId = 1
-	var playerPosition = Game.playersPositions.find(peerId)
+	var _playerPosition = Game.playersPositions.find(peerId)
 	var card = Card.findCard(cardNumber, cardType)
 	if card.lockedBy == peerId:
 		card.unlock()
 	
 func login(username: String):
-	rpc_login.rpc(username)
+	rpc_login.rpc_id(1, username)
 
 func roll_dice():
 	if multiplayer.is_server():

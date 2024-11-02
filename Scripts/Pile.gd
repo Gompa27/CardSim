@@ -18,9 +18,9 @@ func _ready():
 		
 
 
-static func findPile(pileType: Util.PILE_TYPE):
+static func findPile(_pileType: Util.PILE_TYPE):
 	for pile in piles:
-		if pile.pileType == pileType:
+		if pile.pileType == _pileType:
 			return pile
 
 
@@ -44,7 +44,7 @@ func updatePile(newOrder: Array[int]):
 	for i in range(newOrder.size()):
 		var card = Card.findCard(newOrder[i], cardType)
 		self.move_child(card, i)
-	emit_signal("on_shuffle")
+	on_shuffle.emit()
 
 
 func _getTypeCard():
@@ -55,15 +55,14 @@ func _getTypeCard():
 	
 	return null	
 	
-func send_cards_to(pileType: Util.PILE_TYPE):
-	var newPile = findPile(pileType)
+func send_cards_to(_pileType: Util.PILE_TYPE):
+	var newPile = findPile(_pileType)
 	for child in get_children():
 		child.isFaceDown = true
 		child.reparent(newPile)
 
 
 func _on_child_entered_tree(node):
-	Game.playersPositions
 	if node is Card:
 		if pileType == Util.PILE_TYPE.DOOR || pileType == Util.PILE_TYPE.TREASURE:
 			node.isFaceDown = true

@@ -2,7 +2,7 @@ extends TextureButton
 
 @export var playerTurn: int
 
-func _process(delta):
+func _process(_delta):
 	self.visible = playerTurn == Game.currentPlayerTurn
 
 func _on_pressed():

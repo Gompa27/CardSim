@@ -1,10 +1,10 @@
 extends Node
 
-signal _on_update_players(players: Dictionary)
-signal _on_open_popup(texto: String)
-signal _on_close_popup()
-signal _on_change_level(playerNumber: int, level: int)
+signal on_open_popup(texto: String)
+signal on_close_popup()
+signal on_change_level(playerNumber: int, level: int)
 
+var currentExpansion
 var players: Dictionary = {}
 var playersPositions: Array[int] = []
 var playersPointers: Array[Vector2] = []
@@ -17,7 +17,6 @@ func add_player(player: Dictionary):
 	if playersPositions.find(player.peer_id) == -1:
 		playersPositions.append(player.peer_id)
 		playersPointers.append(Vector2(0,0))
-	emit_signal("_on_update_players", players)
 	
 func update_pointer(peerId: int, position: Vector2):
 	var playerIndex = playersPositions.find(peerId)
@@ -25,9 +24,8 @@ func update_pointer(peerId: int, position: Vector2):
 		playersPointers[playerIndex] = position
 
 
-func update_players(players: Dictionary):
-	self.players =  players
-	emit_signal("_on_update_players", players)
+func update_players(_players: Dictionary):
+	self.players = _players
 
 func serialize():
 	return {
@@ -45,7 +43,6 @@ func deserialize(data: Dictionary):
 	if ownPeerId == 0:
 		ownPeerId = 1
 	myPosition = self.playersPositions.find(ownPeerId)
-	emit_signal("_on_update_players", players)
 
 
 func change_position(peerId: int, newPosition: int):
@@ -59,13 +56,13 @@ func change_position(peerId: int, newPosition: int):
 	self.playersPositions = newPlayerPositions
 
 func openAlertViewDiscard(peerId: int):
-	emit_signal("_on_open_popup", "{0} esta viendo la pila de descarte".format([players[peerId].username]))
+	on_open_popup.emit("{0} esta viendo la pila de descarte".format([players[peerId].username]))
 
 func closePopup():
-	emit_signal("_on_close_popup")
+	on_close_popup.emit()
 	
 func change_level(playerNumber: int, level: int):
-	emit_signal('_on_change_level', playerNumber, level)
+	on_change_level.emit(playerNumber, level)
 
 func endTurn(peerId):
 	var nextTurn = playersPositions.find(peerId) + 1
@@ -73,3 +70,13 @@ func endTurn(peerId):
 		nextTurn = 0
 	currentPlayerTurn = nextTurn
 	
+func setCurrentExpansion(expansionNumber: int):
+	self.currentExpansion = expansionNumber
+	
+func hostGame(username: String, port: int, expansion: int):
+	NetworkManager.host_server(port)
+	NetworkManager.rpc_login(username)
+	self.currentExpansion = expansion
+	
+func joinGame(ipAddress: String, port: int, username: String):
+	NetworkManager.connect_server(ipAddress, port, username)

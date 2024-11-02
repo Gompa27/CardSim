@@ -8,22 +8,29 @@ extends Node
 @export var pile_discard_treaasures: Pile
 @export var pilePreview: PilePreview
 
+var cardBase = load("res://Scenes/CardBase.tscn")
+
 var soundsDic: Dictionary = {}
 
 func _ready():
+	print('saraza')
 	loadSounds()
-	_create_cards(Util.AMOUNT_DOORS_CARDS, card_door_scene, pile_doors, Util.CARD_TYPE.DOOR)
-	_create_cards(Util.AMOUNT_TREASURE_CARDS, card_treasure_scene, pile_treaasures, Util.CARD_TYPE.TREASURE)
-	Game.connect("_on_open_popup", open_popup)
-	Game.connect("_on_close_popup", close_popup)
+	var expansion = ExpansionsManager.getExpansion(Game.currentExpansion|| 0)
 
-func _create_cards(amount: int, scene: PackedScene, newParent: Control, cardType: Util.CARD_TYPE):
+	_create_cards(expansion.decks[0].amount, cardBase, pile_doors, Util.CARD_TYPE.DOOR, expansion.decks[0].resource)
+	_create_cards(expansion.decks[1].amount, cardBase, pile_treaasures, Util.CARD_TYPE.TREASURE, expansion.decks[1].resource)
+	Game.connect("on_open_popup", open_popup)
+	Game.connect("on_close_popup", close_popup)
+
+func _create_cards(amount: int, scene: PackedScene, newParent: Control, cardType: Util.CARD_TYPE, spriteFramesCard: String):
+	print(Util.CARD_TYPE, ' - ',cardType, ' - ', amount)
+	var spriteFrames = load(spriteFramesCard)
 	for cardNumber in range(1, amount):
 		var card: Card = scene.instantiate()
+		card.setSpritesFrames(spriteFrames)
 		card.cardNumber = cardNumber
 		card.isFaceDown = newParent.get_meta('face_down')
 		var sound = soundsDic.get(str(cardNumber)+"_"+str(cardType))
-		print("CARTA", cardNumber,"_", cardType, sound)
 		if sound:
 			card.soundOnFlip = sound
 		card.visible = true
@@ -194,88 +201,4 @@ func loadSounds():
 	soundsDic["38_"+str(Util.CARD_TYPE.TREASURE)] = audioPlayerPowerUp
 	soundsDic["41_"+str(Util.CARD_TYPE.TREASURE)] = audioPlayerPowerUp
 	soundsDic["71_"+str(Util.CARD_TYPE.TREASURE)] = audioPlayerPowerUp
-	
-	
-	
-	
-	
-	
-	#self.sounds.append([65, Util.CARD_TYPE.DOOR,audioPlayerDuck])
-	#self.sounds.append([90, Util.CARD_TYPE.DOOR,audioPlayerChicken])
-	#self.sounds.append([79, Util.CARD_TYPE.DOOR,audioPlayerOppsie])
-	#self.sounds.append([44, Util.CARD_TYPE.TREASURE,audioPlayerMyPrecious])
-	#
-	#self.sounds.append([6, Util.CARD_TYPE.DOOR,audioPlayerCleric])
-	#self.sounds.append([35, Util.CARD_TYPE.DOOR,audioPlayerCleric])
-	#self.sounds.append([40, Util.CARD_TYPE.DOOR,audioPlayerCleric])
-	#
-	#
-	#self.sounds.append([20, Util.CARD_TYPE.DOOR,audioPlayerElf])
-	#self.sounds.append([30, Util.CARD_TYPE.DOOR,audioPlayerElf])
-	#self.sounds.append([75, Util.CARD_TYPE.DOOR,audioPlayerElf])
-	#
-	#self.sounds.append([55, Util.CARD_TYPE.DOOR,audioPlayerHobbit])
-	#self.sounds.append([61, Util.CARD_TYPE.DOOR,audioPlayerHobbit])
-	#self.sounds.append([12, Util.CARD_TYPE.DOOR,audioPlayerHobbit])
-	#
-	#self.sounds.append([14, Util.CARD_TYPE.DOOR,audioPlayerDwarf])
-	#self.sounds.append([37, Util.CARD_TYPE.DOOR,audioPlayerDwarf])
-	#self.sounds.append([56, Util.CARD_TYPE.DOOR,audioPlayerDwarf])
-	#
-	#
-	#self.sounds.append([1, Util.CARD_TYPE.TREASURE,audioPlayerPowerUp])
-	#self.sounds.append([3, Util.CARD_TYPE.TREASURE,audioPlayerPowerUp])
-	#self.sounds.append([7, Util.CARD_TYPE.TREASURE,audioPlayerPowerUp])
-	#self.sounds.append([12, Util.CARD_TYPE.TREASURE,audioPlayerPowerUp])
-	#self.sounds.append([15, Util.CARD_TYPE.TREASURE,audioPlayerPowerUp])
-	#self.sounds.append([16, Util.CARD_TYPE.TREASURE,audioPlayerPowerUp])
-	#self.sounds.append([22, Util.CARD_TYPE.TREASURE,audioPlayerPowerUp])
-	#self.sounds.append([38, Util.CARD_TYPE.TREASURE,audioPlayerPowerUp])
-	#self.sounds.append([41, Util.CARD_TYPE.TREASURE,audioPlayerPowerUp])
-	#self.sounds.append([71, Util.CARD_TYPE.TREASURE,audioPlayerPowerUp])
-
-
-
-
-
-
-
-
-
-	#self.sounds.append([94, Util.CARD_TYPE.DOOR,"res://Assets/sounds/cards/duck.mp3"])
-	
-	#self.sounds.append([65, Util.CARD_TYPE.DOOR,"res://Assets/sounds/cards/chicken.mp3"])
-	#self.sounds.append([90, Util.CARD_TYPE.DOOR,"res://Assets/sounds/cards/chicken.mp3"])
-	#
-	#self.sounds.append([6, Util.CARD_TYPE.DOOR,"res://Assets/sounds/cards/cleric.mp3"])
-	#self.sounds.append([35, Util.CARD_TYPE.DOOR,"res://Assets/sounds/cards/cleric.mp3"])
-	#self.sounds.append([40, Util.CARD_TYPE.DOOR,"res://Assets/sounds/cards/cleric.mp3"])
-	#
-	#
-	#self.sounds.append([20, Util.CARD_TYPE.DOOR,"res://Assets/sounds/cards/elf.mp3"])
-	#self.sounds.append([30, Util.CARD_TYPE.DOOR,"res://Assets/sounds/cards/elf.mp3"])
-	#self.sounds.append([75, Util.CARD_TYPE.DOOR,"res://Assets/sounds/cards/elf.mp3"])
-	#
-	#self.sounds.append([12, Util.CARD_TYPE.DOOR,"res://Assets/sounds/cards/hobbit.mp3"])
-	#self.sounds.append([55, Util.CARD_TYPE.DOOR,"res://Assets/sounds/cards/hobbit.mp3"])
-	#self.sounds.append([61, Util.CARD_TYPE.DOOR,"res://Assets/sounds/cards/hobbit.mp3"])
-	#
-	#self.sounds.append([14, Util.CARD_TYPE.DOOR,"res://Assets/sounds/cards/dwarf.mp3"])
-	#self.sounds.append([37, Util.CARD_TYPE.DOOR,"res://Assets/sounds/cards/dwarf.mp3"])
-	#self.sounds.append([56, Util.CARD_TYPE.DOOR,"res://Assets/sounds/cards/dwarf.mp3"])
-	#
-	#self.sounds.append([79, Util.CARD_TYPE.DOOR,"res://Assets/sounds/cards/oopsie.mp3"])
-	#self.sounds.append([44, Util.CARD_TYPE.TREASURE,"res://Assets/sounds/cards/my-precious.mp3"])
-	#self.sounds.append([1, Util.CARD_TYPE.TREASURE,"res://Assets/sounds/cards/power_up.mp3"])
-	#self.sounds.append([3, Util.CARD_TYPE.TREASURE,"res://Assets/sounds/cards/power_up.mp3"])
-	#self.sounds.append([7, Util.CARD_TYPE.TREASURE,"res://Assets/sounds/cards/power_up.mp3"])
-	#self.sounds.append([12, Util.CARD_TYPE.TREASURE,"res://Assets/sounds/cards/power_up.mp3"])
-	#self.sounds.append([15, Util.CARD_TYPE.TREASURE,"res://Assets/sounds/cards/power_up.mp3"])
-	#self.sounds.append([16, Util.CARD_TYPE.TREASURE,"res://Assets/sounds/cards/power_up.mp3"])
-	#self.sounds.append([22, Util.CARD_TYPE.TREASURE,"res://Assets/sounds/cards/power_up.mp3"])
-	#self.sounds.append([38, Util.CARD_TYPE.TREASURE,"res://Assets/sounds/cards/power_up.mp3"])
-	#self.sounds.append([41, Util.CARD_TYPE.TREASURE,"res://Assets/sounds/cards/power_up.mp3"])
-	#self.sounds.append([71, Util.CARD_TYPE.TREASURE,"res://Assets/sounds/cards/power_up.mp3"])
-	#self.sounds.append(["", Util.CARD_TYPE.TREASURE,"res://Assets/sounds/cards/power_up.mp3"])
-	
 	

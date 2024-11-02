@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://extpsqcv3e2g"]
+[gd_scene load_steps=3 format=3 uid="uid://extpsqcv3e2g"]
 
 [ext_resource type="Script" path="res://Scripts/Card.gd" id="1_60uea"]
 [ext_resource type="SpriteFrames" uid="uid://bftorln374wsx" path="res://Resources/doors.tres" id="2_uy801"]
-[ext_resource type="AudioStream" uid="uid://cmykfhmsomm5u" path="res://Assets/sounds/cards/oopsie.mp3" id="2_x5hqf"]
-[ext_resource type="AudioStream" uid="uid://dm73kxpysnp7w" path="res://Assets/sounds/cards/duck.mp3" id="4_bkvkf"]
 
 [node name="CardDoor" type="Control"]
 custom_minimum_size = Vector2(81, 121)
@@ -28,13 +26,5 @@ layout_mode = 0
 offset_right = 81.0
 offset_bottom = 121.0
 color = Color(0.301961, 0.301961, 0.301961, 0.623529)
-
-[node name="Cuack" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_bkvkf")
-volume_db = 20.0
-
-[node name="Ooopsie" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("2_x5hqf")
-volume_db = 24.0
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

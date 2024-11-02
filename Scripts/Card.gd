@@ -1,7 +1,7 @@
 class_name Card
 extends  Control
 
-signal change_pos(pos: Vector2)
+#signal change_pos(pos: Vector2)
 
 static var cards_in_game: Array[Card] = []
 static var currentCardSelected: Card
@@ -13,6 +13,10 @@ var offsetMouse: Vector2
 var isCardSelected: bool = false
 var cardType: Util.CARD_TYPE
 var lockedBy = null
+
+func setSpritesFrames(newSpriteFrames: SpriteFrames):
+	if newSpriteFrames:
+		%Card.sprite_frames = newSpriteFrames
 
 func _ready():
 	cards_in_game.append(self)
@@ -98,13 +102,8 @@ func moveCard(_position: Vector2):
 	
 func flipCard():
 	isFaceDown = !isFaceDown
-	print("soundOnFlip", soundOnFlip)
 	if !isFaceDown and soundOnFlip: 
-		#cardType == Util.CARD_TYPE.DOOR:
-		#if cardNumber in  [79, 94]:
 		soundOnFlip.play()
-		
-
 
 func lockCardBy(peerId: int):
 	lockedBy = peerId

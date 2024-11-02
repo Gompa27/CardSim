@@ -4,8 +4,10 @@ extends Control
 @onready var ip_address = %IpAddressText
 @onready var username = %UsernameText
 
+var expansionSelected: int = 0
+
 func _ready():
-	NetworkManager.on_connection_failed.connect(_reset_buttons)
+	NetworkManager.connect("on_connection_failed", _reset_buttons)
 
 func _reset_buttons():
 	%JoinButton.disabled = false
@@ -15,11 +17,12 @@ func _reset_buttons():
 func _on_join_button_pressed():
 	%JoinButton.disabled = true
 	%HostButton.disabled = true
-	NetworkManager.connect_server(ip_address.text, int(port.text), username.text )
+	Game.joinGame(ip_address.text, int(port.text), username.text)
 
 func _on_host_button_pressed():
 	%JoinButton.disabled = true
 	%HostButton.disabled = true
-	NetworkManager.host_server(int(port.text))
-	NetworkManager.rpc_login(username.text)
-	
+	Game.hostGame(username.text, int(port.text), expansionSelected)
+
+func _on_option_button_item_selected(index):
+	expansionSelected = index

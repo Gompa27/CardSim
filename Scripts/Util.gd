@@ -1,6 +1,4 @@
 extends Node
-const AMOUNT_DOORS_CARDS = 95
-const AMOUNT_TREASURE_CARDS = 72
 
 enum CARD_TYPE {
 	DOOR,
