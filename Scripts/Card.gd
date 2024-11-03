@@ -46,7 +46,24 @@ func _on_gui_input(event: InputEvent) -> void:
 				_startDragging(event)
 			elif event.button_mask == 0:
 				_finishDragging()
-				
+				#
+#func _on_mouse_entered():
+	#if self.get_parent().pileType in Util.PILE_HAND_PLAYER:
+		#self.startPosition = self.position
+		#var tween = get_tree().create_tween()
+		#var tween2 = get_tree().create_tween()
+		#tween.tween_property(self, "position", self.position - Vector2(0, 40), 0.2)
+		#tween2.tween_property(self, "scale", Vector2(1.3,1.3), 0.2)
+
+
+#func _on_mouse_exited():
+	#if self.get_parent().pileType in Util.PILE_HAND_PLAYER:
+		#var tween = get_tree().create_tween()
+		#var tween2 = get_tree().create_tween()
+		#tween.tween_property(self, "position", self.startPosition, 0.2)
+		#tween2.tween_property(self, "scale", Vector2(1,1), 0.2)
+
+
 func _startDragging(event: InputEventMouseButton):
 	isCardSelected = true
 	offsetMouse = event.position
