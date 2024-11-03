@@ -23,11 +23,11 @@ func _init():
 	expansions[EXPANSIONS.SECOND] = {
 		'name': 'Segunda - Hacha descomunal',
 		'decks': [{
-			'amount': 64,
+			'amount': 159,
 			'resource': "res://Resources/doors2.tres"
 		},{
-			'amount': 72,
-			'resource': "res://Resources/treasures.tres"
+			'amount': 116,
+			'resource': "res://Resources/treasures2.tres"
 		}]
 	}
 	
