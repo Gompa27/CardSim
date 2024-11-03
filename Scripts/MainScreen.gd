@@ -11,19 +11,21 @@ extends Node
 var cardBase = load("res://Scenes/CardBase.tscn")
 
 var soundsDic: Dictionary = {}
+var soundsTurn: Array[AudioStreamPlayer2D] = []
 
 func _ready():
-	print('saraza')
-	loadSounds()
+	randomize()
+	loadSoundsCards()
+	loadSoundsTurns()
 	var expansion = ExpansionsManager.getExpansion(Game.currentExpansion|| 0)
 
 	_create_cards(expansion.decks[0].amount, cardBase, pile_doors, Util.CARD_TYPE.DOOR, expansion.decks[0].resource)
 	_create_cards(expansion.decks[1].amount, cardBase, pile_treaasures, Util.CARD_TYPE.TREASURE, expansion.decks[1].resource)
 	Game.connect("on_open_popup", open_popup)
 	Game.connect("on_close_popup", close_popup)
+	Game.connect("on_end_turn", on_end_turn)
 
 func _create_cards(amount: int, scene: PackedScene, newParent: Control, cardType: Util.CARD_TYPE, spriteFramesCard: String):
-	print(Util.CARD_TYPE, ' - ',cardType, ' - ', amount)
 	var spriteFrames = load(spriteFramesCard)
 	for cardNumber in range(1, amount):
 		var card: Card = scene.instantiate()
@@ -122,7 +124,7 @@ func _on_deck_shuffle():
 	$ShuffleDeck.play()
 
 
-func loadSounds():
+func loadSoundsCards():
 	var duck = ResourceLoader.load("res://Assets/sounds/cards/duck.mp3") as AudioStream
 	var chicken =ResourceLoader.load("res://Assets/sounds/cards/chicken.mp3") as AudioStream
 	var cleric =ResourceLoader.load("res://Assets/sounds/cards/cleric.mp3") as AudioStream
@@ -202,3 +204,15 @@ func loadSounds():
 	soundsDic["41_"+str(Util.CARD_TYPE.TREASURE)] = audioPlayerPowerUp
 	soundsDic["71_"+str(Util.CARD_TYPE.TREASURE)] = audioPlayerPowerUp
 	
+func loadSoundsTurns():
+	for i in range(1, 6):
+		var resource = "res://Assets/sounds/turns/turn"+str(i)+".mp3"
+		print('REsource: ', resource)
+		var audioStream = ResourceLoader.load(resource) as AudioStream
+		var audioPlayerTurn = AudioStreamPlayer2D.new()
+		audioPlayerTurn.stream = audioStream
+		self.add_child(audioPlayerTurn)	
+		soundsTurn.append(audioPlayerTurn)
+
+func on_end_turn(sound: int):
+	soundsTurn[sound].play()

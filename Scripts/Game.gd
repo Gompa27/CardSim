@@ -3,6 +3,7 @@ extends Node
 signal on_open_popup(texto: String)
 signal on_close_popup()
 signal on_change_level(playerNumber: int, level: int)
+signal on_end_turn(sound: int)
 
 var currentExpansion
 var players: Dictionary = {}
@@ -64,11 +65,12 @@ func closePopup():
 func change_level(playerNumber: int, level: int):
 	on_change_level.emit(playerNumber, level)
 
-func endTurn(peerId):
+func endTurn(peerId: int, sound: int):
 	var nextTurn = playersPositions.find(peerId) + 1
 	if nextTurn >= playersPositions.size():
 		nextTurn = 0
 	currentPlayerTurn = nextTurn
+	on_end_turn.emit(sound)
 	
 func setCurrentExpansion(expansionNumber: int):
 	self.currentExpansion = expansionNumber

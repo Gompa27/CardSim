@@ -154,9 +154,9 @@ func rpc_update_pointer(position: Vector2):
 	Game.update_pointer(peerId, position)
 		
 @rpc("any_peer")
-func rpc_end_turn():
+func rpc_end_turn(sound: int):
 	var peerId = multiplayer.get_remote_sender_id()
-	Game.endTurn(peerId)
+	Game.endTurn(peerId, sound)
 	
 @rpc("any_peer")
 func rpc_lock_card(cardNumber: int, cardType: Util.CARD_TYPE):
@@ -223,8 +223,10 @@ func end_turn():
 	var myPeerId = multiplayer.get_unique_id()
 	if myPeerId == 0: 
 		myPeerId = 1
-	Game.endTurn(myPeerId)
-	rpc_end_turn.rpc()
+		
+	var soundEndTurn = randi_range(0, 4)
+	Game.endTurn(myPeerId, soundEndTurn)
+	rpc_end_turn.rpc(soundEndTurn)
 
 func lock_card(card: Card):
 	#rpc_lock_card(card.cardNumber, card.cardType)
