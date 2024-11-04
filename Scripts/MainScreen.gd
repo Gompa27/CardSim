@@ -1,14 +1,12 @@
 extends Node
 
-@export var card_door_scene: PackedScene
-@export var card_treasure_scene: PackedScene
 @export var pile_doors: Pile
-@export var pile_treaasures: Pile
+@export var pile_treasures: Pile
 @export var pile_discard_doors: Pile
-@export var pile_discard_treaasures: Pile
+@export var pile_discard_treasures: Pile
 @export var pilePreview: PilePreview
+@export var cardBaseScene: PackedScene
 
-var cardBase = load("res://Scenes/CardBase.tscn")
 
 var soundsDic: Dictionary = {}
 var soundsTurn: Array[AudioStreamPlayer2D] = []
@@ -19,8 +17,8 @@ func _ready():
 	loadSoundsTurns()
 	var expansion = ExpansionsManager.getExpansion(Game.currentExpansion|| 0)
 
-	_create_cards(expansion.decks[0].amount, cardBase, pile_doors, Util.CARD_TYPE.DOOR, expansion.decks[0].resource)
-	_create_cards(expansion.decks[1].amount, cardBase, pile_treaasures, Util.CARD_TYPE.TREASURE, expansion.decks[1].resource)
+	_create_cards(expansion.decks[0].amount, cardBaseScene, pile_doors, Util.CARD_TYPE.DOOR, expansion.decks[0].resource)
+	_create_cards(expansion.decks[1].amount, cardBaseScene, pile_treasures, Util.CARD_TYPE.TREASURE, expansion.decks[1].resource)
 	Game.connect("on_open_popup", open_popup)
 	Game.connect("on_close_popup", close_popup)
 	Game.connect("on_end_turn", on_end_turn)
@@ -49,7 +47,7 @@ func _on_shuffle_menu_id_pressed(id):
 		pilePreview.pile = pile_discard_doors
 		pilePreview.popup()	
 	if id == 7: # Ver descarte treasures
-		pilePreview.pile = pile_discard_treaasures
+		pilePreview.pile = pile_discard_treasures
 		pilePreview.popup()
 		
 
@@ -207,7 +205,6 @@ func loadSoundsCards():
 func loadSoundsTurns():
 	for i in range(1, 6):
 		var resource = "res://Assets/sounds/turns/turn"+str(i)+".mp3"
-		print('REsource: ', resource)
 		var audioStream = ResourceLoader.load(resource) as AudioStream
 		var audioPlayerTurn = AudioStreamPlayer2D.new()
 		audioPlayerTurn.stream = audioStream

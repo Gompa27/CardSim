@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://extpsqcv3e2g"]
+[gd_scene load_steps=3 format=3 uid="uid://b4mi07v6o1idw"]
 
 [ext_resource type="Script" path="res://Scripts/Card.gd" id="1_60uea"]
 [ext_resource type="SpriteFrames" uid="uid://bftorln374wsx" path="res://Resources/doors.tres" id="2_uy801"]
